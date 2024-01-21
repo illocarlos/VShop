@@ -1,7 +1,9 @@
 <script setup>
-
+import {  RouterView } from 'vue-router'
 </script>
 
 <template>
-  <h1> desde app</h1>
+  <main>
+  <RouterView/>
+  </main>
 </template>
