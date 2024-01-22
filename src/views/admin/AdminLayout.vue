@@ -4,7 +4,7 @@ import AdminMainNav from '@/components/AdminMainNav.vue';
 
 <template>
 <AdminMainNav/>
-<div>
+<div class="pt-32 container mx-auto lg:min-h-screen">
     <RouterView/>
     </div>
 </template>
