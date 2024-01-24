@@ -15,7 +15,7 @@ const router = createRouter({
     {
       path: '/admin',
       name: 'admin',
-      component: () => AdminLayout,
+      component: AdminLayout,
       // y estos son los hijos de admin que debemos estar en admi para ir a ellos 
       children: [
         {
@@ -31,8 +31,25 @@ const router = createRouter({
         {
           path: 'new-product',
           name: 'new-product',
-          component: () => import('@/views/admin/NewProductView.vue')
+          component: () => import('@/views/admin/NewProductView.vue'),
+        },
+        {
+          path: 'new-product/snikers',
+          name: 'new-product-snikers',
+          component: () => import('@/views/admin/NewSnikersView.vue'),
+        },
+        {
+          path: 'new-product/sunglases',
+          name: 'new-product-sunglases',
+          component: () => import('@/views/admin/NewSunglasesView.vue'),
+        }, {
+          path: 'new-product/sweatshirts',
+          name: 'new-product-sweatshirts',
+          component: () => import('@/views/admin/NewSweatshirtsView.vue'),
         }
+
+
+
       ]
     }
   ]

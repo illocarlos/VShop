@@ -2,12 +2,15 @@
 export default {
   content: [
     "./index.html",
-    "./src/**/*.{vue,ts,tsx,js,jsx}"
+    "./src/**/*.{vue,ts,tsx,js,jsx}",
+    "./formkit.config.js"
 
   ],
   theme: {
     extend: {},
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/forms')
+  ],
 }
 

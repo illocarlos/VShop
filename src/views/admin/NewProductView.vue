@@ -1,7 +1,12 @@
 <script setup>
-
+import Link from '@/components/Link.vue';
 </script>
 
 <template>
-  <h1>new product</h1>
+  <Link to="new-product-snikers">
+   snikers</Link>
+      <Link to="new-product-sunglases">
+      sunglases</Link>
+      <Link  to="new-product-sweatshirts">
+      sweetshirt</Link>
 </template>
