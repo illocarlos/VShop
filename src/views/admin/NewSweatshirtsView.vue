@@ -1,28 +1,35 @@
 <script setup>
-import { reactive } from 'vue';
+import { reactive, computed } from 'vue';
 import Link from '@/components/Link.vue';
-import useImages from '@/composable/useImage'
-import { useProductStore } from '@/stores/products'
+import useImages from '@/composable/useImage';
+import { useProductStore } from '@/stores/products';
 import { ref } from 'vue';
 
-const { onFileChange, url, isImageUploader } = useImages()
-const useProduct = useProductStore()
+const { onFileChange, url, isImageUploader } = useImages();
+const useProduct = useProductStore();
+
 const formData = reactive({
   name: '',
   images: [""],
   price: "",
-  size:{}
-  
-})
+  size: {},
+  category: useProduct.categoryOption[2].label
+});
 
-const submitHanler = (data) => {
-  useProduct.createProduct(data)
-  
-}
+const submitHanler = async (data) => {
+  const { images, ...values } = data;
 
-const sizeSweatshirts = ["S", "M", "L", "XL", "XXL"]
+  try {
+    await useProduct.createProduct({
+      ...values,
+      images: url.value
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+const sizeSweatshirts = ["S", "M", "L", "XL", "XXL"];
 </script>
-
 <template>
   <div>
     <Link to="new-product">
@@ -32,9 +39,16 @@ const sizeSweatshirts = ["S", "M", "L", "XL", "XXL"]
 
       <div class="mt-10 p-10 w-full 2xl:w-2/4">
         <FormKit type="form" submit-label="add Product" @submit="submitHanler">
-
           <FormKit type="text" label="name" name="name" placeholder="name of product" validation="required"
             :validation-messages="{ required: 'the name is required' }" v-model.trim="formData.name" />
+            <FormKit
+              type="text"
+              label="category"
+              name="category"
+              v-model.trim="formData.category"
+              :readonly="true" 
+              :disabled="true" 
+            />
           <FormKit type="file" label="Documents" name="image" placeholder="name of product" validation="required"
             :validation-messages="{ required: 'the photo is required' }" accept=".pdf, .jpg" multiple="true"
             @change="onFileChange" v-model.trim="formData.images" />
@@ -58,7 +72,6 @@ const sizeSweatshirts = ["S", "M", "L", "XL", "XXL"]
                             v-model.number="formData.size[size]"
                             />
                           </div>
-                 
                         </div>
         </FormKit>
 

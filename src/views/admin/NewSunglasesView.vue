@@ -11,14 +11,22 @@ const formData = reactive({
   name: '',
   images: [""],
   price: "",
-  aviable:""
-
+  aviable:"",
+  category: useProduct.categoryOption[1].label
 })
 
-const submitHanler = (data) => {
-  useProduct.createProduct(data)
+const submitHanler = async (data) => {
+  const { images, ...values } = data;
 
-}
+  try {
+    await useProduct.createProduct({
+      ...values,
+      images: url.value
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
 </script>
 
 <template>
@@ -30,12 +38,22 @@ const submitHanler = (data) => {
 
       <div class="mt-10 p-10 w-full 2xl:w-2/4">
         <FormKit type="form" submit-label="add Product" @submit="submitHanler">
-
           <FormKit type="text" label="name" name="name" placeholder="name of product" validation="required"
             :validation-messages="{ required: 'the name is required' }" v-model.trim="formData.name" />
-          <FormKit type="file" label="Documents" name="image" placeholder="name of product" validation="required"
+
+   <FormKit
+            type="text"
+            label="category"
+            name="category"
+            v-model.trim="formData.category"
+            :readonly="true" 
+            :disabled="true" 
+          />
+
+          <FormKit type="file" label="Documents" name="images" placeholder="name of product" validation="required"
             :validation-messages="{ required: 'the photo is required' }" accept=".pdf, .jpg" multiple="true"
             @change="onFileChange" v-model.trim="formData.images" />
+
           <div class="flex flex-wrap" v-if="isImageUploader">
             <div v-for="(image, index) in url" :key="index" class="w-1/4 p-2">
               <img class="w-full h-full" :src="image" alt="">

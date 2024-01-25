@@ -12,13 +12,22 @@ const formData = reactive({
   images: [""],
   price: "",
   size: ref(Object.fromEntries(Array.from({ length: 15 }, (_, index) => [index + 36]))),
+  category: useProduct.categoryOption[0].label
   
 })
 
-const submitHanler = (data) => {
-  useProduct.createProduct(data)
-  
-}
+const submitHanler = async (data) => {
+  const { images, ...values } = data;
+
+  try {
+    await useProduct.createProduct({
+      ...values,
+      images: url.value
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
 const availableSizes = Array.from({ length: 15 }, (_, index) => index + 36);
 </script>
 
@@ -34,7 +43,6 @@ back
                 type="form"
                 submit-label="add Product"
                     @submit="submitHanler">
-
                 <FormKit
                 type="text"
                 label="name"
@@ -44,6 +52,14 @@ back
                 :validation-messages="{required:'the name is required'}"
                    v-model.trim="formData.name"
                 />
+     <FormKit
+              type="text"
+              label="category"
+              name="category"
+              v-model.trim="formData.category"
+              :readonly="true" 
+              :disabled="true" 
+            />
                   <FormKit
                     type="file"
                      label="Documents"
