@@ -1,12 +1,13 @@
 <script setup>
 import { reactive } from 'vue';
+import { useRouter } from 'vue-router'
 import Link from '@/components/Link.vue';
-import useImages from '@/composable/useImage'
-import { useProductStore } from '@/stores/products'
-import { ref } from 'vue';
+import useImages from '@/composable/useImageSunglasses'
+import { useProductStore } from '@/stores/sunglasses'
 
 const { onFileChange, url, isImageUploader } = useImages()
 const useProduct = useProductStore()
+const router = useRouter()
 const formData = reactive({
   name: '',
   images: [""],
@@ -15,14 +16,16 @@ const formData = reactive({
   category: useProduct.categoryOption[1].label
 })
 
-const submitHanler = async (data) => {
+const submitHanler = async data => {
   const { images, ...values } = data;
 
   try {
+    
     await useProduct.createProduct({
       ...values,
       images: url.value
     });
+    router.push({ name: 'products' })
   } catch (error) {
     console.log(error);
   }
@@ -52,7 +55,7 @@ const submitHanler = async (data) => {
 
           <FormKit type="file" label="Documents" name="images" placeholder="name of product" validation="required"
             :validation-messages="{ required: 'the photo is required' }" accept=".pdf, .jpg" multiple="true"
-            @change="onFileChange" v-model.trim="formData.images" />
+            @change="{onFileChange}" v-model.trim="formData.images" />
 
           <div class="flex flex-wrap" v-if="isImageUploader">
             <div v-for="(image, index) in url" :key="index" class="w-1/4 p-2">
@@ -69,4 +72,4 @@ const submitHanler = async (data) => {
       </div>
     </div>
   </div>
-</template>
+</template>@/composable/useImageSunglasses@/stores/sunglasses

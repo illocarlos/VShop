@@ -1,10 +1,10 @@
 import './assets/main.css'
 import { createApp } from 'vue'
+// pinia
+import { createPinia } from 'pinia'
 // firebase
 import { VueFire, VueFireAuth } from 'vuefire'
 import { firebaseApp } from './config/firebase'
-// pinia
-import { createPinia } from 'pinia'
 // formkit
 import { plugin, defaultConfig } from '@formkit/vue'
 import config from '../formkit.config'

@@ -1,13 +1,14 @@
 <script setup>
 import { reactive, computed } from 'vue';
+import { useRouter } from 'vue-router'
 import Link from '@/components/Link.vue';
-import useImages from '@/composable/useImage';
-import { useProductStore } from '@/stores/products';
+import useImages from '@/composable/useImageSweatshirt';
+import { useSweatStore } from '@/stores/sweatshirt';
 import { ref } from 'vue';
 
 const { onFileChange, url, isImageUploader } = useImages();
-const useProduct = useProductStore();
-
+const useProduct = useSweatStore();
+const router = useRouter()
 const formData = reactive({
   name: '',
   images: [""],
@@ -16,14 +17,14 @@ const formData = reactive({
   category: useProduct.categoryOption[2].label
 });
 
-const submitHanler = async (data) => {
+const submitHanler = async data => {
   const { images, ...values } = data;
-
   try {
     await useProduct.createProduct({
       ...values,
       images: url.value
     });
+      router.push({ name: 'products' })
   } catch (error) {
     console.log(error);
   }
@@ -49,7 +50,7 @@ const sizeSweatshirts = ["S", "M", "L", "XL", "XXL"];
               :readonly="true" 
               :disabled="true" 
             />
-          <FormKit type="file" label="Documents" name="image" placeholder="name of product" validation="required"
+          <FormKit type="file" label="Documents" name="images" placeholder="name of product" validation="required"
             :validation-messages="{ required: 'the photo is required' }" accept=".pdf, .jpg" multiple="true"
             @change="onFileChange" v-model.trim="formData.images" />
           <div class="flex flex-wrap" v-if="isImageUploader">

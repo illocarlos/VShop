@@ -1,7 +1,5 @@
-// Import necessary functions from Firebase SDK
-import { initializeApp } from 'firebase/app';
+import { initializeApp } from 'firebase/app'
 
-// Retrieve Firebase configuration from Vite environment variables
 const firebaseConfig = {
     apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
     authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
@@ -9,7 +7,6 @@ const firebaseConfig = {
     storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
     messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
     appId: import.meta.env.VITE_FIREBASE_APP_ID,
-};
+}
 
-// Initialize Firebase app
-export const firebaseApp = initializeApp(firebaseConfig);
+export const firebaseApp = initializeApp(firebaseConfig)

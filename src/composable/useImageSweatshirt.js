@@ -13,7 +13,7 @@ export default function useImage() {
         // Subir cada archivo individualmente
         Array.from(files).forEach(file => {
 
-            const sRef = storageRef(storage, `/products/${uid()}.jpg`)
+            const sRef = storageRef(storage, `/sweatshirt/${uid()}.jpg`)
             const uploadTask = uploadBytesResumable(sRef, file)
 
             uploadTask.on('state_changed',

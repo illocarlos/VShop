@@ -1,12 +1,14 @@
 <script setup>
 import { reactive } from 'vue';
 import Link from '@/components/Link.vue';
-import useImages from '@/composable/useImage'
-import { useProductStore } from '@/stores/products'
+import { useRouter } from 'vue-router'
+import useImages from '@/composable/useImageSnikers'
+import { useSnikerStore } from '@/stores/snikers'
 import { ref } from 'vue';
 
 const { onFileChange,url,isImageUploader } = useImages()
-const useProduct = useProductStore()
+const useProduct = useSnikerStore()
+const router = useRouter()
 const formData = reactive({
   name: '',
   images: [""],
@@ -24,6 +26,7 @@ const submitHanler = async (data) => {
       ...values,
       images: url.value
     });
+     router.push({ name: 'products' })
   } catch (error) {
     console.log(error);
   }
@@ -63,7 +66,7 @@ back
                   <FormKit
                     type="file"
                      label="Documents"
-                    name="image"
+                    name="images"
                     placeholder="name of product"
                     validation="required"
                     :validation-messages="{ required: 'the photo is required' }"
