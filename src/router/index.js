@@ -42,11 +42,43 @@ const router = createRouter({
           path: 'new-product/sunglases',
           name: 'new-product-sunglases',
           component: () => import('@/views/admin/NewSunglasesView.vue'),
-        }, {
+        },
+        {
           path: 'new-product/sweatshirts',
           name: 'new-product-sweatshirts',
           component: () => import('@/views/admin/NewSweatshirtsView.vue'),
-        }
+        },
+        {
+          path: 'all/snikers',
+          name: 'all-snikers',
+          component: () => import('@/views/admin/AllSnikersView.vue'),
+        },
+        {
+          path: 'all/sunglases',
+          name: 'all-sunglases',
+          component: () => import('@/views/admin/AllSunglasesView.vue'),
+        }, {
+          path: 'all/sweatshirts',
+          name: 'all-sweatshirts',
+          component: () => import('@/views/admin/AllSweatshirtsView.vue'),
+        },
+        {
+          path: 'edit/sniker/:id',
+          name: 'edit-sniker',
+          component: () => import('@/views/admin/EditSnikersView.vue'),
+        },
+        {
+          path: 'edit/sunglasse/:id',
+          name: 'edit-sunglasse',
+          component: () => import('@/views/admin/EditSunglasesView.vue'),
+        },
+        {
+          path: 'edit/sweatshirt/:id',
+          name: 'edit-sweatshirt',
+          component: () => import('@/views/admin/EditSweatshirtView.vue'),
+        },
+
+
 
 
 

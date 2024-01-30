@@ -9,8 +9,8 @@ export const useProductStore = defineStore('products', () => {
     const db = useFirestore()
 
     const categories = [
-        { id: 1, name: 'snikers' },
-        { id: 2, name: 'sunglasses' },
+        { id: 1, name: 'sniker' },
+        { id: 2, name: 'sunglasse' },
         { id: 3, name: 'sweatshirt' }
     ]
 
@@ -20,7 +20,7 @@ export const useProductStore = defineStore('products', () => {
     const allProducts = query(
         collection(db, 'sunglasses')
     )
-    const getAllProduct = useCollection(allProducts)
+    const getAllProductSunglasses = useCollection(allProducts)
 
     // creacion de productos
     async function createProduct(product) {
@@ -44,6 +44,6 @@ export const useProductStore = defineStore('products', () => {
     return {
         createProduct,
         categoryOption,
-        getAllProduct
+        getAllProductSunglasses
     }
 })

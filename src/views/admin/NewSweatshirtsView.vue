@@ -75,7 +75,6 @@ const sizeSweatshirts = ["S", "M", "L", "XL", "XXL"];
                           </div>
                         </div>
         </FormKit>
-
       </div>
     </div>
   </div>

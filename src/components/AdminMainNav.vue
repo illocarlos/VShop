@@ -5,7 +5,7 @@ import Logo from './Logo.vue';
 </script>
 
 <template>
-  <header class="px-10 py-5 bg-gray-700 flex justify-between fixed top-0 w-full z-10">
+  <header class="px-10 py-5 bg-black flex justify-between fixed top-0 w-full z-10">
 <Logo/>
 <nav>
   <RouterLink

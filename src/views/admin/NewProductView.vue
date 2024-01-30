@@ -3,6 +3,9 @@ import Link from '@/components/Link.vue';
 </script>
 
 <template>
+    <Link to="products">
+      back
+      </Link>
   <Link to="new-product-snikers">
    snikers</Link>
       <Link to="new-product-sunglases">
