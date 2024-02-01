@@ -12,7 +12,7 @@ new product
       >
        snikers</Link>
           <Link 
-                to="all-sunglases"
+                to="all-sunglasses"
                 >
           sunglases</Link>
           <Link

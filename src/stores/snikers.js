@@ -7,7 +7,6 @@ import { ref as storageRef, deleteObject } from 'firebase/storage'
 export const useSnikerStore = defineStore('snikers', () => {
 
     const db = useFirestore()
-
     const categories = [
         { id: 1, name: 'sniker' },
         { id: 2, name: 'sunglasse' },
@@ -26,7 +25,6 @@ export const useSnikerStore = defineStore('snikers', () => {
 
 
     async function updateProduct(docRef, product) {
-        console.log('----->', product)
         const { images, url, ...values } = product
 
         if (images.length) {

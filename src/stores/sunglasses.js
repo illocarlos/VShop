@@ -4,13 +4,13 @@ import { useFirestore, useCollection, useFirebaseStorage } from 'vuefire'
 import { collection, addDoc, where, query, limit, orderBy, updateDoc, doc, getDoc, deleteDoc } from 'firebase/firestore'
 import { ref as storageRef, deleteObject } from 'firebase/storage'
 
-export const useProductStore = defineStore('products', () => {
+export const useSunglassesStore = defineStore('products', () => {
 
     const db = useFirestore()
 
     const categories = [
         { id: 1, name: 'sniker' },
-        { id: 2, name: 'sunglasse' },
+        { id: 2, name: 'sunglasses' },
         { id: 3, name: 'sweatshirt' }
     ]
 
@@ -24,12 +24,21 @@ export const useProductStore = defineStore('products', () => {
 
     // creacion de productos
     async function createProduct(product) {
-        console.log("---------->", product)
-
         await addDoc(collection(db, 'sunglasses'), product)
     }
 
+    async function updateProduct(docRef, product) {
+        const { images, url, ...values } = product
 
+        if (images.length) {
+            await updateDoc(docRef, {
+                ...values,
+                images: url.value
+            })
+        } else {
+            await updateDoc(docRef, values)
+        }
+    }
 
     const categoryOption = computed(() => {
         const options = [
@@ -44,6 +53,7 @@ export const useProductStore = defineStore('products', () => {
     return {
         createProduct,
         categoryOption,
-        getAllProductSunglasses
+        getAllProductSunglasses,
+        updateProduct
     }
 })

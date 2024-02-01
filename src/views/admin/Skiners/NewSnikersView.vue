@@ -1,10 +1,9 @@
 <script setup>
-import { reactive } from 'vue';
+import { reactive, computed,ref } from 'vue';
 import Link from '@/components/Link.vue';
 import { useRouter } from 'vue-router';
 import useImages from '@/composable/useImageSnikers';
 import { useSnikerStore } from '@/stores/snikers';
-import { ref } from 'vue';
 
 const { onFileChange, url, isImageUploader } = useImages();
 const useProduct = useSnikerStore();
@@ -14,23 +13,31 @@ const formData = reactive({
   images: [''],
   price: '',
   size: {},
+    aviable: '', // Use ref for total property
   category: useProduct.categoryOption[0].label,
 });
 
 const submitHandler = async (data) => {
+
   const { images, ...values } = data;
 
   try {
     await useProduct.createProduct({
       ...values,
       images: url.value,
+      aviable: aviable.value
     });
     router.push({ name: 'products' });
   } catch (error) {
     console.log(error);
   }
 };
+
 const availableSizes = Array.from({ length: 15 }, (_, index) => index + 36);
+const aviable = computed(() => {
+  return Object.values(formData.size).reduce((acc, curr) => acc + curr, 0);
+});
+formData.aviable = aviable;
 </script>
 
 <template>
@@ -100,8 +107,10 @@ const availableSizes = Array.from({ length: 15 }, (_, index) => index + 36);
               />
             </div>
           </div>
+          <p>Total Size: {{ formData.aviable }}</p>
         </FormKit>
       </div>
     </div>
   </div>
 </template>
+

@@ -36,46 +36,46 @@ const router = createRouter({
         {
           path: 'new-product/snikers',
           name: 'new-product-snikers',
-          component: () => import('@/views/admin/NewSnikersView.vue'),
+          component: () => import('@/views/admin/Skiners/NewSnikersView.vue'),
         },
         {
           path: 'new-product/sunglases',
           name: 'new-product-sunglases',
-          component: () => import('@/views/admin/NewSunglasesView.vue'),
+          component: () => import('@/views/admin/Sunglasses/NewSunglasesView.vue'),
         },
         {
           path: 'new-product/sweatshirts',
           name: 'new-product-sweatshirts',
-          component: () => import('@/views/admin/NewSweatshirtsView.vue'),
+          component: () => import('@/views/admin/Sweatshirts/NewSweatshirtsView.vue'),
         },
         {
           path: 'all/snikers',
           name: 'all-snikers',
-          component: () => import('@/views/admin/AllSnikersView.vue'),
+          component: () => import('@/views/admin/Skiners/AllSnikersView.vue'),
         },
         {
-          path: 'all/sunglases',
-          name: 'all-sunglases',
-          component: () => import('@/views/admin/AllSunglasesView.vue'),
+          path: 'all/sunglasses',
+          name: 'all-sunglasses',
+          component: () => import('@/views/admin/Sunglasses/AllSunglasesView.vue'),
         }, {
           path: 'all/sweatshirts',
           name: 'all-sweatshirts',
-          component: () => import('@/views/admin/AllSweatshirtsView.vue'),
+          component: () => import('@/views/admin/Sweatshirts/AllSweatshirtsView.vue'),
         },
         {
           path: 'edit/sniker/:id',
           name: 'edit-sniker',
-          component: () => import('@/views/admin/EditSnikersView.vue'),
+          component: () => import('@/views/admin/Skiners/EditSnikersView.vue'),
         },
         {
-          path: 'edit/sunglasse/:id',
-          name: 'edit-sunglasse',
-          component: () => import('@/views/admin/EditSunglasesView.vue'),
+          path: 'edit/sunglasses/:id',
+          name: 'edit-sunglasses',
+          component: () => import('@/views/admin/Sunglasses/EditSunglasesView.vue'),
         },
         {
           path: 'edit/sweatshirt/:id',
           name: 'edit-sweatshirt',
-          component: () => import('@/views/admin/EditSweatshirtView.vue'),
+          component: () => import('@/views/admin/Sweatshirts/EditSweatshirtView.vue'),
         },
 
 

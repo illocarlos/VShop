@@ -14,22 +14,34 @@ const formData = reactive({
   images: [""],
   price: "",
   size: {},
+   aviable: '', // Use ref for total property
   category: useProduct.categoryOption[2].label
 });
 
+// En el método submitHandler, antes de enviar los datos al servidor
 const submitHanler = async data => {
-  const { images, ...values } = data;
+  const { images, size, ...values } = data;
+
+ 
+
   try {
+
     await useProduct.createProduct({
       ...values,
-      images: url.value
+      images: url.value,
+       aviable: aviable.value
+  
     });
-      router.push({ name: 'products' })
+    router.push({ name: 'products' })
   } catch (error) {
     console.log(error);
   }
 };
 const sizeSweatshirts = ["S", "M", "L", "XL", "XXL"];
+const aviable = computed(() => {
+  return Object.values(formData.size).reduce((acc, curr) => acc + curr, 0);
+});
+formData.aviable = aviable;
 </script>
 <template>
   <div>
@@ -65,6 +77,7 @@ const sizeSweatshirts = ["S", "M", "L", "XL", "XXL"];
                           <div v-for="size in sizeSweatshirts" :key="size"  class=" w-1/5 p-2">
                             <FormKit
                             class="w-full h-full" 
+                            :name="size"
                             :type="'number'"   
                             :placeholder="'size ' + size"
                             min="0"
@@ -74,6 +87,7 @@ const sizeSweatshirts = ["S", "M", "L", "XL", "XXL"];
                             />
                           </div>
                         </div>
+                                  <p>Total Size: {{ formData.aviable }}</p>
         </FormKit>
       </div>
     </div>

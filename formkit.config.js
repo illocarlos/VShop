@@ -5,7 +5,7 @@ const config = {
         classes: generateClasses({
             global: {
                 label: 'block mb-1 font-bold text-lg uppercase',
-                message: 'text-red-500 mb-5',
+                message: 'text-red-500 mb-5 text-xs',
                 wrapper: 'mb-3',
                 input: 'w-full p-3 border border-gray-300 rounded text-gray-700 placeholder-gray-400',
             },

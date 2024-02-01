@@ -22,7 +22,21 @@ export const useSweatStore = defineStore('sweatshirt', () => {
 
     // creacion de productos
     async function createProduct(product) {
+        console.log('--------> createeeeee', product)
         await addDoc(collection(db, 'sweatshirt'), product)
+    }
+
+    async function updateProduct(docRef, product) {
+        const { images, url, ...values } = product
+
+        if (images.length) {
+            await updateDoc(docRef, {
+                ...values,
+                images: url.value
+            })
+        } else {
+            await updateDoc(docRef, values)
+        }
     }
 
     const categoryOption = computed(() => {
@@ -38,6 +52,7 @@ export const useSweatStore = defineStore('sweatshirt', () => {
     return {
         createProduct,
         categoryOption,
-        getAllProductSweatshirt
+        getAllProductSweatshirt,
+        updateProduct
     }
 })

@@ -3,10 +3,10 @@ import { reactive } from 'vue';
 import { useRouter } from 'vue-router'
 import Link from '@/components/Link.vue';
 import useImages from '@/composable/useImageSunglasses'
-import { useProductStore } from '@/stores/sunglasses'
+import { useSunglassesStore } from '@/stores/sunglasses'
 
 const { onFileChange, url, isImageUploader } = useImages()
-const useProduct = useProductStore()
+const useProduct = useSunglassesStore()
 const router = useRouter()
 const formData = reactive({
   name: '',
@@ -17,6 +17,7 @@ const formData = reactive({
 })
 
 const submitHanler = async data => {
+  console.log(data)
   const { images, ...values } = data;
 
   try {
@@ -44,24 +45,32 @@ const submitHanler = async data => {
           <FormKit type="text" label="name" name="name" placeholder="name of product" validation="required"
             :validation-messages="{ required: 'the name is required' }" v-model.trim="formData.name" />
 
-   <FormKit
-            type="text"
-            label="category"
-            name="category"
-            v-model.trim="formData.category"
-            :readonly="true" 
-            :disabled="true" 
-          />
-
-          <FormKit type="file" label="Documents" name="images" placeholder="name of product" validation="required"
-            :validation-messages="{ required: 'the photo is required' }" accept=".pdf, .jpg" multiple="true"
-            @change="{onFileChange}" v-model.trim="formData.images" />
-
-          <div class="flex flex-wrap" v-if="isImageUploader">
-            <div v-for="(image, index) in url" :key="index" class="w-1/4 p-2">
-              <img class="w-full h-full" :src="image" alt="">
+               <FormKit
+              type="text"
+              label="category"
+              name="category"
+              v-model.trim="formData.category"
+              :readonly="true"
+              :disabled="true"
+            />
+        <FormKit
+              type="file"
+              label="Documents"
+              name="images"
+              placeholder="name of product"
+              validation="required"
+              :validation-messages="{ required: 'the photo is required' }"
+              accept=".pdf, .jpg"
+              multiple="true"
+              @change="onFileChange"
+              v-model.trim="formData.images"
+            />
+            <div class="flex flex-wrap" v-if="isImageUploader">
+              <div v-for="(image, index) in url" :key="index" class="w-1/4 p-2">
+                <img class="w-full h-full" :src="image" alt="">
+              </div>
             </div>
-          </div>
+
           <FormKit type="number" label="price" name="price" placeholder="price of product" validation="required"
             :validation-messages="{ required: 'the price is required' }" min="1" v-model.number="formData.price" />
 
@@ -72,4 +81,4 @@ const submitHanler = async data => {
       </div>
     </div>
   </div>
-</template>@/composable/useImageSunglasses@/stores/sunglasses
+</template>
