@@ -49,7 +49,7 @@ const submitHandler = async data => {
       aviable:  aviable.value
     })
 
-    router.push({ name: 'products' })
+    router.push({ name: 'all-snikers' })
   } catch (error) {
     console.log(error)
   }
@@ -75,7 +75,7 @@ const aviable = computed(() => {
 });
 watch(sniker, (sniker) => {
   if (!sniker) {
-    router.push({ name: 'products' });
+    router.push({ name: 'all-snikers' });
   }
   // Actualiza los campos size y establece 0 si están vacíos
   for (let i = 36; i <= 50; i++) {

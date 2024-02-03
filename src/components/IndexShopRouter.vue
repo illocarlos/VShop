@@ -1,0 +1,221 @@
+<script setup>
+import { onMounted, ref } from 'vue';
+import { RouterLink } from 'vue-router';
+
+const isNavbarTransparent1 = ref(true);
+const isNavbarTransparent2 = ref(true);
+const isNavbarTransparent3 = ref(true);
+
+const handleScroll1 = () => {
+    const scrollY = window.scrollY;
+    isNavbarTransparent1.value = scrollY >= 0 && scrollY < 50;
+};
+
+const handleScroll2 = () => {
+    const scrollY = window.scrollY;
+    isNavbarTransparent2.value = scrollY >= 100 && scrollY < 220;
+};
+
+const handleScroll3 = () => {
+    const scrollY = window.scrollY;
+    isNavbarTransparent3.value = scrollY >= 220 && scrollY < 500;
+};
+
+onMounted(() => {
+    window.addEventListener('scroll', handleScroll1);
+    window.addEventListener('scroll', handleScroll2);
+      window.addEventListener('scroll', handleScroll3);
+});
+</script>
+
+<template>
+    <div class="flex flex-col justify-center items-center mt-40 lg:mt-20 containerIndexShop">
+        <RouterLink :to="{ name: 'Skiners' }" :class="{ 'card-scrolled': isNavbarTransparent1 }">
+            <div class="card">
+                <div class="bgOpacity">
+                <div class="cardAll card1">
+      <h1 class="cardName text-2xl font-extrabold text-stroke-1">Snikers</h1>
+    </div>
+                </div>
+            </div>
+        </RouterLink>
+
+        <RouterLink :to="{ name: 'Sunglasses' }" :class="{ 'card-scrolled': isNavbarTransparent2 }" >
+            <div class="card">
+                     <div class="bgOpacity">
+                <div class="cardAll card2">
+                         <h1 class="cardName text-2xl font-extrabold">Sunglasses</h1>
+                </div>
+                </div>
+            </div>
+        </RouterLink>
+
+        <RouterLink :to="{ name: 'SweatShirt' }" :class="{ 'card-scrolled': isNavbarTransparent3 } ">
+            <div class="card">
+                    <div class="bgOpacity">
+                <div class="cardAll card3">
+                                             <h1 class="cardName text-2xl  font-extrabold">SweatShirts</h1>
+
+                </div>
+                </div>
+            </div>
+        </RouterLink>
+
+    </div>
+</template>
+
+<style  scoped>
+.card {
+    position: relative;
+    width: 65vw;
+    height: 35vh;
+    background-image: linear-gradient(163deg, #00ff75 0%, #3700ff 100%);
+    z-index: 100;
+    border-radius: 20px;
+    transition: all 0.3s;
+}
+
+.cardAll {
+    position: relative;
+    margin-top: 3rem;
+    width: 65vw;
+    height: 35vh;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    z-index: 1;
+    transition: all 0.3s;
+}
+.cardName {
+text-transform: uppercase;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: end;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 1s;
+
+}
+.cardAll::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Cambiado a rgba con opacidad 0.5 */
+    transition: opacity 0.3s;
+    z-index: 2;
+}
+.card:hover .cardName {
+    opacity: 1;
+   color: #16e265;
+      -webkit-text-stroke: 1.5px #16e265;
+
+
+}
+.cardAll:hover::before {
+    opacity: 0;
+}
+
+.card1 {
+    background-image: url(../assets/skeaners.webp);
+}
+
+.card2 {
+    background-image: url(../assets/sunglasses.webp);
+}
+
+.card3 {
+    background-image: url(../assets/sweatshirt.webp);
+}
+
+.bgOpacity {
+    background-color: black;
+}
+
+.cardAll:hover {
+    transform: scale(0.93);
+    border-radius: 20px;
+    box-shadow: 0px 0px 30px 1px rgba(0, 255, 117, 0.30);
+}
+
+@media (max-width: 760px) {
+    
+ .card-scrolled .cardName {
+    opacity: 1;
+    color: #16e265;
+    -webkit-text-stroke: 1.5px #16e265;
+}
+
+.card-scrolled .cardAll::before {
+    opacity: 0;
+}
+
+.card-scrolled .cardAll:hover::before {
+    opacity: 0;
+    
+}
+}
+
+
+
+@media (min-width: 766px)and (max-width: 930px) {
+    
+ .card-scrolled .cardName {
+    opacity: 1;
+     color: #16e265;
+       -webkit-text-stroke: 1.5px #16e265;
+}
+
+.card-scrolled .cardAll::before {
+    opacity: 0;
+}
+
+.card-scrolled .cardAll:hover::before {
+    opacity: 0;
+    
+}
+.containerIndexShop{
+    margin-top: 1rem;
+}
+   .card {
+        width: 50vw;
+        height: 35vh;
+    }
+
+    .cardAll {
+         width: 50vw;
+        height: 35vh;
+    }
+}
+
+
+
+
+@media (min-width: 950px) {
+    .cardName{
+        font-size: 3rem;
+    }
+    .containerIndexShop{
+       flex-flow: row nowrap;
+      
+
+    }
+    .card {
+        margin-left: 1rem;
+        width: 32vw;
+        height: 50vh;
+    }
+
+    .cardAll {
+        width: 32vw;
+        height: 50vh;
+    }
+}
+</style>

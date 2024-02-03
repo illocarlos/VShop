@@ -11,6 +11,21 @@ const router = createRouter({
       name: 'shop',
       component: IndexShopView
     },
+    {
+      path: '/Skiners',
+      name: 'Skiners',
+      component: () => import('@/views/SnikersAllView.vue')
+    },
+    {
+      path: '/Sunglasses',
+      name: 'Sunglasses',
+      component: () => import('@/views/SunglassesAllView.vue')
+    },
+    {
+      path: '/SweatShirt',
+      name: 'SweatShirt',
+      component: () => import('@/views/SweatShirtAllView.vue')
+    },
     // este componente se abrira cuando vayamos a esa ruta pero lo nombramos igual que el home por que es igual de importante 
     {
       path: '/admin',
@@ -63,8 +78,8 @@ const router = createRouter({
           component: () => import('@/views/admin/Sweatshirts/AllSweatshirtsView.vue'),
         },
         {
-          path: 'edit/sniker/:id',
-          name: 'edit-sniker',
+          path: 'edit/snikers/:id',
+          name: 'edit-snikers',
           component: () => import('@/views/admin/Skiners/EditSnikersView.vue'),
         },
         {

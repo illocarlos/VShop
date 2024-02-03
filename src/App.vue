@@ -1,11 +1,15 @@
 <script setup>
-import {  RouterView } from 'vue-router'
+import { RouterView } from 'vue-router'
+import MainNav from '@/components/MainNav.vue';
+import Foother from './components/Foother.vue';
 </script>
 
 <template>
   <!-- usamos en el la parte mas superior el main y dentro introducimos routerview que con su ayuda abrimos el componente 
   que tenemos dentro en este caso es o admin IndexShopView lo usamos como componente principal -->
   <main>
+    <MainNav/>
   <RouterView/>
+  <Foother  class="mt-40 md:mt-0" />
   </main>
 </template>

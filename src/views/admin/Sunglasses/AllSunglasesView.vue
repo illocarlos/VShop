@@ -2,7 +2,6 @@
 import Product from '@/components/Product.vue'
 import { useSunglassesStore } from '@/stores/sunglasses'
 const useProduct = useSunglassesStore()
-console.log(useProduct.getAllProductSunglasses)
 </script>
 
 <template>

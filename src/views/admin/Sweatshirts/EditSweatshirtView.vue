@@ -37,7 +37,7 @@ const submitHandler = async data => {
       url,
       aviable: aviable.value  // Corregir aquí, eliminar '.value'
     })
-    router.push({ name: 'products' })
+    router.push({ name: 'all-sweatshirts' })
   } catch (error) {
     console.log(error)
   }
@@ -54,7 +54,7 @@ const sizeSweatshirts = ["S", "M", "L", "XL", "XXL"];
 
 watch(sweatshirt, (sweatshirt) => {
   if (!sweatshirt) {
-    router.push({ name: 'products' });
+    router.push({ name: 'all-sweatshirts' });
   }
    for (let i = 0; i <= sizeSweatshirts.length; i++) {
     const fieldName = sizeSweatshirts;

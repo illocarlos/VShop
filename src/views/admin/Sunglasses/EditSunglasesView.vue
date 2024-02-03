@@ -7,7 +7,7 @@ import Link from '@/components/Link.vue';
 import { useSunglassesStore } from '@/stores/sunglasses';
 import useImage from '@/composable/useImageSunglasses'
 
-const { onFileChange, url, isImageUploaded } = useImage()
+const { onFileChange, url, isImageUploader } = useImage()
 const products = useSunglassesStore()
 
 const router = useRouter()
@@ -32,14 +32,14 @@ const submitHandler = async data => {
             url,
 
         })
-        router.push({ name: 'products' })
+        router.push({ name: 'all-sunglasses' })
     } catch (error) {
         console.log(error)
     }
 }
 watch(sunglasse, (sunglasse) => {
     if (!sunglasse) {
-        router.push({ name: 'products' });
+        router.push({ name: 'all-sunglasses' });
     }
     // Actualiza la suma total cada vez que cambian los tamaños
     Object.assign((formData), sunglasse)
@@ -68,20 +68,18 @@ watch(sunglasse, (sunglasse) => {
                     <FormKit type="number" label="aviable" name="aviable" placeholder="aviable"
                         v-model.number="formData.aviable" step="1" min="0" />
 
-                   <div v-if="isImageUploaded">
-                <p class="font-black">Imagen Nueva:</p>
-                <img :src="url" alt="Nueva imagen Producto" class="w-52" />
+                   <div v-if="isImageUploader">
+              <div v-for="(image, index) in url" :key="index" class="w-1/4 p-2">
+                    <img class="w-full h-full" :src="image" alt="">
+                  </div>
               </div>
-
-              <div v-else>
-                <p class="font-black">Imagen Actual:</p>
-                <img :src="formData.images" :alt="'Imagen de' + formData.images" class="w-52" />
+              <div class="flex flex-wrap"  v-else>
+                  <div  v-for="(image, index) in formData.images" :key="index" class="w-1/4 p-2">
+                    <img class=" w-full h-full" :src="image" alt="">
+                  </div>
               </div>
-          
-              <FormKit type="file" label="Cambiar Imagen" name="images" multiple="true" accept=".jpg"
+              <FormKit type="file" label="change images" name="images" multiple="true" accept=".jpg"
                 @change="onFileChange" />
-
-
                     <FormKit type="submit">Save</FormKit>
 
                 </FormKit>

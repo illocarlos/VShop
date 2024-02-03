@@ -8,7 +8,7 @@ export const useSnikerStore = defineStore('snikers', () => {
 
     const db = useFirestore()
     const categories = [
-        { id: 1, name: 'sniker' },
+        { id: 1, name: 'snikers' },
         { id: 2, name: 'sunglasse' },
         { id: 3, name: 'sweatshirt' }
     ]

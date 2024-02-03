@@ -5,11 +5,10 @@ import { collection, addDoc, where, query, limit, orderBy, updateDoc, doc, getDo
 import { ref as storageRef, deleteObject } from 'firebase/storage'
 
 export const useSunglassesStore = defineStore('products', () => {
-
     const db = useFirestore()
 
     const categories = [
-        { id: 1, name: 'sniker' },
+        { id: 1, name: 'snikers' },
         { id: 2, name: 'sunglasses' },
         { id: 3, name: 'sweatshirt' }
     ]
@@ -40,6 +39,7 @@ export const useSunglassesStore = defineStore('products', () => {
         }
     }
 
+
     const categoryOption = computed(() => {
         const options = [
             // { label: 'select category', value: "", attrs: { disabled: true } },
@@ -54,6 +54,7 @@ export const useSunglassesStore = defineStore('products', () => {
         createProduct,
         categoryOption,
         getAllProductSunglasses,
-        updateProduct
+        updateProduct,
+
     }
 })

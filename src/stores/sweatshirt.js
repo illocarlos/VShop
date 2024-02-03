@@ -9,7 +9,7 @@ export const useSweatStore = defineStore('sweatshirt', () => {
     const db = useFirestore()
 
     const categories = [
-        { id: 1, name: 'sniker' },
+        { id: 1, name: 'snikers' },
         { id: 2, name: 'sunglase' },
         { id: 3, name: 'sweatshirt' }
     ]
