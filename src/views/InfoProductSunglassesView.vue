@@ -3,5 +3,5 @@
 </script>
 
 <template>
-  <h1 class="mt-40">INFO SWEAT</h1>
+  <h1 class="mt-40">INFO SUNGLASES</h1>
 </template>

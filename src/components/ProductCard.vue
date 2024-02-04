@@ -1,5 +1,7 @@
 <script setup>
-import{ formatCurrency }from '@/helpers/formartPrice'
+import { formatCurrency } from '@/helpers/formartPrice'
+import ButtonShop from './ButtonShop.vue'
+
 defineProps({
     product: {
         type:Object
@@ -9,27 +11,28 @@ defineProps({
 
 <template>
 
-    <div class="relative group duration-500 cursor-pointer group overflow-hidden  text-gray-50 h-4/4 w-4/4 rounded-2xl hover:duration-700 ">
-      <div class=" w-4/4  h-4/4 bg-green-500 text-gray-800">
+    <div class="relative group duration-500 cursor-pointer group overflow-hidden  text-gray-50 h-4/4 w-6/6 rounded-xl hover:duration-700 md:w-10/12 ">
+      <div class=" w-5/5  h-4/4 bg-green-500 text-gray-800 md:w-11/12">
         <div class="flex flex-row justify-between">
         <svg class="fill-current stroke-current w-8 h-8 p-2 hover:bg-lime-200  rounded-full m-1" height="100" preserveAspectRatio="xMidYMid meet" viewBox="0 0 100 100" width="100" x="0" xmlns="http://www.w3.org/2000/svg" y="0">
       <path class="" d="M15.8,32.9V15.8m0,0H32.9m-17.1,0L37.2,37.2m47-4.3V15.8m0,0H67.1m17.1,0L62.8,37.2m-47,29.9V84.2m0,0H32.9m-17.1,0L37.2,62.8m47,21.4L62.8,62.8M84.2,84.2V67.1m0,17.1H67.1" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="8">
       </path>
+         </svg>
+     <RouterLink
+               :to="{
+                   name: `info-${product.category}`,
+                   params: { id: product.id }
+               }">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class=" stroke-current  w-9 h-9 m-2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
       </svg>
-      <svg class="fill-current stroke-current w-8 h-8 p-2 m-1 hover:bg-lime-200 rounded-full" height="100" preserveAspectRatio="xMidYMid meet" viewBox="0 0 100 100" width="100" x="0" xmlns="http://www.w3.org/2000/svg" y="0">
-      <path class="svg-stroke-primary" d="M50,17.4h0M50,50h0m0,32.6h0M50,22a4.7,4.7,0,1,1,4.7-4.6A4.7,4.7,0,0,1,50,22Zm0,32.7A4.7,4.7,0,1,1,54.7,50,4.7,4.7,0,0,1,50,54.7Zm0,32.6a4.7,4.7,0,1,1,4.7-4.7A4.7,4.7,0,0,1,50,87.3Z" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="8">
-      </path>
-      </svg>
+       </RouterLink> 
     </div>
-   <div class="w-4/4 h-4/4 aspect-w-4 aspect-h-3 overflow-hidden">
-            <img
-              :src="product.images[0]"
-              :alt="`image of ${product.name}`"
-              class="object-cover Img"
-            />
-          </div>
+ <div class="w-4/4 h-4/4 aspect-w-4 aspect-h-3 overflow-hidden bg-cover" :style="{ backgroundImage: 'url(' + product.images[0] + ')' }">
+      <ButtonShop class="absolute top-12"/>
+    </div>
       </div>
-      <div class="absolute bg-gray-50 -bottom-24 w-full p-3 flex flex-col gap-5 group-hover:-bottom-0 group-hover:duration-600 duration-500">
+      <div class="absolute bg-gray-50 -bottom-24 w-full flex flex-col gap-5 group-hover:-bottom-0 group-hover:duration-600 duration-500  md:w-11/12 ">
              <h3 class="mb-10 text-xl font-black text-gray-500 text-center">{{ product.name }}</h3>
       <div class="flex flex-row justify-between">
                    <p class="text-2xl font-extrabold text-gray-900 ">Aviable: {{ product.aviable }}</p>
@@ -40,8 +43,25 @@ defineProps({
     </div>
 </template>
 <style>
-.Img{
+
+
+.bg-cover {
     width:100%;
-    height: 20rem;
+     height: 14rem;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+@media (min-width: 900px) {
+      .bg-cover{
+       
+            height: 15rem;
+      }
+}
+
+@media (min-width: 1500px) {
+      .bg-cover{
+            height: 47rem;
+      }
 }
 </style>
