@@ -7,9 +7,9 @@ import Foother from './components/Foother.vue';
 <template>
   <!-- usamos en el la parte mas superior el main y dentro introducimos routerview que con su ayuda abrimos el componente 
   que tenemos dentro en este caso es o admin IndexShopView lo usamos como componente principal -->
-  <main>
+  <main >
     <MainNav/>
   <RouterView/>
-  <Foother  class="mt-40 md:mt-0" />
-  </main>
+</main>
+<Foother  class="mt-40 md:mt-0" />
 </template>

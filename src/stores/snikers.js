@@ -37,9 +37,6 @@ export const useSnikerStore = defineStore('snikers', () => {
         }
     }
 
-
-
-
     const categoryOption = computed(() => {
         const options = [
             // { label: 'select category', value: "", attrs: { disabled: true } },
@@ -50,10 +47,16 @@ export const useSnikerStore = defineStore('snikers', () => {
         return options
     })
 
+    const filterSneakers = computed(() => {
+        return getAllProductSnikers.value
+    })
+
+
     return {
         createProduct,
         categoryOption,
         getAllProductSnikers,
-        updateProduct
+        updateProduct,
+        filterSneakers
     }
 })

@@ -48,11 +48,15 @@ export const useSweatStore = defineStore('sweatshirt', () => {
         ]
         return options
     })
+    const filterSweatshirt = computed(() => {
+        return getAllProductSweatshirt.value
+    })
 
     return {
         createProduct,
         categoryOption,
         getAllProductSweatshirt,
-        updateProduct
+        updateProduct,
+        filterSweatshirt
     }
 })

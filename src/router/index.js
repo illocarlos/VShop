@@ -26,6 +26,11 @@ const router = createRouter({
       name: 'SweatShirt',
       component: () => import('@/views/SweatShirtAllView.vue')
     },
+    {
+      path: '/infoSweatshirt/:id',
+      name: 'infoSweatshirt',
+      component: () => import('@/views/infoProductSweatshirtView.vue')
+    },
     // este componente se abrira cuando vayamos a esa ruta pero lo nombramos igual que el home por que es igual de importante 
     {
       path: '/admin',

@@ -49,12 +49,17 @@ export const useSunglassesStore = defineStore('products', () => {
         ]
         return options
     })
+    const filterSunglasses = computed(() => {
+        return getAllProductSunglasses.value
+    })
+
 
     return {
         createProduct,
         categoryOption,
         getAllProductSunglasses,
         updateProduct,
+        filterSunglasses
 
     }
 })
