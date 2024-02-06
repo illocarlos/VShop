@@ -20,7 +20,7 @@ y junto a el la mainnav de forma secundaria tenemos el de amdin que se abrira de
 
 @media (min-width: 1050px) {
       .elementIndex{
-            height: 90vh;
+            height: 91vh;
       }
 }
 </style>

@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@formkit/vue": "^1.5.1",
+    "@headlessui/vue": "^1.7.18",
     "autoprefixer": "^10.4.17",
     "firebase": "^10.7.2",
     "pinia": "^2.1.7",

@@ -3,6 +3,8 @@ import { storeToRefs } from 'pinia'
 import ProductCard from '@/components/ProductCard.vue'
 import { useSweatStore } from '@/stores/sweatshirt'
 import ProductCardSweatShirt from '@/components/ProductCardSweatShirt.vue';
+import ModalFilterSeatshirt from '@/components/Filtrer/ModalFiltrerSweetshirt.vue'
+
 const useSweatshirt = useSweatStore()
 const { filterSweatshirt, noResult } = storeToRefs(useSweatshirt)
 
@@ -10,14 +12,14 @@ const { filterSweatshirt, noResult } = storeToRefs(useSweatshirt)
 
 <template>
   <main class=" lg:flex lg:h-screen lg:overflow-y-hidden">
-    <div class="mt-20 lg:w-4/5 lg:screen lg:overflow-y-scroll pt-10 pb-32 px-10">
-      <p v-if="noResult" class="text-center text-4xl"></p>
+      <div class=" lg:w-full lg:screen lg:overflow-y-scroll  pb-32 px-20">
+          <div class=" mt-20 pt-10 overflow-x-scroll" >
+            <ModalFilterSeatshirt class="mb-20" />
+          </div>
+      <p v-if="noResult" class="text-center text-4xl"> We don't have results with those filters</p>
       <div v-else class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-5">
         <ProductCardSweatShirt v-for="product in filterSweatshirt" :key="product.id" :product="product" />
       </div>
     </div>
-    <aside class="mt-20 bg-white text-white lg:w-1/5 lg:screen lg:overflow-y-scroll ">
-      <p class="mt-10">carritooooo aqui</p>
-    </aside>
   </main>
 </template>

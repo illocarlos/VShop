@@ -5,7 +5,7 @@ import { collection, addDoc, where, query, limit, orderBy, updateDoc, doc, getDo
 import { ref as storageRef, deleteObject } from 'firebase/storage'
 
 export const useSweatStore = defineStore('sweatshirt', () => {
-
+    const filterArraySweatshirt = ref([])
     const db = useFirestore()
 
     const categories = [
@@ -18,11 +18,12 @@ export const useSweatStore = defineStore('sweatshirt', () => {
     const allProducts = query(
         collection(db, 'sweatshirt')
     )
+
     const getAllProductSweatshirt = useCollection(allProducts)
+    filterArraySweatshirt.value = getAllProductSweatshirt
 
     // creacion de productos
     async function createProduct(product) {
-        console.log('--------> createeeeee', product)
         await addDoc(collection(db, 'sweatshirt'), product)
     }
 
@@ -48,8 +49,23 @@ export const useSweatStore = defineStore('sweatshirt', () => {
         ]
         return options
     })
+    const filterPricesSweatshirt = (data) => {
+
+        const { prices } = data
+        const filterSweatshirt = getAllProductSweatshirt.value.filter((sweatshirt) => sweatshirt.price <= prices);
+
+        filterArraySweatshirt.value = filterSweatshirt
+
+    }
+
+
+    const noResult = computed(() => filterArraySweatshirt.value.length === 0)
+
     const filterSweatshirt = computed(() => {
-        return getAllProductSweatshirt.value
+
+        return filterArraySweatshirt.value.length > 0 ?
+            filterArraySweatshirt.value :
+            getAllProductSweatshirt.value
     })
 
     return {
@@ -57,6 +73,8 @@ export const useSweatStore = defineStore('sweatshirt', () => {
         categoryOption,
         getAllProductSweatshirt,
         updateProduct,
-        filterSweatshirt
+        filterSweatshirt,
+        filterPricesSweatshirt,
+        noResult
     }
 })

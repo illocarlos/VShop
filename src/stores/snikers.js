@@ -5,7 +5,7 @@ import { collection, addDoc, where, query, limit, orderBy, updateDoc, doc, getDo
 import { ref as storageRef, deleteObject } from 'firebase/storage'
 
 export const useSnikerStore = defineStore('snikers', () => {
-
+    const filterArraySneaker = ref([])
     const db = useFirestore()
     const categories = [
         { id: 1, name: 'snikers' },
@@ -16,7 +16,9 @@ export const useSnikerStore = defineStore('snikers', () => {
     const allProducts = query(
         collection(db, 'snikers')
     )
+
     const getAllProductSnikers = useCollection(allProducts)
+    filterArraySneaker.value = getAllProductSnikers
 
     // creacion de productos
     async function createProduct(product) {
@@ -47,16 +49,34 @@ export const useSnikerStore = defineStore('snikers', () => {
         return options
     })
 
+
+
+
+    const filterPricesSneakers = (data) => {
+
+        const { prices } = data
+        const filterSneakers = getAllProductSnikers.value.filter((skeaner) => skeaner.price <= prices);
+
+        filterArraySneaker.value = filterSneakers
+
+    }
+
+
+    const noResult = computed(() => filterArraySneaker.value.length === 0)
+
     const filterSneakers = computed(() => {
-        return getAllProductSnikers.value
+
+        return filterArraySneaker.value.length > 0 ?
+            filterArraySneaker.value :
+            getAllProductSnikers.value
     })
-
-
     return {
         createProduct,
         categoryOption,
         getAllProductSnikers,
         updateProduct,
-        filterSneakers
+        filterSneakers,
+        filterPricesSneakers,
+        noResult
     }
 })
