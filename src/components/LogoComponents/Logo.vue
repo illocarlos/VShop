@@ -6,7 +6,7 @@
   <div>
     <RouterLink
        :to="{name: 'shop'}">
-    <h1 class="text-xl md:text-3xl font-black text-white">
+    <h1 class="text-xl md:text-xl font-black text-white">
 
         <span class="text-green-400">V</span>
         Shop

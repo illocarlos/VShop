@@ -1,5 +1,5 @@
 <script setup>
-import ButtomDeleted from './ButtomDeleted.vue';
+import ButtomDeleted from './ButtomComponents/ButtomDeleted.vue';
 import {formatCurrency} from '@/helpers/formartPrice'
 defineProps({
     product: {

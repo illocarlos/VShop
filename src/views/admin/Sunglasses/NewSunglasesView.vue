@@ -1,7 +1,7 @@
 <script setup>
 import { reactive } from 'vue';
 import { useRouter } from 'vue-router'
-import Link from '@/components/Link.vue';
+import Link from '@/components/LogoComponents/Link.vue';
 import useImages from '@/composable/useImageSunglasses'
 import { useSunglassesStore } from '@/stores/sunglasses'
 

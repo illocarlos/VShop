@@ -1,5 +1,5 @@
 <script setup>
-import Link from '@/components/Link.vue';
+import Link from '@/components/LogoComponents/Link.vue';
 </script>
 
 <template>

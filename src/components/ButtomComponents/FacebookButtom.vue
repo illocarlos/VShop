@@ -8,15 +8,14 @@
         class="w-7 h-7  group flex justify-center p-3 rounded-md drop-shadow-xl
          from-gray-800 bg-[#316FF6] text-white font-semibold 
          hover:translate-y-3 hover:rounded-[50%] 
-         transition-all duration-500 hover:from-[#331029] hover:to-[#310413]
-         md:w-12 md:h-12 "
+         transition-all duration-500 hover:from-[#331029] hover:to-[#310413] "
       >
-            <span class="instagramSVG absolute top-1 md:top-2">
+            <span class="instagramSVG absolute top-1 ">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 448 512"
           stroke-width="0"
-             class="svgIcon h-5 md:h-8"
+             class="svgIcon h-5 "
           fill="currentColor"
           stroke="currentColor"
         >
@@ -27,9 +26,8 @@
         </span>
         <span
           class="absolute opacity-0 
-          group-hover:opacity-100 group-hover:text-white group-hover:text-xs group-hover:-translate-y-10
-           duration-700
-           md:group-hover:text-sm"
+          group-hover:opacity-100 group-hover:text-white group-hover:text-xs group-hover:-translate-y-8
+           duration-700"
         >
           Facebook
         </span>

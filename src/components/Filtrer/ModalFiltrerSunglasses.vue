@@ -17,7 +17,7 @@ const submitHanler = data => {
 </script>
 
 <template>
-    <div class=" w-32 md:w-68 lg:w-48 border-2 border-black font-extrabold px-5">
+    <div class=" w-40 md:w-68 lg:w-48 border-2 border-black font-extrabold px-5">
 
         <details class="w-full group flex flex-row justify-between">
             <summary @click="toggleAccordion(index)"

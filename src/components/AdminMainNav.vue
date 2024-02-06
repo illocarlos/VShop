@@ -1,7 +1,7 @@
 <script setup>
 import { RouterLink } from 'vue-router';
-import Link from './Link.vue';
-import Logo from './Logo.vue';
+import Link from './LogoComponents/Link.vue';
+import Logo from './LogoComponents/Logo.vue';
 </script>
 
 <template>

@@ -11,8 +11,8 @@ defineProps({
 
 <template>
 
-    <div class="relative group duration-500 cursor-pointer group overflow-hidden  text-gray-50 h-4/4 w-6/6 rounded-xl hover:duration-700 md:w-12/12 ">
-      <div class=" w-5/5  h-4/4 bg-green-500 text-gray-800 md:w-12/12">
+    <div class="relative group duration-500 cursor-pointer group overflow-hidden  text-gray-50 h-4/4 w-6/6 rounded-xl hover:duration-700 md:w-11/12 ">
+      <div class=" w-5/5  h-4/4 bg-green-500 text-gray-800 md:w-11/12">
         <div class="flex flex-row-reverse justify-between">
          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class=" stroke-current  w-9 h-9 m-2">
           <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
@@ -24,15 +24,15 @@ defineProps({
       name: `info-${product.category}`,
       params: { id: product.id }
                  }">
-      <ButtomShop class="absolute top-12"/>
+      <ButtomShop class="absolute top-3"/>
     </RouterLink> 
     </div>
       </div>
-      <div class="absolute bg-gray-50 -bottom-24 w-full flex flex-col gap-5 group-hover:-bottom-0 group-hover:duration-600 duration-500  md:w-12/12 ">
-             <h3 class="mb-10 text-xl font-black text-gray-500 text-center">{{ product.name }}</h3>
-      <div class="flex flex-row justify-between">
-                   <p class="text-2xl font-extrabold text-gray-900 ">Aviable: {{ product.aviable }}</p>
-                   <p class="text-2xl font-extrabold text-gray-900 ">{{ formatCurrency(product.price) }}</p>
+      <div class="absolute bg-gray-50 -bottom-24 w-full flex flex-col gap-3 group-hover:-bottom-0 group-hover:duration-600 duration-500 md:gap-2  md:w-12/12 ">
+             <h3 class="mb-14 text-sm font-black text-gray-500 text-center lg:text-3xl">{{ product.name }}</h3>
+      <div class="flex flex-row justify-around">
+                   <p class="text-xl font-extrabold text-gray-900 md:text-2xl lg:text-3xl ">Aviable: {{ product.aviable }}</p>
+                   <p class="text-xl font-extrabold text-gray-900 md:text-2xl lg:text-3xl  ">{{ formatCurrency(product.price) }}</p>
                   </div>
        
       </div>
@@ -43,7 +43,7 @@ defineProps({
 
 .bg-cover {
     width:100%;
-     height: 14rem;
+     height: 8rem;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -51,7 +51,7 @@ defineProps({
 @media (min-width: 900px) {
       .bg-cover{
        
-            height: 25rem;
+            height: 20rem;
       }
 }
 

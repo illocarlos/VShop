@@ -12,7 +12,7 @@ const{ filterSunglasses,noResult }= storeToRefs(useSunglasses)
 <template>
 <main class=" lg:flex lg:h-screen lg:overflow-y-hidden">
   <div class=" lg:w-full lg:screen lg:overflow-y-scroll  pb-32 px-20">
-            <div class=" mt-20 pt-10 overflow-x-scroll" >
+            <div class=" mt-20 pt-10 w-full  overflow-x-scroll" >
               <ModalFiltrerSunglasses class="mb-20" />
             </div>
 <p v-if="noResult" class="text-center text-4xl">We don't have results with those filters</p>

@@ -1,6 +1,6 @@
 <script setup>
 import { reactive, computed,ref } from 'vue';
-import Link from '@/components/Link.vue';
+import Link from '@/components/LogoComponents/Link.vue';
 import { useRouter } from 'vue-router';
 import useImages from '@/composable/useImageSnikers';
 import { useSnikerStore } from '@/stores/snikers';

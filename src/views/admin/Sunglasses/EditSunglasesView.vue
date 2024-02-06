@@ -3,7 +3,7 @@ import { watch, reactive } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { doc } from 'firebase/firestore'
 import { useFirestore, useDocument } from 'vuefire'
-import Link from '@/components/Link.vue';
+import Link from '@/components/LogoComponents/Link.vue';
 import { useSunglassesStore } from '@/stores/sunglasses';
 import useImage from '@/composable/useImageSunglasses'
 

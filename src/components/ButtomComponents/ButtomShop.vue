@@ -3,7 +3,7 @@
 </script>
 
 <template>
-    <button class="w-[100px] md:w-[138px] bg-black h-[27px] md:h-[50px] my-1 md:my-3 flex items-center font-extrabold uppercase justify-center rounded-r-xl cursor-pointer
+    <button class="w-[100px] md:w-[138px] bg-black h-[24px] md:h-[50px] my-1 md:my-3 flex items-center font-extrabold uppercase justify-center rounded-r-xl cursor-pointer
      relative overflow-hidden transition-all duration-500 ease-in-out shadow-md
       hover:scale-105 hover:shadow-lg before:absolute
        before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-green-400 before:via-green-500

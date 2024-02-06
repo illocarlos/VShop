@@ -1,16 +1,16 @@
 <script setup>
-import InstagramButtom from './InstagramButtom.vue';
-import FacebookButtom from './FacebookButtom.vue';
-import TwitterButtom from'./TwitterButtom.vue'
-import Logo from './Logo.vue';
+import InstagramButtom from './ButtomComponents/InstagramButtom.vue';
+import FacebookButtom from './ButtomComponents/FacebookButtom.vue';
+import TwitterButtom from'./ButtomComponents/TwitterButtom.vue'
+import Logo from './LogoComponents/Logo.vue';
 
 </script>
 
 <template>
-    <div class="flex flex-row justify-around items-center w-screen h-20 bg-black ">
+    <div class="flex flex-row justify-around items-center w-screen h-24 lg:h-14  bg-black ">
         <div>
 <article class="flex flex-row text-white text-center">
- <span class=" text-xl md:text-3xl font-black" >2024-</span><Logo />
+ <span class=" text-xl md:text-xl font-black" >2024-</span><Logo />
 </article>
 
         </div>
