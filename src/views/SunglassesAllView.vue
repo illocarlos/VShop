@@ -16,7 +16,7 @@ const{ filterSunglasses,noResult }= storeToRefs(useSunglasses)
               <ModalFiltrerSunglasses class="mb-20" />
             </div>
 <p v-if="noResult" class="text-center text-4xl">We don't have results with those filters</p>
-    <div v-else class="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 mt-10 gap-10">
+    <div v-else class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-3  gap-5">
 <ProductCardVue
 v-for="product in filterSunglasses"
 :key="product.id"

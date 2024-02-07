@@ -31,26 +31,26 @@ const handleBuy = (product) => {
 </script>
 
 <template>
-  <div class="h-5/5 mt-40    lg:flex ">
+  <div class="h-5/5 mt-40 lg:my-46 lg:mb-40   lg:flex ">
 
     <div class="flex flex-col-reverse h-6/6 lg:flex-row lg:ml-28 lg:w-4/6">
 
       <div class="w-full flex overflow-x-scroll lg:flex-col lg:w-1/5 ">
         <div v-for="(image, index) in sweatshirt?.images" :key="index">
-          <img class="h-14 cursor-pointer lg:h-32" @click="selectImage(index)" :src="image" :alt="`photo num ${index}`">
+          <img class="h-14 cursor-pointer lg:h-20" @click="selectImage(index)" :src="image" :alt="`photo num ${index}`">
         </div>
       </div>
 
       <div class="lg:flex ">
-        <img class="h-96  bg-cover w-full lg:h-30 lg:w-5/5 lg:h-5/5 " v-if="numPhoto" :src="selectedImage" />
-        <img class="h-96  bg-cover w-full lg:h-30 lg:w-5/5 lg:h-5/5" v-else :src="sweatshirt?.images[0]" />
+        <img class="h-96  bg-cover w-full lg:h-30 lg:w-5/5 lg:h-5/5 containerImg" v-if="numPhoto" :src="selectedImage" />
+        <img class="h-96  bg-cover w-full lg:h-30 lg:w-5/5 lg:h-5/5 containerImg" v-else :src="sweatshirt?.images[0]" />
       </div>
     </div>
     <article class="mt-10 flex flex-col justify-center items-center w-3/4 md:w-4/4 lg:w-2/6  ">
       <div class="md:flex md:flex-row md:justify-around md:w-full lg:flex lg:flex-col">
         <div>
           <p class="lg:text-2xl">{{ sweatshirt?.category }}</p>
-          <h1 class="text-xl uppercase md:text-4x lg:text-7xl">{{ sweatshirt?.name }}</h1>
+          <h1 class="text-xl uppercase md:text-4x lg:text-4xl">{{ sweatshirt?.name }}</h1>
         </div>
         <div class="md:flex md:flex-col-reverse">
           <p class="my-2 text-xl text-green-500 font-extrabold md:text-4xl md:my-0 lg:text-7xl">{{
@@ -71,6 +71,9 @@ const handleBuy = (product) => {
   </div>
 </template>
 <style scoped>
+.containerImg{
+  height: 20rem;
+}
 .overflow-x-scroll {
   overflow-x: auto;
   white-space: nowrap;

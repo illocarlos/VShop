@@ -29,7 +29,7 @@ onMounted(() => {
 </script>
 
 <template>
-    <div class="flex flex-col justify-center items-center mt-40 lg:mt-20 h-screen containerIndexShop">
+    <div class="flex flex-col justify-center items-center mt-40 lg:items-start   containerIndexShop">
         <RouterLink :to="{ name: 'Skiners' }" :class="{ 'card-scrolled': isNavbarTransparent1 }">
             <div class="card">
                 <div class="bgOpacity">
@@ -91,7 +91,6 @@ text-transform: uppercase;
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: center;
-    align-items: end;
     position: absolute;
     bottom: 0;
     left: 50%;
@@ -214,12 +213,12 @@ text-transform: uppercase;
     .card {
         margin-left: 1rem;
         width: 32vw;
-        height: 37vh;
+        height: 60vh;
     }
 
     .cardAll {
         width: 32vw;
-        height: 37vh;
+        height: 60vh;
     }
 }
 </style>
