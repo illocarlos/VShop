@@ -30,9 +30,9 @@ const handleBuy = (product) => {
 </script>
 
 <template>
-  <div class="h-5/5 mt-40 lg:mb-40 lg:my-46   lg:flex ">
+  <div class="h-5/5 mt-40 lg:mb-40 lg:my-46   lg:flex lg:gap-20 ">
 
-    <div class="flex flex-col-reverse h-6/6 lg:flex-row lg:ml-28 lg:w-4/6">
+    <div class="flex flex-col-reverse h-6/6 lg:flex-row lg:ml-28 lg:w-5/6 ">
 
       <div class="w-full flex overflow-x-scroll lg:flex-col lg:w-1/5 ">
         <div  v-for="(image, index) in sunglasses?.images" :key="index">
@@ -41,11 +41,11 @@ const handleBuy = (product) => {
       </div>
 
       <div class="lg:flex ">
-        <img class="h-96 w-full bg-cover lg:h-30 lg:w-5/5 lg:h-5/5 containerImg " v-if="numPhoto" :src="selectedImage" />
-        <img class="h-96 w-full bg-cover lg:h-30 lg:w-5/5 lg:h-5/5 containerImg" v-else :src="sunglasses?.images[0]" />
+        <img class="h-96 w-full bg-cover lg:h-30 lg:w-4/5  containerImg " v-if="numPhoto" :src="selectedImage" />
+        <img class="h-96 w-full bg-cover lg:h-30 lg:w-4/5  containerImg" v-else :src="sunglasses?.images[0]" />
       </div>
     </div>
-    <article class="mt-10 flex flex-col justify-center items-center w-3/4 md:w-4/4 lg:w-2/6  ">
+    <article class="mt-10 flex flex-col justify-center items-center w-3/4 md:w-4/4 lg:w-3/6  ">
       <div class="md:flex md:flex-row md:justify-around md:w-full lg:flex lg:flex-col">
         <div>
           <p class="lg:text-2xl">{{ sunglasses?.category }}</p>
@@ -125,6 +125,21 @@ button:hover span {
   color: #183153;
   animation: scaleUp 0.3s ease-in-out;
 }
+@media (min-width: 1300px) {
+      .containerImg{
+            height: 30rem;
+      }
+}
+@media (min-width: 800px) and (max-width: 950px){
+    .containerImg{
+            height: 44rem !important;
+      }
+        button{
+        height: 4rem;
+        margin-bottom: 2rem;
+      }
+}
+
 
 @keyframes scaleUp {
   0% {

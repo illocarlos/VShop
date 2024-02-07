@@ -1,14 +1,12 @@
-
 <script setup>
 import { useRoute, useRouter } from 'vue-router'
 import { doc } from 'firebase/firestore'
 import { formatCurrency } from '@/helpers/formartPrice'
 import { useFirestore, useDocument } from 'vuefire'
 import { useStore } from '@/stores/store'
-import { ref } from 'vue';
+import { ref, reactive, computed, watch } from 'vue';
 
 const Store = useStore()
-
 
 const numPhoto = ref(false);
 const selectedImage = ref(null);
@@ -18,20 +16,51 @@ const route = useRoute()
 
 const db = useFirestore()
 const docRef = doc(db, 'sweatshirt', route.params.id)
-const sweatshirt = useDocument(docRef)
+const sweatshirt  = useDocument(docRef)
 
 const selectImage = (index) => {
   selectedImage.value = sweatshirt.value.images[index];
   numPhoto.value = true;
 };
 
-const handleBuy = (product) => {
-  console.log('--------->', product)
+const formData = reactive({
+  name: "",
+  price: '',
+  category: '',
+images:'',
+  S: 0,
+  M: 0,
+  L: 0,
+  XL: 0,
+  total: 0,
+})
+
+
+
+const sweatshirtBuy = computed(() => {
+  formData.name = sweatshirt.value?.name;
+  formData.price = sweatshirt.value?.price;
+  formData.category = sweatshirt.value?.category;
+    formData.images = sweatshirt.value?.images;
+  formData.total = formData.S + formData.M + formData.L + formData.XL;
+  return formData;
+})
+
+const handleBuy = () => {
+  // Validar que al menos uno de los valores sea superior a 0
+  if (sweatshirtBuy.value.total===0) {
+    return Store.errorSendMessage = 'You must enter at least an amount greater than 0';
+   
+  } else {
+    Store.errorSendMessage = "";
+    const product = { ...sweatshirtBuy.value };
+    Store.addItem(product);
+  }
+
 }
 </script>
-
 <template>
-  <div class="h-5/5 mt-40 lg:my-46 lg:mb-40   lg:flex ">
+  <div class="h-5/5 mt-40  lg:my-46 lg:mb-40 lg:flex containerAipad ">
 
     <div class="flex flex-col-reverse h-6/6 lg:flex-row lg:ml-28 lg:w-4/6">
 
@@ -57,16 +86,63 @@ const handleBuy = (product) => {
             formatCurrency(sweatshirt?.price) }}</p>
           <p class="mt-6 text-sm md:mt-0 lg:text-2xl">available {{ sweatshirt?.aviable }} units</p>
         </div>
-        <div class="hidden lg:block  ">
-          <button @click="handleBuy(sweatshirt)" class="mt-8 h-12 w-3/6   "><span class="uppercase">buy</span></button>
+        <div class="hidden lg:block ">
+
+             <FormKit type="form"  @submit="handleBuy"   :value="formData" submit-label="save"
+            incomplete-message="Could not send, check messages"  :actions="false">
+<div class="flex flex-row w-3/5 text-center gap-2">
+                               <FormKit type="number" label="S" name="S" placeholder="0" step="0" min="0"
+                    v-model.number="formData.S"
+                    validation="required"
+                    :validation-messages="{ required: 'If you do not have quantity, enter 0|' }"  />
+                       <FormKit type="number" label="M" name="M" placeholder="0" step="0" min="0"
+                    v-model.number="formData.M"
+                        validation="required"
+       :validation-messages="{ required: 'If you do not have quantity, enter 0|' }"  />
+                       <FormKit type="number" label="L" name="L" placeholder="0" step="0" min="0"
+                    v-model.number="formData.L"
+                        validation="required"
+       :validation-messages="{ required: 'If you do not have quantity, enter 0|' }"  />
+                        <FormKit type="number" label="XL" name="XL" placeholder="0" step="0" min="0"
+                      v-model.number="formData.XL"
+                          validation="required"
+         :validation-messages="{ required: 'If you do not have quantity, enter 0|' }"  />
+  </div>
+          <button type="submit" class="mt-8 h-12 w-3/6   "><span class="uppercase">buy</span></button>
+              <div v-if="Store.errorSendMessage" class="mt-3 text-xs text-red-500">{{   Store.errorSendMessage }}</div>
+
+            </FormKit>
         </div>
       </div>
     </article>
     <div>
 
     </div>
-    <div class=" lg:hidden">
-      <button @click="handleBuy(sweatshirt)" class="mt-8 w-screen h-8  "><span class="uppercase">buy</span></button>
+    <div class=" lg:hidden ">
+    <FormKit type="form" :value="formData"  @submit="handleBuy"  submit-label="Guardar Cambios"
+              incomplete-message="Could not send, check messages " :actions="false">
+  <div class="flex flex-row justify-center  text-center gap-5">
+                                 <FormKit type="number" label="S" name="S" placeholder="0" step="1" min="0"
+                      v-model.number="formData.S"
+                      validation="required"
+                      :validation-messages="{ required: 'If you do not have quantity, enter 0|' }"  />
+                         <FormKit type="number" label="M" name="M" placeholder="0" step="1" min="0"
+                      v-model.number="formData.M"
+                          validation="required"
+         :validation-messages="{ required: 'If you do not have quantity, enter 0|' }"  />
+                         <FormKit type="number" label="L" name="L" placeholder="0" step="1" min="0"
+                      v-model.number="formData.L"
+                          validation="required"
+         :validation-messages="{ required: 'If you do not have quantity, enter 0|' }"  />
+                          <FormKit type="number" label="XL" name="XL" placeholder="0" step="1" min="0"
+                        v-model.number="formData.XL"
+                            validation="required"
+           :validation-messages="{ required: 'If you do not have quantity, enter 0' }"  />
+    </div>
+    <button type="submit" class="mt-8 w-screen h-8 mb-10  "><span class="uppercase">buy</span></button>
+       <div v-if="Store.errorSendMessage" class="mt-3 text-xs text-red-500 ">{{ Store.errorSendMessage }}</div>
+              </FormKit>
+
     </div>
   </div>
 </template>
@@ -127,7 +203,20 @@ button:hover span {
   color: #183153;
   animation: scaleUp 0.3s ease-in-out;
 }
-
+@media (min-width: 1300px) {
+      .containerImg{
+            height: 34rem;
+      }
+}
+@media (min-width: 800px) and (max-width: 950px){
+    .containerImg{
+            height: 44rem !important;
+      }
+        button{
+        height: 4rem;
+        margin-bottom: 2rem;
+      }
+}
 @keyframes scaleUp {
   0% {
     transform: scale(1);

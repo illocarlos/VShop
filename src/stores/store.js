@@ -4,14 +4,17 @@ import { ref } from 'vue'
 
 export const useStore = defineStore('store', () => {
     const items = ref([])
+    const errorSendMessage = ref("")
 
     function addItem(product) {
+
         items.value.push(product)
         console.log('---->', items.value)
     }
 
     return {
-        addItem
+        addItem,
+        errorSendMessage
     }
 
 })

@@ -16,7 +16,7 @@ const { filterSweatshirt, noResult } = storeToRefs(useSweatshirt)
           <div class=" mt-20 pt-10 overflow-x-scroll" >
             <ModalFilterSeatshirt class="mb-20" />
           </div>
-      <p v-if="noResult" class="text-center text-4xl"> We don't have results with those filters</p>
+      <p v-if="noResult" class="text-center text-4xl font-bold text-green-500"> We don't have results with those filters</p>
       <div v-else class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-5">
         <ProductCardSweatShirt v-for="product in filterSweatshirt" :key="product.id" :product="product" />
       </div>
