@@ -70,7 +70,7 @@ onMounted(() => {
     width: 65vw;
     height: 35vh;
     background-image: linear-gradient(163deg, #00ff75 0%, #3700ff 100%);
-    z-index: 100;
+    z-index: 3;
     border-radius: 20px;
     transition: all 0.3s;
 }

@@ -24,7 +24,8 @@ const selectImage = (index) => {
   numPhoto.value = true;
 };
 const formData = reactive({
-  name: "",
+  id: '',
+  name: '',
   price: '',
   category: '',
     images: '',
@@ -45,7 +46,33 @@ const formData = reactive({
   size50: 0,
   total: 0,
 })
+
+function $reset() {
+  formData.id = '';
+  formData.name = '';
+  formData.price = '';
+  formData.category = '';
+  formData.images = '';
+  formData.size36 = 0;
+  formData.size37 = 0;
+  formData.size38 = 0;
+  formData.size39 = 0;
+  formData.size40 = 0;
+  formData.size41 = 0;
+  formData.size42 = 0;
+  formData.size43 = 0;
+  formData.size44 = 0;
+  formData.size45 = 0;
+  formData.size46 = 0;
+  formData.size47 = 0;
+  formData.size48 = 0;
+  formData.size49 = 0;
+  formData.size50 = 0;
+}
+
+
 const snikerBuy = computed(() => {
+    formData.id = sniker.value?.id;
   formData.name = sniker.value?.name;
   formData.price = sniker.value?.price;
   formData.category = sniker.value?.category;
@@ -79,6 +106,7 @@ const handleBuy = () => {
     Store.errorSendMessage = "";
     const product = { ...snikerBuy.value };
     Store.addItem(product);
+   $reset()
   }
 
 }

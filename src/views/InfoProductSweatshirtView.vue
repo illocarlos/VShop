@@ -24,6 +24,7 @@ const selectImage = (index) => {
 };
 
 const formData = reactive({
+  id: '',
   name: "",
   price: '',
   category: '',
@@ -34,10 +35,22 @@ images:'',
   XL: 0,
   total: 0,
 })
+function $reset() {
+  formData.id = '';
+  formData.name = '';
+  formData.price = '';
+  formData.category = '';
+  formData.images = '';
+  formData.S = 0;
+  formData.M = 0;
+  formData.L = 0;
+  formData.XL = 0;
 
+}
 
 
 const sweatshirtBuy = computed(() => {
+    formData.id = sweatshirt.value?.id;
   formData.name = sweatshirt.value?.name;
   formData.price = sweatshirt.value?.price;
   formData.category = sweatshirt.value?.category;
@@ -47,6 +60,7 @@ const sweatshirtBuy = computed(() => {
 })
 
 const handleBuy = () => {
+
   // Validar que al menos uno de los valores sea superior a 0
   if (sweatshirtBuy.value.total===0) {
     return Store.errorSendMessage = 'You must enter at least an amount greater than 0';
@@ -55,6 +69,7 @@ const handleBuy = () => {
     Store.errorSendMessage = "";
     const product = { ...sweatshirtBuy.value };
     Store.addItem(product);
+    $reset()
   }
 
 }

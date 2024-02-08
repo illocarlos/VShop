@@ -1,6 +1,5 @@
 <script setup>
 import { storeToRefs } from 'pinia'
-import ProductCard from '@/components/ProductCard.vue'
 import { useSnikerStore } from '@/stores/snikers'
 import ProductCardVue from '@/components/ProductCard.vue'
 import ModalFilterPrices from '@/components/Filtrer/ModalFilterPrices.vue'

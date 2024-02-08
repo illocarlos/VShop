@@ -49,9 +49,6 @@ export const useSnikerStore = defineStore('snikers', () => {
         return options
     })
 
-
-
-
     const filterPricesSneakers = (data) => {
 
         const { prices } = data
