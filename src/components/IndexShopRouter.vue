@@ -8,12 +8,12 @@ const isNavbarTransparent3 = ref(true);
 
 const handleScroll1 = () => {
     const scrollY = window.scrollY;
-    isNavbarTransparent1.value = scrollY >= 0 && scrollY < 50;
+    isNavbarTransparent1.value = scrollY >= 0 && scrollY < 120;
 };
 
 const handleScroll2 = () => {
     const scrollY = window.scrollY;
-    isNavbarTransparent2.value = scrollY >= 100 && scrollY < 220;
+    isNavbarTransparent2.value = scrollY >= 150 && scrollY < 220;
 };
 
 const handleScroll3 = () => {
