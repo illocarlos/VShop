@@ -33,11 +33,11 @@ const toggleDropdown = () => {
               </tr>
             </thead>
             <tbody>
-              <tr v-for="product in store.itemShowCart" :key="product.id">
+              <tr v-for="product in store.itemsFilterCart" :key="product.id">
                 <td>
                   <img class="product-image" :src='product.images[0]' :alt="product.name" />
                 </td>
-                <td class="text-xs">{{ product.name }}({{ product.size }})</td>
+                <td class="text-xs">{{ product.name }} <span v-if="product.size">({{ product.size }})</span></td>
                 <td class="text-xs">{{ formatCurrency(product.price) }}</td>
                 <td class="flex align-items-start gap-4">
                   <button type="button" class="btn btn-dark" @click="$emit('decrement', product.id)">-</button>
@@ -51,8 +51,8 @@ const toggleDropdown = () => {
             </tbody>
           </table>
           <p class="text-end m-0">Total cost: <span class="fw-bold">${{  }}</span></p>
-          <button class="w-100">Clean cart</button>
-          <button class="w-100 ">Buy</button>
+          <button class="w-100 bg-red-500 text-white px-3 rounded-md  " @click="store.deletedAll()">Clean cart</button>
+          <button class="w-100 ml-10 bg-green-500 px-3 rounded-md    ">Buy</button>
         </div>
       </div>
     </transition>
@@ -125,9 +125,7 @@ th {
   border-width: 0;
 }
 
-button {
-  border-radius: 0;
-}
+
 
 .carrito-dropdown {
   position: absolute;

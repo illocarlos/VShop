@@ -4,6 +4,10 @@ import { ref, computed } from 'vue'
 
 export const useStore = defineStore('store', () => {
     const itemShowCart = ref([])
+    const itemsFilterCart = ref([])
+
+    const objetFilter = ref({})
+
     const errorSendMessage = ref("")
 
     function addItem(product) {
@@ -14,7 +18,7 @@ export const useStore = defineStore('store', () => {
         } else if (product.category === 'sunglasses') {
             filterSunglasses(product)
         }
-        isEqualProduct()
+        isEqualProduct(product)
     }
 
     function filterSneaker(product) {
@@ -27,14 +31,15 @@ export const useStore = defineStore('store', () => {
                     const sizeValue = product[key];
                     if (sizeValue) {
                         const newSizeObject = {
+                            [key]: sizeValue,
+                            size: key,
                             id: product.id,
                             name: product.name,
                             price: product.price,
                             images: product.images,
-                            [key]: sizeValue,
-                            size: key,
                             total: sizeValue
                         };
+                        objetFilter.value = newSizeObject
                         itemShowCart.value.push(newSizeObject);
                     }
                 }
@@ -53,14 +58,15 @@ export const useStore = defineStore('store', () => {
                     const sizeValue = product[key];
                     if (sizeValue) {
                         const newSizeObject = {
+                            [key]: sizeValue,
+                            size: key,
                             id: product.id,
                             name: product.name,
                             price: product.price,
                             images: product.images,
-                            [key]: sizeValue,
-                            size: key,
                             total: sizeValue
-                        };
+                        }
+                        objetFilter.value = newSizeObject
                         itemShowCart.value.push(newSizeObject);
                     }
                 }
@@ -81,31 +87,50 @@ export const useStore = defineStore('store', () => {
                     images: product.images,
                     total: 1,
                 };
+                objetFilter.value = newSizeObject
                 itemShowCart.value.push(newSizeObject);
             }
         });
 
     }
 
+    function isEqualProduct() {
+        const copyArrayItemsShowCart = [...itemShowCart.value];
+        const newObjet = objetFilter.value;
 
-    // function isEqualProduct() {
-    //     // const copyArrayItemsShowCart = [...itemShowCart.value]
+        // Verificar si el array está vacío
+        if (copyArrayItemsShowCart.length === 0) {
+            // Si está vacío, simplemente agregamos newObjet al array
+            itemsFilterCart.value.push(newObjet);
+        } else {
+            let found = false;
 
-    //     // console.log('------copia', copyArrayItemsShowCart)
+            // Verificar si existe un objeto con el mismo ID y tamaño
+            for (let i = 0; i < itemsFilterCart.value.length; i++) {
+                if (itemsFilterCart.value[i].id === newObjet.id && itemsFilterCart.value[i].size === newObjet.size) {
+                    // Si se encuentra un objeto con el mismo ID y tamaño, sumar sus totales
+                    itemsFilterCart.value[i].total += newObjet.total;
+                    found = true;
+                    break;
+                }
+            }
 
-    //     const arrcopyArrayItemsShowCartay = itemShowCart.value.findIndex(product => product.id === id)
-    //     console.log('eeeeeee', arrcopyArrayItemsShowCartay)
+            // Si no se encontró un objeto que cumple con las condiciones, simplemente agregamos newObjet al array
+            if (!found) {
+                itemsFilterCart.value.push(newObjet);
+            }
+        }
+    }
 
-
-    // }
-
-    const isEmpty = computed(() => itemShowCart.value.length === 0)
+    function deletedAll() { itemsFilterCart.value = [] }
+    const isEmpty = computed(() => itemsFilterCart.value.length === 0)
 
     return {
         addItem,
         errorSendMessage,
-        itemShowCart,
-        isEmpty
+        itemsFilterCart,
+        isEmpty,
+        deletedAll
     }
 
 })
