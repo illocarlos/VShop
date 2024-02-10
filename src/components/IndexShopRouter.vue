@@ -2,9 +2,9 @@
 import { onMounted, ref } from 'vue';
 import { RouterLink } from 'vue-router';
 
-const isNavbarTransparent1 = ref(true);
-const isNavbarTransparent2 = ref(true);
-const isNavbarTransparent3 = ref(true);
+const isNavbarTransparent1 = ref(false);
+const isNavbarTransparent2 = ref(false);
+const isNavbarTransparent3 = ref(false);
 
 const handleScroll1 = () => {
     const scrollY = window.scrollY;
@@ -13,12 +13,12 @@ const handleScroll1 = () => {
 
 const handleScroll2 = () => {
     const scrollY = window.scrollY;
-    isNavbarTransparent2.value = scrollY >= 150 && scrollY < 220;
+    isNavbarTransparent2.value = scrollY >= 150 && scrollY < 230;
 };
 
 const handleScroll3 = () => {
     const scrollY = window.scrollY;
-    isNavbarTransparent3.value = scrollY >= 220 && scrollY < 500;
+    isNavbarTransparent3.value = scrollY >= 250 && scrollY < 500;
 };
 
 onMounted(() => {
