@@ -97,8 +97,10 @@ const snikerBuy = computed(() => {
 })
 
 const handleBuy = () => {
+  
   // Validar que al menos uno de los valores sea superior a 0
   if (snikerBuy.value.total === 0) {
+    
     return Store.errorSendMessage = 'You must enter at least an amount greater than 0';
 
   } else {
@@ -106,7 +108,7 @@ const handleBuy = () => {
     const product = { ...snikerBuy.value };
     Store.addItem(product);
     $reset()
-     router.push({ name: 'Skiners' })
+      router.push({ name: 'Skiners' })
   }
 
 }

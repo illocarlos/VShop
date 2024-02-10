@@ -4,7 +4,8 @@ import { doc } from 'firebase/firestore'
 import { formatCurrency } from '@/helpers/formartPrice'
 import { useFirestore, useDocument } from 'vuefire'
 import { useStore } from '@/stores/store'
-import { ref, reactive, computed, watch } from 'vue';
+import { generateDisabledHelperSweatShirt } from '@/helpers/formatSize';
+import { ref, reactive, computed } from 'vue';
 
 const Store = useStore()
 
@@ -62,7 +63,8 @@ const sweatshirtBuy = computed(() => {
 const handleBuy = () => {
 
   // Validar que al menos uno de los valores sea superior a 0
-  if (sweatshirtBuy.value.total===0) {
+  if (sweatshirtBuy.value.total === 0) {
+        $reset()
     return Store.errorSendMessage = 'You must enter at least an amount greater than 0';
    
   } else {
@@ -70,31 +72,16 @@ const handleBuy = () => {
     const product = { ...sweatshirtBuy.value };
     Store.addItem(product);
     $reset()
-    router.push({name:'SweatShirt'})
+     router.push({name:'SweatShirt'})
   }
 
 }
 
-const handleEmptyInputS = computed(() => {
-    if (formData.S === '') {
-    formData.S = 0;
-    }  
-})
-const handleEmptyInputM = computed(() => {
-  if (formData.M === '') {
-    formData.M = 0;
-  }
-})
-const handleEmptyInputL = computed(() => {
-  if (formData.L === '') {
-    formData.L = 0;
-  }
-})
-const handleEmptyInputXL = computed(() => {
-  if (formData.XL === '') {
-    formData.XL = 0;
-  }
-})
+const disabledS = generateDisabledHelperSweatShirt(formData, 'S');
+const disabledM = generateDisabledHelperSweatShirt(formData, 'M');
+const disabledL = generateDisabledHelperSweatShirt(formData, 'L');
+const disabledXL = generateDisabledHelperSweatShirt(formData, 'XL');
+
 </script>
 <template>
   <div class="h-5/5 mt-40  lg:my-46 lg:mb-40 lg:flex containerAipad ">
@@ -131,41 +118,36 @@ const handleEmptyInputXL = computed(() => {
 
           <FormKit type="number" label="S" name="S" placeholder="0" step="1" min="0"
              v-model.number="formData.S"
-             @input="handleEmptyInputS"
-             :disabled="formData.M > 0 || formData.L > 0 || formData.XL > 0"
+             :disabled="disabledS"
              :style="{
-               backgroundColor: formData.M > 0 || formData.L > 0 || formData.XL > 0  ? '#f4f4f4' : 'inherit',
-               color: formData.M > 0 || formData.L > 0 || formData.XL > 0 ? '#ccc' : 'inherit'
-             }"/>
+               backgroundColor: disabledS  ? '#f4f4f4' : 'inherit',
+               color: disabledS ? '#ccc' : 'inherit' }"
+              validation="required" />
 
           <FormKit type="number" label="M" name="M" placeholder="0" step="0" min="0"
               v-model.number="formData.M"
-                 @input="handleEmptyInputM"
-              :disabled="formData.S !== 0 || formData.L !== 0 || formData.XL !== 0"
+              :disabled="disabledM"
               :style="{
-                backgroundColor: formData.S !== 0 || formData.L !== 0 || formData.XL !== 0 ? '#f4f4f4' : 'inherit',
-                color: formData.S !== 0 || formData.L !== 0 || formData.XL !== 0 ? '#ccc' : 'inherit'
-              }" />
+                backgroundColor: disabledM ? '#f4f4f4' : 'inherit',
+                color: disabledM ? '#ccc' : 'inherit'
+              }" 
+               validation="required" />
           <FormKit type="number" label="L" name="L" placeholder="0" step="0" min="0"
               v-model.number="formData.L"
-                 @input="handleEmptyInputL"
-              :disabled="formData.S !== 0 || formData.M !== 0 || formData.XL !== 0"
+              :disabled="disabledL"
               :style="{
-                backgroundColor: formData.S !== 0 || formData.M !== 0 || formData.XL !== 0 ? '#f4f4f4' : 'inherit',
-                color: formData.S !== 0 || formData.M !== 0 || formData.XL !== 0 ? '#ccc' : 'inherit'
-              }" />
+                backgroundColor: disabledL ? '#f4f4f4' : 'inherit',
+                color: disabledL ? '#ccc' : 'inherit'
+              }" 
+               validation="required" />
           <FormKit type="number" label="XL" name="XL" placeholder="0" step="0" min="0"
               v-model.number="formData.XL"
-                 @input="handleEmptyInputXL"
-              :disabled="formData.S !== 0 || formData.M !== 0 || formData.L !== 0"
+              :disabled="disabledXL"
               :style="{
-  backgroundColor: formData.S !== 0 || formData.M !== 0 || formData.L !== 0 ? '#f4f4f4' : 'inherit',
-  color: formData.S !== 0 || formData.M !== 0 || formData.L !== 0 ? '#ccc' : 'inherit'}" />
-
+  backgroundColor: disabledXL ? '#f4f4f4' : 'inherit',
+  color: disabledXL ? '#ccc' : 'inherit'}" 
+   validation="required" />
       </div>
-
-
-
       <button type="submit" class="mt-8 h-12 w-3/6"><span class="uppercase">buy</span></button>
       <div v-if="Store.errorSendMessage" class="mt-3 text-xs text-red-500">{{ Store.errorSendMessage }}</div>
   </FormKit>
@@ -174,7 +156,6 @@ const handleEmptyInputXL = computed(() => {
       </div>
     </article>
     <div>
-
     </div>
     <div class=" lg:hidden ">
       
@@ -185,37 +166,35 @@ const handleEmptyInputXL = computed(() => {
         
           <FormKit type="number" label="S" name="S" placeholder="0" step="1" min="0"
                v-model.number="formData.S"
-               @input="handleEmptyInputS"
-               :disabled="formData.M > 0 || formData.L > 0 || formData.XL > 0"
+               :disabled="disabledS"
                :style="{
-                 backgroundColor: formData.M > 0 || formData.L > 0 || formData.XL > 0 ? '#f4f4f4' : 'inherit',
-                 color: formData.M > 0 || formData.L > 0 || formData.XL > 0 ? '#ccc' : 'inherit'
-               }"/>
+                 backgroundColor: disabledS ? '#f4f4f4' : 'inherit',
+                 color: disabledS > 0 ? '#ccc' : 'inherit'}"
+                    validation="required"/>
 
             <FormKit type="number" label="M" name="M" placeholder="0" step="0" min="0"
                 v-model.number="formData.M"
-                   @input="handleEmptyInputM"
-                :disabled="formData.S !== 0 || formData.L !== 0 || formData.XL !== 0"
+                     validation="required"
+                :disabled=disabledM
                 :style="{
-                  backgroundColor: formData.S !== 0 || formData.L !== 0 || formData.XL !== 0 ? '#f4f4f4' : 'inherit',
-                  color: formData.S !== 0 || formData.L !== 0 || formData.XL !== 0 ? '#ccc' : 'inherit'
+                  backgroundColor: disabledM ? '#f4f4f4' : 'inherit',
+                  color: disabledM ? '#ccc' : 'inherit'
                 }" />
             <FormKit type="number" label="L" name="L" placeholder="0" step="0" min="0"
                 v-model.number="formData.L"
-                   @input="handleEmptyInputL"
-                :disabled="formData.S !== 0 || formData.M !== 0 || formData.XL !== 0"
+                validation="required"
+                :disabled="disabledL"
                 :style="{
-                  backgroundColor: formData.S !== 0 || formData.M !== 0 || formData.XL !== 0 ? '#f4f4f4' : 'inherit',
-                  color: formData.S !== 0 || formData.M !== 0 || formData.XL !== 0 ? '#ccc' : 'inherit'
+                  backgroundColor: disabledL ? '#f4f4f4' : 'inherit',
+                  color: disabledL ? '#ccc' : 'inherit'
                 }" />
             <FormKit type="number" label="XL" name="XL" placeholder="0" step="0" min="0"
                 v-model.number="formData.XL"
-                   @input="handleEmptyInputXL"
-                :disabled="formData.S !== 0 || formData.M !== 0 || formData.L !== 0"
+               validation="required"
+                :disabled="disabledXL"
                 :style="{
-                  backgroundColor: formData.S !== 0 || formData.M !== 0 || formData.L !== 0 ? '#f4f4f4' : 'inherit',
-                  color: formData.S !== 0 || formData.M !== 0 || formData.L !== 0 ? '#ccc' : 'inherit'
-}" />
+                  backgroundColor: disabledXL ? '#f4f4f4' : 'inherit',
+                  color: disabledXL ? '#ccc' : 'inherit'}" />
 
       </div>
 

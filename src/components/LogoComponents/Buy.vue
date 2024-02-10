@@ -9,6 +9,9 @@ const store = useStore();
 const toggleDropdown = () => {
   isOpen.value = !isOpen.value;
 };
+const prueba = () => {
+  console.log('------>', store.itemsFilterCart)
+}
 </script>
 <template>
   <div class="relative">
@@ -22,7 +25,7 @@ const toggleDropdown = () => {
         <!-- Contenido del dropdown -->
         <p class="text-green-500 text-center" v-if="store.isEmpty">The cart is empty</p>
         <div v-else>
-          <table class="w-100 table">
+          <table class=" w-100 table  overflow-y-scroll ">
             <thead>
               <tr>
                 <th>Product</th>
@@ -40,19 +43,19 @@ const toggleDropdown = () => {
                 <td class="text-xs">{{ product.name }} <span v-if="product.size">({{ product.size }})</span></td>
                 <td class="text-xs">{{ formatCurrency(product.price) }}</td>
                 <td class="flex align-items-start gap-4">
-                  <button type="button" class="btn btn-dark" @click="$emit('decrement', product.id)">-</button>
+                  <button type="button" class="btn btn-dark" @click=store.decrement(product.id)>-</button>
                   {{ product.total }}
-                  <button type="button" class="btn btn-dark" @click="$emit('increment', product.id)">+</button>
+                  <button type="button" class="btn btn-dark" @click=store.increment(product.id)>+</button>
                 </td>
                 <td>
-                  <button class="btn btn-danger" type="button" @click="$emit('deleted', product.id)">X</button>
+                  <button class="btn btn-danger" type="button" @click=store.deleted(product.id)>X</button>
                 </td>
               </tr>
             </tbody>
           </table>
-          <p class="text-end m-0">Total cost: <span class="fw-bold">${{  }}</span></p>
+          <p class="text-end m-0">Total cost: <span class="fw-bold">{{ formatCurrency(store.totalCartBuy()) }}</span></p>
           <button class="w-100 bg-red-500 text-white px-3 rounded-md  " @click="store.deletedAll()">Clean cart</button>
-          <button class="w-100 ml-10 bg-green-500 px-3 rounded-md    ">Buy</button>
+          <button class="w-100 ml-10 bg-green-500 px-3 rounded-md " @click="prueba">Buy</button>
         </div>
       </div>
     </transition>

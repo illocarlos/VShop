@@ -3,8 +3,9 @@ import { useRoute, useRouter } from 'vue-router'
 import { doc } from 'firebase/firestore'
 import { formatCurrency } from '@/helpers/formartPrice'
 import { useFirestore, useDocument } from 'vuefire'
+import Spiners from '@/components/Spiners.vue'
 import { useStore } from '@/stores/store'
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 
 const Store = useStore()
 
@@ -28,14 +29,16 @@ const handleBuy = (product) => {
   Store.addItem(product)
       router.push({ name: 'Sunglasses' })
 }
+
 </script>
 
 <template>
   <div class="h-5/5 mt-40 lg:mb-40 lg:my-46   lg:flex lg:gap-20 ">
 
     <div class="flex flex-col-reverse h-6/6 lg:flex-row lg:ml-28 lg:w-5/6 ">
-
-      <div class="w-full flex overflow-x-scroll lg:flex-col lg:w-1/5 ">
+   
+      
+      <div  class="w-full flex overflow-x-scroll lg:flex-col lg:w-1/5 ">
         <div  v-for="(image, index) in sunglasses?.images" :key="index">
           <img class="h-14 cursor-pointer lg:h-20" @click="selectImage(index)" :src="image" :alt="`photo num ${index}`">
         </div>

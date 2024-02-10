@@ -5,9 +5,8 @@ import { ref, computed } from 'vue'
 export const useStore = defineStore('store', () => {
     const itemShowCart = ref([])
     const itemsFilterCart = ref([])
-
+    const totalCart = ref("")
     const objetFilter = ref({})
-
     const errorSendMessage = ref("")
 
     function addItem(product) {
@@ -122,6 +121,37 @@ export const useStore = defineStore('store', () => {
         }
     }
 
+    function totalCartBuy() {
+        let count = 0
+        const prueba = itemsFilterCart.value.map(product => product.price * product.total)
+
+        prueba.forEach(each => {
+            count += each
+        })
+        return totalCart.value = count
+    }
+
+    function deleted(id) {
+
+        itemsFilterCart.value = itemsFilterCart.value.filter(elem => elem.id !== id)
+
+        if (itemsFilterCart.value.length === 0) {
+            itemsFilterCart.value.total = 0
+        }
+
+    }
+    const increment = (id) => {
+        const index = itemsFilterCart.value.findIndex(product => product.id === id)
+        itemsFilterCart.value[index].total >= 10 ? itemsFilterCart.value[index].total : itemsFilterCart.value[index].total++
+        // incrementBuy()
+    }
+
+    const decrement = (id) => {
+        const index = itemsFilterCart.value.findIndex(product => product.id === id)
+        itemsFilterCart.value[index].total <= 1 ? itemsFilterCart.value[index].total : itemsFilterCart.value[index].total--
+        // decrementBuy()
+    }
+
     function deletedAll() { itemsFilterCart.value = [] }
     const isEmpty = computed(() => itemsFilterCart.value.length === 0)
 
@@ -130,7 +160,11 @@ export const useStore = defineStore('store', () => {
         errorSendMessage,
         itemsFilterCart,
         isEmpty,
-        deletedAll
+        deletedAll,
+        totalCartBuy,
+        deleted,
+        increment,
+        decrement
     }
 
 })
