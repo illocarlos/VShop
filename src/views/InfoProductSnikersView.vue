@@ -3,6 +3,7 @@
 import { useRoute, useRouter } from 'vue-router'
 import { doc } from 'firebase/firestore'
 import { formatCurrency } from '@/helpers/formartPrice'
+import { generateDisabledHelper } from '@/helpers/formatSize';
 import { useFirestore, useDocument } from 'vuefire'
 import { useStore } from '@/stores/store'
 import { ref, computed, reactive } from 'vue';
@@ -95,8 +96,6 @@ const snikerBuy = computed(() => {
   return formData;
 })
 
-
-
 const handleBuy = () => {
   // Validar que al menos uno de los valores sea superior a 0
   if (snikerBuy.value.total === 0) {
@@ -106,10 +105,27 @@ const handleBuy = () => {
     Store.errorSendMessage = "";
     const product = { ...snikerBuy.value };
     Store.addItem(product);
-   $reset()
+    $reset()
+     router.push({ name: 'Skiners' })
   }
 
 }
+
+const disabled36 = generateDisabledHelper(formData, '36');
+const disabled37 = generateDisabledHelper(formData, '37');
+const disabled38 = generateDisabledHelper(formData, '38');
+const disabled39 = generateDisabledHelper(formData, '39');
+const disabled40 = generateDisabledHelper(formData, '40');
+const disabled41 = generateDisabledHelper(formData, '41');
+const disabled42 = generateDisabledHelper(formData, '42');
+const disabled43 = generateDisabledHelper(formData, '43');
+const disabled44 = generateDisabledHelper(formData, '44');
+const disabled45 = generateDisabledHelper(formData, '45');
+const disabled46 = generateDisabledHelper(formData, '46');
+const disabled47 = generateDisabledHelper(formData, '47');
+const disabled48 = generateDisabledHelper(formData, '48');
+const disabled49 = generateDisabledHelper(formData, '49');
+const disabled50 = generateDisabledHelper(formData, '50');
 </script>
 
 <template>
@@ -117,7 +133,7 @@ const handleBuy = () => {
 
     <div class="flex flex-col-reverse h-6/6 lg:flex-row lg:ml-28 lg:w-4/6   ">
 
-      <div class="w-full flex overflow-x-scroll lg:flex-col lg:w-1/5 ">
+      <div class="w-full flex overflow-x-scroll lg:flex-col lg:w-1/5  ">
         <div  v-for="(image, index) in sniker?.images" :key="index">
           <img class="h-14 cursor-pointer lg:h-20" @click="selectImage(index)" :src="image" :alt="`photo num ${index}`">
         </div>
@@ -127,7 +143,7 @@ const handleBuy = () => {
         <img class="h-96 w-full bg-cover lg:h-30 lg:w-5/5 lg:h-5/5 containerImg" v-else :src="sniker?.images[0]" />
       </div>
     </div>
-    <div class="lg:w-4/12">
+    <div class="lg:w-5/12 lg:ml-4">
     <article class="mt-10 flex flex-col justify-center items-center w-3/4 md:w-4/4 lg:w-6/6 lg:mt-0  ">
       <div class="md:flex md:flex-row md:justify-around md:w-full lg:flex lg:flex-col">
         <div>
@@ -146,64 +162,145 @@ const handleBuy = () => {
           incomplete-message="Could not send, check messages"  :actions="false">
 <div class="flex flex-nowrap flex-col mt-3 lg:w-8/12 text-center text-green-600 ">
 <div class="flex flex-row gap-1">
+
+
+
   <FormKit type="number" label="36" name="size36" placeholder="0" step="0" min="0"
   v-model.number="formData.size36" 
+  :disabled="disabled36"
+  :style="{backgroundColor: disabled36 ? '#f4f4f4' : 'inherit',
+  color: disabled36 ? '#ccc' : 'black'}"
   validation="required" />
+
   <FormKit type="number" label="37" name="size37" placeholder="0" step="0" min="0"
   v-model.number="formData.size37" 
-  validation="required"/>    
+    :disabled="disabled37"
+          :style="{
+            backgroundColor: disabled37 ? '#f4f4f4' : 'inherit',
+            color: disabled37 ? '#ccc' : 'black'}"
+  validation="required"/>   
+
   <FormKit type="number" label="38" name="size38" placeholder="0" step="0" min="0"
   v-model.number="formData.size38"
+     :disabled="disabled38"
+            :style="{
+              backgroundColor: disabled38 ? '#f4f4f4' : 'inherit',
+              color: disabled38 ? '#ccc' : 'black'}"
   validation="required" />
+
   <FormKit type="number" label="39" name="size39" placeholder="0" step="0" min="0"
   v-model.number="formData.size39"
+      :disabled="disabled39"
+            :style="{
+              backgroundColor: disabled39 ? '#f4f4f4' : 'inherit',
+              color: disabled39 ? '#ccc' : 'black'}"
   validation="required" />
+
   <FormKit type="number" label="40" name="size40" placeholder="0" step="0" min="0"
   v-model.number="formData.size40"
+      :disabled="disabled40"
+            :style="{
+              backgroundColor: disabled40 ? '#f4f4f4' : 'inherit',
+              color: disabled40 ? '#ccc' : 'black'  }"
   validation="required"/>
 </div>
  <div class="flex flex-row gap-1">
 
    <FormKit type="number" label="41" name="size41" placeholder="0" step="0" min="0"
    v-model.number="formData.size41" 
+       :disabled="disabled41"
+            :style="{
+              backgroundColor: disabled41 ? '#f4f4f4' : 'inherit',
+              color: disabled41 ? '#ccc' : 'black'  }"
    validation="required"/>
+
    <FormKit type="number" label="42" name="size42" placeholder="0" step="0" min="0"
    v-model.number="formData.size42" 
+        :disabled="disabled42"
+            :style="{
+              backgroundColor: disabled42 ? '#f4f4f4' : 'inherit',
+              color: disabled42 ? '#ccc' : 'black' }"
    validation="required" />
+
    <FormKit type="number" label="43" name="size43" placeholder="0" step="0" min="0"
    v-model.number="formData.size43" 
+       :disabled="disabled43"
+            :style="{
+              backgroundColor: disabled43 ? '#f4f4f4' : 'inherit',
+              color: disabled43 ? '#ccc' : 'black'}"
    validation="required" />
+
    <FormKit type="number" label="44" name="size44" placeholder="0" step="0" min="0"
    v-model.number="formData.size44"
+      :disabled="disabled44"
+            :style="{
+              backgroundColor: disabled44 ? '#f4f4f4' : 'inherit',
+              color: disabled44 ? '#ccc' : 'black'
+            }"
    validation="required" />
+
    <FormKit type="number" label="45" name="size45" placeholder="0" step="0" min="0"
    v-model.number="formData.size45" 
+       :disabled="disabled45"
+            :style="{
+              backgroundColor: disabled45 ? '#f4f4f4' : 'inherit',
+              color: disabled45 ? '#ccc' : 'black'}"
    validation="required" />
   </div>
     <div class="flex flex-row gap-1">
-      <FormKit type="number" label="46" name="size46" placeholder="0" step="0" min="0"
+
+       <FormKit type="number" label="46" name="size46" placeholder="0" step="0" min="0"
       v-model.number="formData.size46"
-      validation="required" />                  
+        :disabled="disabled46"
+            :style="{
+              backgroundColor: disabled46 ? '#f4f4f4' : 'inherit',
+              color: disabled46 ? '#ccc' : 'black'
+            }"
+      validation="required"
+    />
       <FormKit type="number" label="47" name="size47" placeholder="0" step="0" min="0"
       v-model.number="formData.size47" 
-      validation="required"/>                  
+         :disabled="disabled47"
+            :style="{
+              backgroundColor: disabled47 ? '#f4f4f4' : 'inherit',
+              color: disabled47 ? '#ccc' : 'black'
+            }"
+      validation="required"/>     
+
       <FormKit type="number" label="48" name="size48" placeholder="0" step="0" min="0"
       v-model.number="formData.size48"
-      validation="required" />                  
+     :disabled="disabled48"
+            :style="{
+              backgroundColor: disabled48 ? '#f4f4f4' : 'inherit',
+              color: disabled48 ? '#ccc' : 'black'
+            }"
+      validation="required" /> 
+
       <FormKit type="number" label="49" name="size49" placeholder="0" step="0" min="0"
       v-model.number="formData.size49"
+     :disabled="disabled49"
+            :style="{
+              backgroundColor: disabled49 ? '#f4f4f4' : 'inherit',
+              color: disabled49 ? '#ccc' : 'black'
+            }"
       validation="required"  />
+
       <FormKit type="number" label="50" name="size50" placeholder="0" step="0" min="0"
       v-model.number="formData.size50"
+          :disabled="disabled50"
+            :style="{
+              backgroundColor: disabled50 ? '#f4f4f4' : 'inherit',
+              color: disabled50 ? '#ccc' : 'black'}"
       validation="required"/>
     </div>
   </div>
         <button type="submit" class="w-screen h-8 mt-8  lg:mt-8 lg:h-8  lg:w-8/12   "><span class="uppercase">buy</span></button>
-               <div v-if="Store.errorSendMessage" class="mt-3 text-xs text-red-500">{{ Store.errorSendMessage }}</div>
+               <div v-if="Store.errorSendMessage" class="mt-3 text-xs text-red-500">{{ Store.errorSendMessage }}</div>     
           </FormKit>
+    
            </div>
     <div>
-      
+ 
     </div>
 
   </div>

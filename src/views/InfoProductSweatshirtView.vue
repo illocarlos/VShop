@@ -70,9 +70,31 @@ const handleBuy = () => {
     const product = { ...sweatshirtBuy.value };
     Store.addItem(product);
     $reset()
+    router.push({name:'SweatShirt'})
   }
 
 }
+
+const handleEmptyInputS = computed(() => {
+    if (formData.S === '') {
+    formData.S = 0;
+    }  
+})
+const handleEmptyInputM = computed(() => {
+  if (formData.M === '') {
+    formData.M = 0;
+  }
+})
+const handleEmptyInputL = computed(() => {
+  if (formData.L === '') {
+    formData.L = 0;
+  }
+})
+const handleEmptyInputXL = computed(() => {
+  if (formData.XL === '') {
+    formData.XL = 0;
+  }
+})
 </script>
 <template>
   <div class="h-5/5 mt-40  lg:my-46 lg:mb-40 lg:flex containerAipad ">
@@ -106,42 +128,44 @@ const handleBuy = () => {
       <FormKit type="form" @submit="handleBuy" :value="formData" submit-label="save"
       incomplete-message="Could not send, check messages" :actions="false">
       <div class="flex flex-row w-3/5 text-center gap-2">
-          <FormKit type="number" label="S" name="S" placeholder="0" step="0" min="0"
-              v-model.number="formData.S"
-              validation="required"
-              :disabled="formData.M !== 0 || formData.L !== 0 || formData.XL !== 0"
-              :validation-messages="{ required: 'If you do not have quantity, enter 0|' }"
-              :style="{
-                backgroundColor: formData.M !== 0 || formData.L !== 0 || formData.XL !== 0 ? '#f4f4f4' : 'inherit',
-                color: formData.M !== 0 || formData.L !== 0 || formData.XL !== 0 ? '#ccc' : 'inherit'
-              }" />
+
+          <FormKit type="number" label="S" name="S" placeholder="0" step="1" min="0"
+             v-model.number="formData.S"
+             @input="handleEmptyInputS"
+             :disabled="formData.M > 0 || formData.L > 0 || formData.XL > 0"
+             :style="{
+               backgroundColor: formData.M > 0 || formData.L > 0 || formData.XL > 0  ? '#f4f4f4' : 'inherit',
+               color: formData.M > 0 || formData.L > 0 || formData.XL > 0 ? '#ccc' : 'inherit'
+             }"/>
+
           <FormKit type="number" label="M" name="M" placeholder="0" step="0" min="0"
               v-model.number="formData.M"
-              validation="required"
+                 @input="handleEmptyInputM"
               :disabled="formData.S !== 0 || formData.L !== 0 || formData.XL !== 0"
-              :validation-messages="{ required: 'If you do not have quantity, enter 0|' }"
               :style="{
                 backgroundColor: formData.S !== 0 || formData.L !== 0 || formData.XL !== 0 ? '#f4f4f4' : 'inherit',
                 color: formData.S !== 0 || formData.L !== 0 || formData.XL !== 0 ? '#ccc' : 'inherit'
               }" />
           <FormKit type="number" label="L" name="L" placeholder="0" step="0" min="0"
               v-model.number="formData.L"
-              validation="required"
+                 @input="handleEmptyInputL"
               :disabled="formData.S !== 0 || formData.M !== 0 || formData.XL !== 0"
-              :validation-messages="{ required: 'If you do not have quantity, enter 0|' }"
               :style="{
                 backgroundColor: formData.S !== 0 || formData.M !== 0 || formData.XL !== 0 ? '#f4f4f4' : 'inherit',
                 color: formData.S !== 0 || formData.M !== 0 || formData.XL !== 0 ? '#ccc' : 'inherit'
               }" />
           <FormKit type="number" label="XL" name="XL" placeholder="0" step="0" min="0"
               v-model.number="formData.XL"
-              validation="required"
+                 @input="handleEmptyInputXL"
               :disabled="formData.S !== 0 || formData.M !== 0 || formData.L !== 0"
-              :validation-messages="{ required: 'If you do not have quantity, enter 0|' }"
               :style="{
   backgroundColor: formData.S !== 0 || formData.M !== 0 || formData.L !== 0 ? '#f4f4f4' : 'inherit',
   color: formData.S !== 0 || formData.M !== 0 || formData.L !== 0 ? '#ccc' : 'inherit'}" />
+
       </div>
+
+
+
       <button type="submit" class="mt-8 h-12 w-3/6"><span class="uppercase">buy</span></button>
       <div v-if="Store.errorSendMessage" class="mt-3 text-xs text-red-500">{{ Store.errorSendMessage }}</div>
   </FormKit>
@@ -153,46 +177,50 @@ const handleBuy = () => {
 
     </div>
     <div class=" lg:hidden ">
-   <FormKit type="form" :value="formData" @submit="handleBuy" submit-label="Guardar Cambios"
-      incomplete-message="Could not send, check messages" :actions="false">
+      
+        <FormKit type="form" @submit="handleBuy" :value="formData" submit-label="save"
+        incomplete-message="Could not send, check messages" :actions="false">
       <div class="flex flex-row justify-center text-center gap-5">
+
+        
           <FormKit type="number" label="S" name="S" placeholder="0" step="1" min="0"
-              v-model.number="formData.S"
-              validation="required"
-              :disabled="formData.M !== 0 || formData.L !== 0 || formData.XL !== 0"
-              :validation-messages="{ required: 'If you do not have quantity, enter 0|' }"
-         :style="{
-           backgroundColor: formData.M !== 0 || formData.L !== 0 || formData.XL !== 0 ? '#f4f4f4' : 'inherit',
-           color: formData.M !== 0 || formData.L !== 0 || formData.XL !== 0 ? '#ccc' : 'inherit'
-}"/>
-          <FormKit type="number" label="M" name="M" placeholder="0" step="1" min="0"
-              v-model.number="formData.M"
-              validation="required"
-              :disabled="formData.S !== 0 || formData.L !== 0 || formData.XL !== 0"
-              :validation-messages="{ required: 'If you do not have quantity, enter 0|' }"
-         :style="{
-           backgroundColor: formData.S !== 0 || formData.L !== 0 || formData.XL !== 0 ? '#f4f4f4' : 'inherit',
-           color: formData.S !== 0 || formData.L !== 0 || formData.XL !== 0 ? '#ccc' : 'inherit'
-}"/>
-          <FormKit type="number" label="L" name="L" placeholder="0" step="1" min="0"
-              v-model.number="formData.L"
-              validation="required"
-              :disabled="formData.S !== 0 || formData.M !== 0 || formData.XL !== 0"
-              :validation-messages="{ required: 'If you do not have quantity, enter 0|' }"
-                 :style="{
-                   backgroundColor: formData.S !== 0 || formData.M !== 0 || formData.XL !== 0 ? '#f4f4f4' : 'inherit',
-                   color: formData.S !== 0 || formData.M !== 0 || formData.L !== 0 ? '#ccc' : 'inherit'
-}"/>
-          <FormKit type="number" label="XL" name="XL" placeholder="0" step="1" min="0"
-              v-model.number="formData.XL"
-              validation="required"
-              :disabled="formData.S !== 0 || formData.M !== 0 || formData.L !== 0"
-              :validation-messages="{ required: 'If you do not have quantity, enter 0' }"
-                 :style="{
-                   backgroundColor: formData.S !== 0 || formData.M !== 0 || formData.L !== 0 ? '#f4f4f4' : 'inherit',
-                   color: formData.S !== 0 || formData.M !== 0 || formData.L !== 0 ? '#ccc' : 'inherit'
+               v-model.number="formData.S"
+               @input="handleEmptyInputS"
+               :disabled="formData.M > 0 || formData.L > 0 || formData.XL > 0"
+               :style="{
+                 backgroundColor: formData.M > 0 || formData.L > 0 || formData.XL > 0 ? '#f4f4f4' : 'inherit',
+                 color: formData.M > 0 || formData.L > 0 || formData.XL > 0 ? '#ccc' : 'inherit'
+               }"/>
+
+            <FormKit type="number" label="M" name="M" placeholder="0" step="0" min="0"
+                v-model.number="formData.M"
+                   @input="handleEmptyInputM"
+                :disabled="formData.S !== 0 || formData.L !== 0 || formData.XL !== 0"
+                :style="{
+                  backgroundColor: formData.S !== 0 || formData.L !== 0 || formData.XL !== 0 ? '#f4f4f4' : 'inherit',
+                  color: formData.S !== 0 || formData.L !== 0 || formData.XL !== 0 ? '#ccc' : 'inherit'
+                }" />
+            <FormKit type="number" label="L" name="L" placeholder="0" step="0" min="0"
+                v-model.number="formData.L"
+                   @input="handleEmptyInputL"
+                :disabled="formData.S !== 0 || formData.M !== 0 || formData.XL !== 0"
+                :style="{
+                  backgroundColor: formData.S !== 0 || formData.M !== 0 || formData.XL !== 0 ? '#f4f4f4' : 'inherit',
+                  color: formData.S !== 0 || formData.M !== 0 || formData.XL !== 0 ? '#ccc' : 'inherit'
+                }" />
+            <FormKit type="number" label="XL" name="XL" placeholder="0" step="0" min="0"
+                v-model.number="formData.XL"
+                   @input="handleEmptyInputXL"
+                :disabled="formData.S !== 0 || formData.M !== 0 || formData.L !== 0"
+                :style="{
+                  backgroundColor: formData.S !== 0 || formData.M !== 0 || formData.L !== 0 ? '#f4f4f4' : 'inherit',
+                  color: formData.S !== 0 || formData.M !== 0 || formData.L !== 0 ? '#ccc' : 'inherit'
 }" />
+
       </div>
+
+
+
       <button type="submit" class="mt-8 w-screen h-8 mb-10"><span class="uppercase">buy</span></button>
       <div v-if="Store.errorSendMessage" class="mt-3 text-xs text-red-500">{{ Store.errorSendMessage }}</div>
   </FormKit>

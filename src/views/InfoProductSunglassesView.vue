@@ -26,6 +26,7 @@ const selectImage = (index) => {
 
 const handleBuy = (product) => {
   Store.addItem(product)
+      router.push({ name: 'Sunglasses' })
 }
 </script>
 
