@@ -66,7 +66,7 @@ const toggleisDropdownCrad = () => {
 @media (min-width: 900px) {
       .bg-cover{
        
-            height: 14rem;
+            height: 12rem;
       }
 }
 @media (max-width: 767px) {

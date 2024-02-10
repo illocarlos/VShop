@@ -22,7 +22,7 @@ const toggleisDropdownCrad = () => {
 
 <template>
 
-    <div class="relative group duration-500 cursor-pointer group overflow-hidden  text-gray-50 h-4/4 w-5/5 rounded-2xl hover:duration-700 md:w-12/12 ">
+    <div class="relative group duration-500 cursor-pointer group overflow-hidden  text-gray-50 h-4/4 w-5/5 rounded-2xl hover:duration-700 md:w-11/12 ">
       <div class=" w-5/5  h-4/4  bg-green-500 text-gray-800 md:w-11/12">
         <div class="flex flex-row-reverse justify-between"> 
 
@@ -34,7 +34,7 @@ const toggleisDropdownCrad = () => {
   </button>
     </div>
 
-    <div class="w-4/4 h-4/4 aspect-w-4 aspect-h-3 overflow-hidden bg-cover" :style="{ backgroundImage: 'url(' + product.images[0] + ')' }">
+    <div class="w-6/6 h-4/4 aspect-w-4 aspect-h-3 overflow-hidden bg-cover" :style="{ backgroundImage: 'url(' + product.images[0] + ')' }">
       
       <div class="flex">
          <RouterLink
@@ -61,20 +61,20 @@ const toggleisDropdownCrad = () => {
 <style scoped>
 .bg-cover {
     width:100%;
-    height: 31rem;
+    height: 23rem;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 }
 @media (min-width: 900px) {
       .bg-cover{
-            height: 37rem;
+            height: 29rem;
       }
 }
 
 @media (min-width: 1500px) {
       .bg-cover{
-            height: 47rem;
+            height: 45rem;
       }
 }
 @media (max-width: 767px) {
