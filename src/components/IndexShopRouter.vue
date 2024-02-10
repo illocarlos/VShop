@@ -8,17 +8,26 @@ const isNavbarTransparent3 = ref(false);
 
 const handleScroll1 = () => {
     const scrollY = window.scrollY;
-    isNavbarTransparent1.value = scrollY >= 0 && scrollY < 120;
+    const windowHeight = window.innerHeight;
+    const documentHeight = document.documentElement.scrollHeight;
+    const scrollPercentage = (scrollY / (documentHeight - windowHeight)) * 100;
+    isNavbarTransparent1.value = scrollPercentage >= 0 && scrollPercentage < 20; // Cambia los valores de acuerdo a tus necesidades
 };
 
 const handleScroll2 = () => {
     const scrollY = window.scrollY;
-    isNavbarTransparent2.value = scrollY >= 150 && scrollY < 230;
+    const windowHeight = window.innerHeight;
+    const documentHeight = document.documentElement.scrollHeight;
+    const scrollPercentage = (scrollY / (documentHeight - windowHeight)) * 100;
+    isNavbarTransparent2.value = scrollPercentage >= 25 && scrollPercentage < 50; // Cambia los valores de acuerdo a tus necesidades
 };
 
 const handleScroll3 = () => {
     const scrollY = window.scrollY;
-    isNavbarTransparent3.value = scrollY >= 250 && scrollY < 500;
+    const windowHeight = window.innerHeight;
+    const documentHeight = document.documentElement.scrollHeight;
+    const scrollPercentage = (scrollY / (documentHeight - windowHeight)) * 100;
+    isNavbarTransparent3.value = scrollPercentage >= 55 && scrollPercentage < 100 // Cambia los valores de acuerdo a tus necesidades
 };
 
 onMounted(() => {
