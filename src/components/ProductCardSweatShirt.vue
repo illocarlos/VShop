@@ -20,13 +20,16 @@ defineProps({
   </svg>
     </div>
     <div class="w-4/4 h-4/4 aspect-w-4 aspect-h-3 overflow-hidden bg-cover" :style="{ backgroundImage: 'url(' + product.images[0] + ')' }">
-    <RouterLink
-    :to="{
-      name: `info-sweatshirt`,
-      params: { id: product.id }
-    }">
+       <div class="flex">
+
+         <RouterLink
+         :to="{
+           name: `info-sweatshirt`,
+           params: { id: product.id }
+          }">
     <ButtonShop class="absolute top-12"/>
   </RouterLink> 
+</div>
   </div>
       </div>
       <div class="absolute bg-gray-50 -bottom-8 w-full flex flex-col gap-2 group-hover:-bottom-0 group-hover:duration-600 duration-500   md:w-11/12 ">
