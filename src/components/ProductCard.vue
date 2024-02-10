@@ -3,20 +3,19 @@ import { formatCurrency } from '@/helpers/formartPrice'
 import ButtomShop from './ButtomComponents/ButtomShop.vue'
 import { ref } from 'vue';
 
-const isDropdownCrad = ref(false);
-
-const toggleisDropdownCrad = () => {
-  console.log('entrooooo')
-    if (window.innerWidth <= 767) { // Verifica si el ancho de la ventana es menor o igual a 767px (dispositivo móvil)
-    isDropdownCrad.value = !isDropdownCrad.value; // Cambia el estado del desplegable solo en dispositivos móviles
-  }
-}
-
 defineProps({
     product: {
         type:Object
     }
 })
+const isDropdownCrad = ref(false);
+
+const toggleisDropdownCrad = () => {
+  console.log('entrooooo')
+  if (window.innerWidth <= 767) { // Verifica si el ancho de la ventana es menor o igual a 767px (dispositivo móvil)
+    isDropdownCrad.value = !isDropdownCrad.value; // Cambia el estado del desplegable solo en dispositivos móviles
+  }
+}
 </script>
 
 <template>
