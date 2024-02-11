@@ -36,8 +36,10 @@ export const useStore = defineStore('store', () => {
                             name: product.name,
                             price: product.price,
                             images: product.images,
-                            total: sizeValue
+                            total: sizeValue,
+                            totalSizeInStore: product[`total${key}`],
                         };
+                        console.log('----->', newSizeObject)
                         objetFilter.value = newSizeObject
                         itemShowCart.value.push(newSizeObject);
                     }
@@ -53,6 +55,7 @@ export const useStore = defineStore('store', () => {
         arrayProduct.push(product)
         const productWithSizes = arrayProduct.reduce((result, product) => {
             Object.keys(product).forEach(key => {
+
                 if (key.startsWith('S') || key.startsWith('M') || key.startsWith('L') || key.startsWith('XL')) {
                     const sizeValue = product[key];
                     if (sizeValue) {
@@ -63,7 +66,8 @@ export const useStore = defineStore('store', () => {
                             name: product.name,
                             price: product.price,
                             images: product.images,
-                            total: sizeValue
+                            total: sizeValue,
+                            totalSizeInStore: product[`total${key}`],
                         }
                         objetFilter.value = newSizeObject
                         itemShowCart.value.push(newSizeObject);
@@ -130,25 +134,28 @@ export const useStore = defineStore('store', () => {
         })
         return totalCart.value = count
     }
+    function deleted(id, size) {
+        itemsFilterCart.value = itemsFilterCart.value.filter(elem => !(elem.id === id && elem.size === size));
 
-    function deleted(id) {
-
-        itemsFilterCart.value = itemsFilterCart.value.filter(elem => elem.id !== id)
+        console.log('sizeelem', itemsFilterCart.value);
 
         if (itemsFilterCart.value.length === 0) {
-            itemsFilterCart.value.total = 0
+            itemsFilterCart.value.total = 0;
         }
-
     }
-    const increment = (id) => {
-        const index = itemsFilterCart.value.findIndex(product => product.id === id)
-        itemsFilterCart.value[index].total >= 10 ? itemsFilterCart.value[index].total : itemsFilterCart.value[index].total++
+
+    const increment = (id, size, limitProductTotal) => {
+
+
+        const index = itemsFilterCart.value.findIndex(product => product.id === id && product.size === size)
+        itemsFilterCart.value[index].total >= limitProductTotal ? itemsFilterCart.value[index].total : itemsFilterCart.value[index].total++
         // incrementBuy()
     }
 
-    const decrement = (id) => {
-        const index = itemsFilterCart.value.findIndex(product => product.id === id)
+    const decrement = (id, size) => {
+        const index = itemsFilterCart.value.findIndex(product => product.id === id && product.size === size)
         itemsFilterCart.value[index].total <= 1 ? itemsFilterCart.value[index].total : itemsFilterCart.value[index].total--
+
         // decrementBuy()
     }
 

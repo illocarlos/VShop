@@ -46,6 +46,21 @@ const formData = reactive({
   size49: 0,
   size50: 0,
   total: 0,
+    totalsize36: 0,
+   totalsize37: 0,
+   totalsize38: 0,
+   totalsize39: 0,
+   totalsize40: 0,
+   totalsize41: 0,
+   totalsize42: 0,
+   totalsize43: 0,
+   totalsize44: 0,
+   totalsize45: 0,
+   totalsize46: 0,
+   totalsize47: 0,
+   totalsize48: 0,
+   totalsize49: 0,
+   totalsize50: 0,
 })
 
 function $reset() {
@@ -69,6 +84,22 @@ function $reset() {
   formData.size48 = 0;
   formData.size49 = 0;
   formData.size50 = 0;
+    formData.totalsize36 = 0;
+  formData.totalsize37 = 0;
+  formData.totalsize38 = 0;
+  formData.totalsize39 = 0;
+  formData.totalsize40 = 0;
+  formData.totalsize41 = 0;
+  formData.totalsize42 = 0;
+  formData.totalsize43 = 0;
+  formData.totalsize44 = 0;
+  formData.totalsize45 = 0;
+  formData.totalsize46 = 0;
+  formData.totalsize47 = 0;
+  formData.totalsize48 = 0;
+  formData.totalsize49 = 0;
+  formData.totalsize50 = 0;
+  
 }
 
 
@@ -78,6 +109,21 @@ const snikerBuy = computed(() => {
   formData.price = sniker.value?.price;
   formData.category = sniker.value?.category;
   formData.images = sniker.value?.images;
+    formData.totalsize36 = sniker.value?.size36;
+  formData.totalsize37 = sniker.value?.size37;
+  formData.totalsize38 = sniker.value?.size38;
+  formData.totalsize39 = sniker.value?.size39;
+  formData.totalsize40 = sniker.value?.size40;
+  formData.totalsize41 = sniker.value?.size41;
+  formData.totalsize42 = sniker.value?.size42;
+  formData.totalsize43 = sniker.value?.size43;
+  formData.totalsize44 = sniker.value?.size44;
+  formData.totalsize45 = sniker.value?.size45;
+  formData.totalsize46 = sniker.value?.size46;
+  formData.totalsize47 = sniker.value?.size47;
+  formData.totalsize48 = sniker.value?.size48;
+  formData.totalsize49 = sniker.value?.size49;
+  formData.totalsize50 = sniker.value?.size50;
   formData.total =  formData.size36 +
     formData.size37 +
     formData.size38 +

@@ -43,12 +43,12 @@ const prueba = () => {
                 <td class="text-xs">{{ product.name }} <span v-if="product.size">({{ product.size }})</span></td>
                 <td class="text-xs">{{ formatCurrency(product.price) }}</td>
                 <td class="flex align-items-start gap-4">
-                  <button type="button" class="btn btn-dark" @click=store.decrement(product.id)>-</button>
-                  {{ product.total }}
-                  <button type="button" class="btn btn-dark" @click=store.increment(product.id)>+</button>
+                  <button type="button" class="btn btn-dark" @click=store.decrement(product.id,product.size)>-</button>
+                <p>  {{ product.total }}</p> 
+                  <button type="button" class="btn btn-dark" @click=store.increment(product.id,product.size,product.totalSizeInStore)>+</button>
                 </td>
                 <td>
-                  <button class="btn btn-danger" type="button" @click=store.deleted(product.id)>X</button>
+                  <button class="btn btn-danger" type="button" @click=store.deleted(product.id,product.size)>X</button>
                 </td>
               </tr>
             </tbody>
