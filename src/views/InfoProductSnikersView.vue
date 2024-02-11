@@ -209,11 +209,12 @@ const disabled50 = generateDisabledHelper(formData, '50');
          <FormKit type="form"  @submit="handleBuy"   :value="formData" submit-label="Guardar Cambios"
           incomplete-message="Could not send, check messages"  :actions="false">
 <div class="flex flex-nowrap flex-col mt-3 lg:w-8/12 text-center text-green-600 ">
-<div class="flex flex-row gap-1">
+<div class="flex flex-row justify-center gap-2">
 
 
 
   <FormKit type="number" label="36" name="size36" placeholder="0" step="0" min="0"
+  :max="sniker?.size36"
   v-model.number="formData.size36" 
   :disabled="disabled36"
   :style="{backgroundColor: disabled36 ? '#f4f4f4' : 'inherit',
@@ -221,6 +222,7 @@ const disabled50 = generateDisabledHelper(formData, '50');
   validation="required" />
 
   <FormKit type="number" label="37" name="size37" placeholder="0" step="0" min="0"
+    :max="sniker?.size37"
   v-model.number="formData.size37" 
     :disabled="disabled37"
           :style="{
@@ -229,6 +231,7 @@ const disabled50 = generateDisabledHelper(formData, '50');
   validation="required"/>   
 
   <FormKit type="number" label="38" name="size38" placeholder="0" step="0" min="0"
+    :max="sniker?.size38"
   v-model.number="formData.size38"
      :disabled="disabled38"
             :style="{
@@ -237,6 +240,7 @@ const disabled50 = generateDisabledHelper(formData, '50');
   validation="required" />
 
   <FormKit type="number" label="39" name="size39" placeholder="0" step="0" min="0"
+    :max="sniker?.size39"
   v-model.number="formData.size39"
       :disabled="disabled39"
             :style="{
@@ -245,6 +249,7 @@ const disabled50 = generateDisabledHelper(formData, '50');
   validation="required" />
 
   <FormKit type="number" label="40" name="size40" placeholder="0" step="0" min="0"
+    :max="sniker?.size40"
   v-model.number="formData.size40"
       :disabled="disabled40"
             :style="{
@@ -252,9 +257,10 @@ const disabled50 = generateDisabledHelper(formData, '50');
               color: disabled40 ? '#ccc' : 'black'  }"
   validation="required"/>
 </div>
- <div class="flex flex-row gap-1">
+ <div class="flex flex-row justify-center gap-2">
 
    <FormKit type="number" label="41" name="size41" placeholder="0" step="0" min="0"
+     :max="sniker?.size41"
    v-model.number="formData.size41" 
        :disabled="disabled41"
             :style="{
@@ -263,6 +269,7 @@ const disabled50 = generateDisabledHelper(formData, '50');
    validation="required"/>
 
    <FormKit type="number" label="42" name="size42" placeholder="0" step="0" min="0"
+     :max="sniker?.size42"
    v-model.number="formData.size42" 
         :disabled="disabled42"
             :style="{
@@ -271,6 +278,7 @@ const disabled50 = generateDisabledHelper(formData, '50');
    validation="required" />
 
    <FormKit type="number" label="43" name="size43" placeholder="0" step="0" min="0"
+     :max="sniker?.size43"
    v-model.number="formData.size43" 
        :disabled="disabled43"
             :style="{
@@ -279,6 +287,7 @@ const disabled50 = generateDisabledHelper(formData, '50');
    validation="required" />
 
    <FormKit type="number" label="44" name="size44" placeholder="0" step="0" min="0"
+     :max="sniker?.size44"
    v-model.number="formData.size44"
       :disabled="disabled44"
             :style="{
@@ -288,6 +297,7 @@ const disabled50 = generateDisabledHelper(formData, '50');
    validation="required" />
 
    <FormKit type="number" label="45" name="size45" placeholder="0" step="0" min="0"
+     :max="sniker?.size45"
    v-model.number="formData.size45" 
        :disabled="disabled45"
             :style="{
@@ -295,9 +305,10 @@ const disabled50 = generateDisabledHelper(formData, '50');
               color: disabled45 ? '#ccc' : 'black'}"
    validation="required" />
   </div>
-    <div class="flex flex-row gap-1">
+    <div class="flex flex-row justify-center gap-2">
 
        <FormKit type="number" label="46" name="size46" placeholder="0" step="0" min="0"
+         :max="sniker?.size46"
       v-model.number="formData.size46"
         :disabled="disabled46"
             :style="{
@@ -307,6 +318,7 @@ const disabled50 = generateDisabledHelper(formData, '50');
       validation="required"
     />
       <FormKit type="number" label="47" name="size47" placeholder="0" step="0" min="0"
+        :max="sniker?.size47"
       v-model.number="formData.size47" 
          :disabled="disabled47"
             :style="{
@@ -316,6 +328,7 @@ const disabled50 = generateDisabledHelper(formData, '50');
       validation="required"/>     
 
       <FormKit type="number" label="48" name="size48" placeholder="0" step="0" min="0"
+        :max="sniker?.size48"
       v-model.number="formData.size48"
      :disabled="disabled48"
             :style="{
@@ -325,6 +338,7 @@ const disabled50 = generateDisabledHelper(formData, '50');
       validation="required" /> 
 
       <FormKit type="number" label="49" name="size49" placeholder="0" step="0" min="0"
+        :max="sniker?.size49"
       v-model.number="formData.size49"
      :disabled="disabled49"
             :style="{
@@ -334,6 +348,7 @@ const disabled50 = generateDisabledHelper(formData, '50');
       validation="required"  />
 
       <FormKit type="number" label="50" name="size50" placeholder="0" step="0" min="0"
+        :max="sniker?.size50"
       v-model.number="formData.size50"
           :disabled="disabled50"
             :style="{

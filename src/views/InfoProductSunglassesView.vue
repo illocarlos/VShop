@@ -60,7 +60,7 @@ const handleBuy = (product) => {
           <p class="mt-6 text-sm md:mt-0 lg:text-2xl">available {{ sunglasses?. aviable }} units</p>
         </div>
         <div class="hidden lg:block  ">
-          <button @click="handleBuy(sunglasses)" class="mt-8 h-12 w-3/6   "><span class="uppercase">buy</span></button>
+          <button  :disabled="Store.aviable" @click="handleBuy(sunglasses)" class="mt-8 h-12 w-3/6   "><span class="uppercase">buy</span></button>
         </div>
       </div>
     </article>
@@ -68,7 +68,7 @@ const handleBuy = (product) => {
       
     </div>
     <div class=" lg:hidden">
-      <button @click="handleBuy(sunglasses)" class="mt-8 w-screen h-8  "><span class="uppercase">buy</span></button>
+      <button  :disabled="Store.aviable" @click="handleBuy(sunglasses)" class="mt-8 w-screen h-8  "><span class="uppercase">buy</span></button>
     </div>
   </div>
 </template>

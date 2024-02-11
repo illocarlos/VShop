@@ -1,19 +1,31 @@
 import { defineStore } from 'pinia'
-import { ref, computed } from 'vue'
+import { ref, computed, watchEffect, watch } from 'vue'
 
 
 export const useStore = defineStore('store', () => {
     const itemShowCart = ref([])
     const itemsFilterCart = ref([])
-    const totalCart = ref("")
+    const totalCart = ref(0)
+    const totalTaxes = ref(0)
+    const totalPay = ref(0)
     const objetFilter = ref({})
-    const errorSendMessage = ref("")
+
+    const TAX_RATE = .10
+
+    watchEffect(() => {
+        totalCart.value = itemsFilterCart.value.reduce((total, product) => total + (product.total * product.price), 0)
+        totalTaxes.value = totalCart.value * TAX_RATE
+        totalPay.value = totalTaxes.value + totalCart.value
+    })
+
 
     function addItem(product) {
+
         if (product.category === 'snikers') {
             filterSneaker(product)
         } else if (product.category === 'sweatshirt') {
             filterSweatshirt(product)
+
         } else if (product.category === 'sunglasses') {
             filterSunglasses(product)
         }
@@ -38,8 +50,7 @@ export const useStore = defineStore('store', () => {
                             images: product.images,
                             total: sizeValue,
                             totalSizeInStore: product[`total${key}`],
-                        };
-                        console.log('----->', newSizeObject)
+                        }
                         objetFilter.value = newSizeObject
                         itemShowCart.value.push(newSizeObject);
                     }
@@ -80,7 +91,6 @@ export const useStore = defineStore('store', () => {
     function filterSunglasses(product) {
         const arrayProduct = []
         arrayProduct.push(product)
-
         const productWithSizes = arrayProduct.filter((product) => {
             if (product) {
                 const newSizeObject = {
@@ -89,17 +99,24 @@ export const useStore = defineStore('store', () => {
                     price: product.price,
                     images: product.images,
                     total: 1,
+                    totalSizeInStore: product.aviable,
+
                 };
+
                 objetFilter.value = newSizeObject
                 itemShowCart.value.push(newSizeObject);
             }
+
         });
+
+
 
     }
 
     function isEqualProduct() {
         const copyArrayItemsShowCart = [...itemShowCart.value];
         const newObjet = objetFilter.value;
+
 
         // Verificar si el array está vacío
         if (copyArrayItemsShowCart.length === 0) {
@@ -110,11 +127,20 @@ export const useStore = defineStore('store', () => {
 
             // Verificar si existe un objeto con el mismo ID y tamaño
             for (let i = 0; i < itemsFilterCart.value.length; i++) {
+
                 if (itemsFilterCart.value[i].id === newObjet.id && itemsFilterCart.value[i].size === newObjet.size) {
                     // Si se encuentra un objeto con el mismo ID y tamaño, sumar sus totales
+
+                    if (itemsFilterCart.value[i].total === itemsFilterCart.value[i].totalSizeInStore) {
+                        // aqui podemos crear una alerta personalizada
+                        alert('limite alcanzado')
+                        return itemsFilterCart.value[i].total = itemsFilterCart.value[i].totalSizeInStore
+                    }
                     itemsFilterCart.value[i].total += newObjet.total;
                     found = true;
                     break;
+
+
                 }
             }
 
@@ -125,15 +151,6 @@ export const useStore = defineStore('store', () => {
         }
     }
 
-    function totalCartBuy() {
-        let count = 0
-        const prueba = itemsFilterCart.value.map(product => product.price * product.total)
-
-        prueba.forEach(each => {
-            count += each
-        })
-        return totalCart.value = count
-    }
     function deleted(id, size) {
         itemsFilterCart.value = itemsFilterCart.value.filter(elem => !(elem.id === id && elem.size === size));
 
@@ -145,12 +162,11 @@ export const useStore = defineStore('store', () => {
     }
 
     const increment = (id, size, limitProductTotal) => {
-
-
         const index = itemsFilterCart.value.findIndex(product => product.id === id && product.size === size)
         itemsFilterCart.value[index].total >= limitProductTotal ? itemsFilterCart.value[index].total : itemsFilterCart.value[index].total++
         // incrementBuy()
     }
+
 
     const decrement = (id, size) => {
         const index = itemsFilterCart.value.findIndex(product => product.id === id && product.size === size)
@@ -158,20 +174,21 @@ export const useStore = defineStore('store', () => {
 
         // decrementBuy()
     }
-
     function deletedAll() { itemsFilterCart.value = [] }
     const isEmpty = computed(() => itemsFilterCart.value.length === 0)
 
     return {
         addItem,
-        errorSendMessage,
         itemsFilterCart,
         isEmpty,
         deletedAll,
-        totalCartBuy,
         deleted,
         increment,
-        decrement
+        decrement,
+        totalCart,
+        totalTaxes,
+        totalPay,
+
     }
 
 })
