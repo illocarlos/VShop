@@ -174,6 +174,24 @@ const disabled47 = generateDisabledHelper(formData, '47');
 const disabled48 = generateDisabledHelper(formData, '48');
 const disabled49 = generateDisabledHelper(formData, '49');
 const disabled50 = generateDisabledHelper(formData, '50');
+
+const isProductAviable = computed(() => sniker.value?.aviable <= 0)
+const isProductAviable36 = computed(() => sniker.value?.size36 <= 0)
+const isProductAviable37 = computed(() => sniker.value?.size37 <= 0)
+const isProductAviable38 = computed(() => sniker.value?.size38 <= 0)
+const isProductAviable39 = computed(() => sniker.value?.size39 <= 0)
+const isProductAviable40 = computed(() => sniker.value?.size40 <= 0)
+const isProductAviable41 = computed(() => sniker.value?.size41 <= 0)
+const isProductAviable42 = computed(() => sniker.value?.size42 <= 0)
+const isProductAviable43 = computed(() => sniker.value?.size43 <= 0)
+const isProductAviable44 = computed(() => sniker.value?.size44 <= 0)
+const isProductAviable45 = computed(() => sniker.value?.size45 <= 0)
+const isProductAviable46 = computed(() => sniker.value?.size46 <= 0)
+const isProductAviable47 = computed(() => sniker.value?.size47 <= 0)
+const isProductAviable48 = computed(() => sniker.value?.size48 <= 0)
+const isProductAviable49 = computed(() => sniker.value?.size49 <= 0)
+const isProductAviable50 = computed(() => sniker.value?.size50 <= 0)
+
 </script>
 
 <template>
@@ -200,7 +218,16 @@ const disabled50 = generateDisabledHelper(formData, '50');
         </div>
         <div class="md:flex md:flex-col-reverse">
           <p class="my-2 text-xl text-green-500 font-extrabold md:text-4xl md:my-0 lg:text-7xl">{{ formatCurrency(sniker?.price) }}</p>
-          <p class="mt-6 text-sm md:mt-0 lg:text-2xl">available {{ sniker?. aviable }} units</p>
+
+          <p v-if="!isProductAviable" class="mt-6 text-sm md:mt-0 lg:text-2xl">available {{ sniker?. aviable }} units</p>
+           <div v-else class="flex gap-5 my-4   ">
+                <p class="font-extrabold uppercase text-green-500">out of stock</p>
+                 <RouterLink
+              :to="{ name: 'Skiners' }">
+         <p class="bg-black text-white px-3 rounded-lg cursor-pointer 
+     hover:bg-green-500 hover:text-black transition-all">back</p>
+            </RouterLink> 
+              </div>
         </div>
         
       </div>
@@ -208,18 +235,18 @@ const disabled50 = generateDisabledHelper(formData, '50');
    
          <FormKit type="form"  @submit="handleBuy"   :value="formData" submit-label="Guardar Cambios"
           incomplete-message="Could not send, check messages"  :actions="false">
-<div class="flex flex-nowrap flex-col mt-3 lg:w-8/12 text-center text-green-600 ">
+<div v-if="!isProductAviable" class="flex flex-nowrap flex-col mt-3 lg:w-8/12 text-center text-green-600 ">
 
-<div class="flex flex-row justify-center gap-2">
+<div  class="flex flex-row justify-center gap-2">
 
 
       <div class="flex flex-col">
   <FormKit type="number" label="36" name="size36" placeholder="0" step="0" min="0"
   :max="sniker?.size36"
   v-model.number="formData.size36" 
-  :disabled="disabled36"
-  :style="{backgroundColor: disabled36 ? '#f4f4f4' : 'inherit',
-  color: disabled36 ? '#ccc' : 'black'}"
+  :disabled="disabled36 || isProductAviable36"
+  :style="{backgroundColor: disabled36|| isProductAviable36 ? '#f4f4f4' : 'inherit',
+  color: disabled36|| isProductAviable36 ? '#ccc' : 'black'}"
   validation="required" />
     <p class="text-gray-400 text-center text-xs">{{ sniker?.size36 }} units</p>
                   </div>
@@ -228,11 +255,12 @@ const disabled50 = generateDisabledHelper(formData, '50');
   <FormKit type="number" label="37" name="size37" placeholder="0" step="0" min="0"
     :max="sniker?.size37"
   v-model.number="formData.size37" 
-    :disabled="disabled37"
-          :style="{
-            backgroundColor: disabled37 ? '#f4f4f4' : 'inherit',
-            color: disabled37 ? '#ccc' : 'black'}"
-  validation="required"/>   
+  :disabled="disabled37 || isProductAviable37"
+    :style="{
+      backgroundColor: disabled37 || isProductAviable37 ? '#f4f4f4' : 'inherit',
+      color: disabled37 || isProductAviable37 ? '#ccc' : 'black'
+}"
+    validation="required" />  
       <p class="text-gray-400 text-center text-xs">{{ sniker?.size37 }} units</p>
                     </div>
 
@@ -240,10 +268,10 @@ const disabled50 = generateDisabledHelper(formData, '50');
   <FormKit type="number" label="38" name="size38" placeholder="0" step="0" min="0"
     :max="sniker?.size38"
   v-model.number="formData.size38"
-     :disabled="disabled38"
+     :disabled="disabled38 || isProductAviable38"
             :style="{
-              backgroundColor: disabled38 ? '#f4f4f4' : 'inherit',
-              color: disabled38 ? '#ccc' : 'black'}"
+              backgroundColor: disabled38 || isProductAviable38 ? '#f4f4f4' : 'inherit',
+              color: disabled38 || isProductAviable38 ? '#ccc' : 'black'}"
   validation="required" />
       <p class="text-gray-400 text-center text-xs">{{ sniker?.size38 }} units</p>
                     </div>
@@ -252,10 +280,10 @@ const disabled50 = generateDisabledHelper(formData, '50');
   <FormKit type="number" label="39" name="size39" placeholder="0" step="0" min="0"
     :max="sniker?.size39"
   v-model.number="formData.size39"
-      :disabled="disabled39"
+      :disabled="disabled39 || isProductAviable39"
             :style="{
-              backgroundColor: disabled39 ? '#f4f4f4' : 'inherit',
-              color: disabled39 ? '#ccc' : 'black'}"
+              backgroundColor: disabled39 || isProductAviable39 ? '#f4f4f4' : 'inherit',
+              color: disabled39 || isProductAviable39 ? '#ccc' : 'black'}"
   validation="required" />
         <p class="text-gray-400 text-center text-xs">{{ sniker?.size39 }} units</p>
                       </div>
@@ -264,10 +292,10 @@ const disabled50 = generateDisabledHelper(formData, '50');
   <FormKit type="number" label="40" name="size40" placeholder="0" step="0" min="0"
     :max="sniker?.size40"
   v-model.number="formData.size40"
-      :disabled="disabled40"
+      :disabled="disabled40 || isProductAviable40"
             :style="{
-              backgroundColor: disabled40 ? '#f4f4f4' : 'inherit',
-              color: disabled40 ? '#ccc' : 'black'  }"
+              backgroundColor: disabled40 || isProductAviable40 ? '#f4f4f4' : 'inherit',
+              color: disabled40 || isProductAviable40 ? '#ccc' : 'black'  }"
   validation="required"/>
      <p class="text-gray-400 text-center text-xs">{{ sniker?.size40 }} units</p>
                       </div>
@@ -278,10 +306,10 @@ const disabled50 = generateDisabledHelper(formData, '50');
    <FormKit type="number" label="41" name="size41" placeholder="0" step="0" min="0"
      :max="sniker?.size41"
    v-model.number="formData.size41" 
-       :disabled="disabled41"
+       :disabled="disabled41 || isProductAviable41"
             :style="{
-              backgroundColor: disabled41 ? '#f4f4f4' : 'inherit',
-              color: disabled41 ? '#ccc' : 'black'  }"
+              backgroundColor: disabled41 || isProductAviable41 ? '#f4f4f4' : 'inherit',
+              color: disabled41 || isProductAviable41 ? '#ccc' : 'black'  }"
    validation="required"/>
    <p class="text-gray-400 text-center text-xs">{{ sniker?.size41 }} units</p>
                         </div>
@@ -290,10 +318,10 @@ const disabled50 = generateDisabledHelper(formData, '50');
    <FormKit type="number" label="42" name="size42" placeholder="0" step="0" min="0"
      :max="sniker?.size42"
    v-model.number="formData.size42" 
-        :disabled="disabled42"
+        :disabled="disabled42 || isProductAviable42"
             :style="{
-              backgroundColor: disabled42 ? '#f4f4f4' : 'inherit',
-              color: disabled42 ? '#ccc' : 'black' }"
+              backgroundColor: disabled42 || isProductAviable42 ? '#f4f4f4' : 'inherit',
+              color: disabled42  || isProductAviable42 ? '#ccc' : 'black' }"
    validation="required" />
    <p class="text-gray-400 text-center text-xs">{{ sniker?.size42 }} units</p>
                         </div>
@@ -302,10 +330,10 @@ const disabled50 = generateDisabledHelper(formData, '50');
    <FormKit type="number" label="43" name="size43" placeholder="0" step="0" min="0"
      :max="sniker?.size43"
    v-model.number="formData.size43" 
-       :disabled="disabled43"
+       :disabled="disabled43 || isProductAviable43"
             :style="{
-              backgroundColor: disabled43 ? '#f4f4f4' : 'inherit',
-              color: disabled43 ? '#ccc' : 'black'}"
+              backgroundColor: disabled43 || isProductAviable43 ? '#f4f4f4' : 'inherit',
+              color: disabled43 || isProductAviable43 ? '#ccc' : 'black'}"
    validation="required" />
       <p class="text-gray-400 text-center text-xs">{{ sniker?.size43 }} units</p>
                           </div>
@@ -314,10 +342,10 @@ const disabled50 = generateDisabledHelper(formData, '50');
    <FormKit type="number" label="44" name="size44" placeholder="0" step="0" min="0"
      :max="sniker?.size44"
    v-model.number="formData.size44"
-      :disabled="disabled44"
+      :disabled="disabled44 || isProductAviable44"
             :style="{
-              backgroundColor: disabled44 ? '#f4f4f4' : 'inherit',
-              color: disabled44 ? '#ccc' : 'black' }"
+              backgroundColor: disabled44 || isProductAviable44 ? '#f4f4f4' : 'inherit',
+              color: disabled44 || isProductAviable44 ? '#ccc' : 'black' }"
    validation="required" />
      <p class="text-gray-400 text-center text-xs">{{ sniker?.size44 }} units</p>
                           </div>
@@ -326,10 +354,10 @@ const disabled50 = generateDisabledHelper(formData, '50');
    <FormKit type="number" label="45" name="size45" placeholder="0" step="0" min="0"
      :max="sniker?.size45"
    v-model.number="formData.size45" 
-       :disabled="disabled45"
+       :disabled="disabled45 || isProductAviable45"
             :style="{
-              backgroundColor: disabled45 ? '#f4f4f4' : 'inherit',
-              color: disabled45 ? '#ccc' : 'black'}"
+              backgroundColor: disabled45 || isProductAviable45 ? '#f4f4f4' : 'inherit',
+              color: disabled45 || isProductAviable45 ? '#ccc' : 'black'}"
    validation="required" />
      <p class="text-gray-400 text-center text-xs">{{ sniker?.size45 }} units</p>
                             </div>
@@ -341,10 +369,10 @@ const disabled50 = generateDisabledHelper(formData, '50');
        <FormKit type="number" label="46" name="size46" placeholder="0" step="0" min="0"
          :max="sniker?.size46"
       v-model.number="formData.size46"
-        :disabled="disabled46"
+        :disabled="disabled46 || isProductAviable46"
             :style="{
-              backgroundColor: disabled46 ? '#f4f4f4' : 'inherit',
-              color: disabled46 ? '#ccc' : 'black' }"
+              backgroundColor: disabled46 || isProductAviable46 ? '#f4f4f4' : 'inherit',
+              color: disabled46 || isProductAviable46 ? '#ccc' : 'black' }"
       validation="required"/>
        <p class="text-gray-400 text-center text-xs">{{ sniker?.size46 }} units</p>
                               </div>
@@ -353,10 +381,10 @@ const disabled50 = generateDisabledHelper(formData, '50');
       <FormKit type="number" label="47" name="size47" placeholder="0" step="0" min="0"
         :max="sniker?.size47"
       v-model.number="formData.size47" 
-         :disabled="disabled47"
+         :disabled="disabled47 || isProductAviable47"
             :style="{
-              backgroundColor: disabled47 ? '#f4f4f4' : 'inherit',
-              color: disabled47 ? '#ccc' : 'black'}"
+              backgroundColor: disabled47 || isProductAviable47 ? '#f4f4f4' : 'inherit',
+              color: disabled47 || isProductAviable47 ? '#ccc' : 'black'}"
               validation="required"/> 
                      <p class="text-gray-400 text-center text-xs">{{ sniker?.size47 }} units</p>
                                 </div>
@@ -365,10 +393,10 @@ const disabled50 = generateDisabledHelper(formData, '50');
       <FormKit type="number" label="48" name="size48" placeholder="0" step="0" min="0"
         :max="sniker?.size48"
       v-model.number="formData.size48"
-     :disabled="disabled48"
+     :disabled="disabled48 || isProductAviable48"
             :style="{
-              backgroundColor: disabled48 ? '#f4f4f4' : 'inherit',
-              color: disabled48 ? '#ccc' : 'black'}"
+              backgroundColor: disabled48 || isProductAviable48 ? '#f4f4f4' : 'inherit',
+              color: disabled48 || isProductAviable48 ? '#ccc' : 'black'}"
       validation="required" /> 
              <p class="text-gray-400 text-center text-xs">{{ sniker?.size48 }} units</p>
                                 </div>
@@ -377,10 +405,10 @@ const disabled50 = generateDisabledHelper(formData, '50');
       <FormKit type="number" label="49" name="size49" placeholder="0" step="0" min="0"
         :max="sniker?.size49"
       v-model.number="formData.size49"
-     :disabled="disabled49"
+     :disabled="disabled49 || isProductAviable49"
             :style="{
-              backgroundColor: disabled49 ? '#f4f4f4' : 'inherit',
-              color: disabled49 ? '#ccc' : 'black'}"
+              backgroundColor: disabled49 || isProductAviable49 ? '#f4f4f4' : 'inherit',
+              color: disabled49 || isProductAviable49 ? '#ccc' : 'black'}"
       validation="required"  />
              <p class="text-gray-400 text-center text-xs">{{ sniker?.size49 }} units</p>
                                 </div>
@@ -389,16 +417,16 @@ const disabled50 = generateDisabledHelper(formData, '50');
       <FormKit type="number" label="50" name="size50" placeholder="0" step="0" min="0"
         :max="sniker?.size50"
       v-model.number="formData.size50"
-          :disabled="disabled50"
+          :disabled="disabled50 || isProductAviable50"
             :style="{
-              backgroundColor: disabled50 ? '#f4f4f4' : 'inherit',
-              color: disabled50 ? '#ccc' : 'black'}"
+              backgroundColor: disabled50 || isProductAviable50 ? '#f4f4f4' : 'inherit',
+              color: disabled50 || isProductAviable50 ? '#ccc' : 'black'}"
       validation="required"/>
       <p class="text-gray-400 text-center text-xs">{{ sniker?.size50 }} units</p>
                                   </div>
     </div>
   </div>
-        <button type="submit" class="w-screen h-8 mt-8  lg:mt-8 lg:h-8  lg:w-8/12   "><span class="uppercase">buy</span></button>
+        <button v-if="!isProductAviable" type="submit" class="w-screen h-8 mt-8  lg:mt-8 lg:h-8  lg:w-8/12   "><span class="uppercase">buy</span></button>
                <div v-if="Store.errorSendMessage" class="mt-3 text-xs text-red-500">{{ Store.errorSendMessage }}</div>     
           </FormKit>
     

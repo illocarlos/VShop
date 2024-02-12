@@ -50,7 +50,7 @@ const aviable = computed(() => {
     formData.XL 
   );
 });
-const sizeSweatshirts = ["S", "M", "L", "XL", "XXL"];
+const sizeSweatshirts = ["S", "M", "L", "XL"];
 
 watch(sweatshirt, (sweatshirt) => {
   if (!sweatshirt) {

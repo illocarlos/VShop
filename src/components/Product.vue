@@ -1,15 +1,21 @@
 <script setup>
 import ButtomDeleted from './ButtomComponents/ButtomDeleted.vue';
 import {formatCurrency} from '@/helpers/formartPrice'
-defineProps({
+import { computed } from 'vue';
+const props = defineProps({
     product: {
         type:Object
     }
 })
+     
+const isProductNotAvailable = computed(() => props.product.aviable === 0)
+
 </script>
 
 <template>
-<li class="flex items-center space-x-6 border border-gray-200 p-6 bg-white shadow">
+<li 
+          :class="{ 'opacity-30': isProductNotAvailable}"
+class="flex items-center space-x-6 border border-gray-200 p-6 bg-white shadow">
     <img
     :src= "product.images[0]"
     :alt="product.name"

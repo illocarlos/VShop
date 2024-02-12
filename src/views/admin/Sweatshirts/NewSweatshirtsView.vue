@@ -37,7 +37,7 @@ const submitHanler = async data => {
     console.log(error);
   }
 };
-const sizeSweatshirts = ["S", "M", "L", "XL", "XXL"];
+const sizeSweatshirts = ["S", "M", "L", "XL"];
 const aviable = computed(() => {
   return Object.values(formData.size).reduce((acc, curr) => acc + curr, 0);
 });

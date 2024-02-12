@@ -2,6 +2,9 @@
 import { formatCurrency } from '@/helpers/formartPrice'
 import ButtomShop from './ButtomComponents/ButtomShop.vue'
 import { ref } from 'vue';
+import {useStore} from '@/stores/store'
+
+const store = useStore()
 
 defineProps({
     product: {
@@ -16,6 +19,7 @@ const toggleisDropdownCrad = () => {
     isDropdownCrad.value = !isDropdownCrad.value; // Cambia el estado del desplegable solo en dispositivos móviles
   }
 }
+
 </script>
 
 <template>
@@ -32,21 +36,23 @@ const toggleisDropdownCrad = () => {
 
     </div>
     <div class="aspect-w-4 aspect-h-4 overflow-hidden bg-cover " :style="{ backgroundImage: 'url(' + product.images[0] + ')' }">
+
       <div class="flex">
         <RouterLink
         :to="{
           name: `info-${product.category}`,
           params: { id: product.id }
         }">
-        <ButtomShop class="absolute top-3"/>
+        <ButtomShop   class="absolute top-3"/>
       </RouterLink> 
+      
     </div>
     </div>
   </div>
   <div class="absolute bg-gray-50 -bottom-8 w-full flex flex-col gap-2 group-hover:-bottom-0 group-hover:duration-600 duration-500   md:w-11/12 ">
              <h3 class="mb-0 text-sm font-black text-gray-500 text-center lg:text-xl">{{ product.name }}</h3>
       <div class="flex flex-row justify-around">
-                   <p class=" font-extrabold text-gray-900 md:text-xl lg:text-xl ">Aviable: {{ product.aviable }}</p>
+                   <p  class=" font-extrabold text-gray-900 md:text-xl lg:text-xl ">Aviable: {{ product.aviable }}</p>
                    <p class=" font-extrabold text-gray-900 md:text-xl lg:text-xl  ">{{ formatCurrency(product.price) }}</p>
                   </div>
        

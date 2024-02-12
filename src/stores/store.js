@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
-import { ref, computed, watchEffect, watch } from 'vue'
+import { ref, computed, watchEffect, watch, Transition } from 'vue'
 import { UseCouponStore } from './coupon'
-import { collection, addDoc } from 'firebase/firestore'
+import { collection, addDoc, doc, runTransaction } from 'firebase/firestore'
 import { useFirestore } from 'vuefire'
 import { getCurrentDate } from '@/helpers/formateDate'
 
@@ -57,6 +57,7 @@ export const useStore = defineStore('store', () => {
                             price: product.price,
                             images: product.images,
                             total: sizeValue,
+                            category: product.category,
                             totalSizeInStore: product[`total${key}`],
                         }
                         objetFilter.value = newSizeObject
@@ -85,6 +86,7 @@ export const useStore = defineStore('store', () => {
                             name: product.name,
                             price: product.price,
                             images: product.images,
+                            category: product.category,
                             total: sizeValue,
                             totalSizeInStore: product[`total${key}`],
                         }
@@ -106,6 +108,7 @@ export const useStore = defineStore('store', () => {
                     name: product.name,
                     price: product.price,
                     images: product.images,
+                    category: product.category,
                     total: 1,
                     totalSizeInStore: product.aviable,
 
@@ -137,7 +140,7 @@ export const useStore = defineStore('store', () => {
                     // Si se encuentra un objeto con el mismo ID y tamaño, sumar sus totales
 
                     if (itemsFilterCart.value[i].total === itemsFilterCart.value[i].totalSizeInStore) {
-                        // aqui podemos crear una alerta personalizada
+                        // TODO aqui podemos crear una alerta personalizada
                         alert('limite alcanzado')
                         return itemsFilterCart.value[i].total = itemsFilterCart.value[i].totalSizeInStore
                     }
@@ -171,6 +174,74 @@ export const useStore = defineStore('store', () => {
                 totalPay: totalPay.value,
                 date: getCurrentDate(),
             })
+
+
+            // Sustraer la cantidad de lo disponible ACID
+            itemsFilterCart.value.forEach(async (item) => {
+
+                if (item.category === "sunglasses") {
+                    const productRef = doc(db, "sunglasses", item.id)
+                    await runTransaction(db, async (transaction) => {
+                        const currentProduct = await transaction.get(productRef)
+                        console.log('currreeeeeeent', currentProduct)
+                        const aviable = currentProduct.data().aviable - item.total
+                        transaction.update(productRef, { aviable })
+                    })
+                } else if (item.category === "sweatshirt") {
+
+                    const productRef = doc(db, "sweatshirt", item.id);
+                    await runTransaction(db, async (transaction) => {
+                        const currentProduct = await transaction.get(productRef);
+
+                        // Aquí puedes manejar la lógica para restar la cantidad comprada del stock disponible
+                        // Supongamos que tienes un objeto en la base de datos con las claves S, M, L, XL
+                        // y quieres restar la cantidad comprada de la clave correspondiente
+                        const sizeKey = item.size; // La talla del producto comprado
+                        const availableSizeKey = sizeKey; // Clave en la base de datos correspondiente a la cantidad disponible para esta talla
+
+                        // Verifica si la clave está presente en el objeto actual de la base de datos
+                        if (currentProduct.data().hasOwnProperty(availableSizeKey)) {
+                            // Resta la cantidad comprada de la cantidad disponible para la talla correspondiente
+                            const available = currentProduct.data()[availableSizeKey] - item.total;
+                            // Actualiza la cantidad disponible en la base de datos
+                            transaction.update(productRef, { [availableSizeKey]: available });
+                            const aviable = currentProduct.data().aviable - item.total
+                            transaction.update(productRef, { aviable })
+
+                        } else {
+                            // Si la clave no está presente, maneja el caso según sea necesario
+                            console.error(`key "${availableSizeKey}" don,t found in bbdd.`);
+                            // Podrías lanzar una alerta, registrar un error, etc.
+                        }
+                    });
+                } else if (item.category === "snikers") {
+
+                    const productRef = doc(db, "snikers", item.id)
+                    await runTransaction(db, async (transaction) => {
+                        const currentProduct = await transaction.get(productRef)
+
+                        const sizeKey = item.size;
+                        const availableSizeKey = sizeKey
+
+                        if (currentProduct.data().hasOwnProperty(availableSizeKey)) {
+                            const available = currentProduct.data()[availableSizeKey] - item.total;
+                            transaction.update(productRef, { [availableSizeKey]: available });
+                            const aviable = currentProduct.data().aviable - item.total
+                            transaction.update(productRef, { aviable })
+
+                        } else {
+                            // Si la clave no está presente, maneja el caso según sea necesario
+                            console.error(`key "${availableSizeKey}" don,t found in bbdd.`);
+                            // Podrías lanzar una alerta, registrar un error, etc.
+                        }
+
+
+                    })
+
+                }
+
+
+            })
             $reset()
             coupon.$reset()
         } catch (error) {
@@ -189,7 +260,7 @@ export const useStore = defineStore('store', () => {
     function deleted(id, size) {
         itemsFilterCart.value = itemsFilterCart.value.filter(elem => !(elem.id === id && elem.size === size));
 
-        console.log('sizeelem', itemsFilterCart.value);
+
 
         if (itemsFilterCart.value.length === 0) {
             itemsFilterCart.value.total = 0;
@@ -210,6 +281,8 @@ export const useStore = defineStore('store', () => {
         // decrementBuy()
     }
     function deletedAll() { itemsFilterCart.value = [] }
+
+
     const isEmpty = computed(() => itemsFilterCart.value.length === 0)
 
     return {
@@ -223,7 +296,8 @@ export const useStore = defineStore('store', () => {
         totalCart,
         totalTaxes,
         totalPay,
-        checkout
+        checkout,
+
 
     }
 

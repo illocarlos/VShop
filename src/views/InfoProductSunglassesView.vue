@@ -30,6 +30,8 @@ const handleBuy = (product) => {
       router.push({ name: 'Sunglasses' })
 }
 
+const isProductAviable=computed(()=> sunglasses.value?.aviable<=0)
+
 </script>
 
 <template>
@@ -55,12 +57,22 @@ const handleBuy = (product) => {
           <p class="lg:text-2xl">{{ sunglasses?.category }}</p>
           <h1 class="text-xl uppercase md:text-4x lg:text-4xl">{{ sunglasses?.name }}</h1>
         </div>
-        <div class="md:flex md:flex-col-reverse">
+        <div class="md:flex md:flex-col-reverse ">
           <p class="my-2 text-xl text-green-500 font-extrabold md:text-4xl md:my-0 lg:text-7xl">{{ formatCurrency(sunglasses?.price) }}</p>
-          <p class="mt-6 text-sm md:mt-0 lg:text-2xl">available {{ sunglasses?. aviable }} units</p>
+          <p v-if="!isProductAviable"  class="mt-6 text-sm md:mt-0 lg:text-2xl">available {{ sunglasses?. aviable }} units</p>
+
+          <div v-else class="flex gap-5 my-4   ">
+            <p class="font-extrabold uppercase text-green-500">out of stock</p>
+             <RouterLink
+          :to="{ name:'Sunglasses'}">
+     <p class="bg-black text-white px-3 rounded-lg cursor-pointer 
+     hover:bg-green-500 hover:text-black transition-all">back</p>
+        </RouterLink> 
+          </div>
+
         </div>
         <div class="hidden lg:block  ">
-          <button  :disabled="Store.aviable" @click="handleBuy(sunglasses)" class="mt-8 h-12 w-3/6   "><span class="uppercase">buy</span></button>
+          <button v-if="!isProductAviable"  :disabled="Store.aviable" @click="handleBuy(sunglasses)" class="mt-8 h-12 w-3/6   "><span class="uppercase">buy</span></button>
         </div>
       </div>
     </article>
@@ -68,7 +80,7 @@ const handleBuy = (product) => {
       
     </div>
     <div class=" lg:hidden">
-      <button  :disabled="Store.aviable" @click="handleBuy(sunglasses)" class="mt-8 w-screen h-8  "><span class="uppercase">buy</span></button>
+      <button v-if="!isProductAviable"  :disabled="Store.aviable" @click="handleBuy(sunglasses)" class="mt-8 w-screen h-8  "><span class="uppercase">buy</span></button>
     </div>
   </div>
 </template>
