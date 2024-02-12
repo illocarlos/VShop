@@ -1,23 +1,31 @@
 import { defineStore } from 'pinia'
 import { ref, computed, watchEffect, watch } from 'vue'
-
+import { UseCouponStore } from './coupon'
+import { collection, addDoc } from 'firebase/firestore'
+import { useFirestore } from 'vuefire'
+import { getCurrentDate } from '@/helpers/formateDate'
 
 export const useStore = defineStore('store', () => {
+
+    const coupon = UseCouponStore()
+    const db = useFirestore()
+
     const itemShowCart = ref([])
+    const objetFilter = ref({})
     const itemsFilterCart = ref([])
     const totalCart = ref(0)
     const totalTaxes = ref(0)
     const totalPay = ref(0)
-    const objetFilter = ref({})
+
+
 
     const TAX_RATE = .10
 
     watchEffect(() => {
         totalCart.value = itemsFilterCart.value.reduce((total, product) => total + (product.total * product.price), 0)
-        totalTaxes.value = totalCart.value * TAX_RATE
-        totalPay.value = totalTaxes.value + totalCart.value
+        totalTaxes.value = Number((totalCart.value * TAX_RATE).toFixed(2))
+        totalPay.value = Number(((totalTaxes.value + totalCart.value) - coupon.discount).toFixed(2))
     })
-
 
     function addItem(product) {
 
@@ -108,9 +116,6 @@ export const useStore = defineStore('store', () => {
             }
 
         });
-
-
-
     }
 
     function isEqualProduct() {
@@ -151,6 +156,36 @@ export const useStore = defineStore('store', () => {
         }
     }
 
+
+    async function checkout() {
+        try {
+            await addDoc(collection(db, 'sales'), {
+
+                itemsFilterCart: itemsFilterCart.value.map(item => {
+                    const { totalSizeInStore, ...data } = item
+                    return data
+                }),
+                totalCart: totalCart.value,
+                totalTaxes: totalTaxes.value,
+                discount: coupon.discount,
+                totalPay: totalPay.value,
+                date: getCurrentDate(),
+            })
+            $reset()
+            coupon.$reset()
+        } catch (error) {
+            console.log(error)
+        }
+
+    }
+
+    function $reset() {
+        itemsFilterCart.value = []
+        totalCart.value = 0
+        totalTaxes.value = 0
+        totalPay.value = 0
+    }
+
     function deleted(id, size) {
         itemsFilterCart.value = itemsFilterCart.value.filter(elem => !(elem.id === id && elem.size === size));
 
@@ -188,6 +223,7 @@ export const useStore = defineStore('store', () => {
         totalCart,
         totalTaxes,
         totalPay,
+        checkout
 
     }
 

@@ -1,7 +1,7 @@
 <script setup>
 import Link from './LogoComponents/Link.vue';
 import Logo from './LogoComponents/Logo.vue';
-import Buy from'@/components/LogoComponents/Buy.vue'
+import Buy from'@/components/shopingComponent/Buy.vue'
 </script>
 
 <template>

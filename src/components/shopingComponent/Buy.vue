@@ -2,17 +2,17 @@
 import { ref } from 'vue';
 import { useStore } from '@/stores/store';
 import { formatCurrency } from '@/helpers/formartPrice';
-import Amount from '../Amount.vue';
-
+import Amount from './Amount.vue';
+import CouponForm from './CouponForm.vue';
+import { UseCouponStore } from '@/stores/coupon';
+const coupon= UseCouponStore()
 const isOpen = ref(false);
 const store = useStore();
 
 const toggleDropdown = () => {
   isOpen.value = !isOpen.value;
 };
-const prueba = () => {
- 
-}
+
 </script>
 <template>
   <div class="relative">
@@ -75,13 +75,23 @@ const prueba = () => {
       <template #label>taxes: </template>
       {{ formatCurrency(store.totalTaxes) }}
     </Amount>
+       <Amount  v-if="coupon.isValidCoupon">
+        <template  #label>discount: </template>
+        {{ formatCurrency(coupon.discount) }}
+      </Amount>
         <Amount>
        <template #label>total: </template>
         {{ formatCurrency(store.totalPay) }}
       </Amount>
-</dl>
-          <button class="w-100 bg-red-500 text-white px-3 rounded-md  " @click="store.deletedAll()">Clean cart</button>
-          <button class="w-100 ml-10 bg-green-500 px-3 rounded-md " @click="prueba">Buy</button>
+    </dl>
+    <CouponForm/>
+    <div class="w-full">
+
+      <button class="w-3/12 py-1  bg-red-400 text-black  rounded-md text-xs
+        hover:bg-red-800 hover:text-white hover:transition-all " @click="store.deletedAll()">Clean cart</button>
+      <button class="w-8/12 ml-2  font-extrabold bg-green-500  rounded-md
+       hover:bg-green-800 hover:text-white hover:transition-all hover:duration-300 " @click="store.checkout">Buy</button>
+    </div>
         </div>
       </div>
     </transition>
