@@ -125,7 +125,8 @@ const disabledXL = generateDisabledHelperSweatShirt(formData, 'XL');
       <FormKit type="form" @submit="handleBuy" :value="formData" submit-label="save"
       incomplete-message="You must enter at least an amount greater than 0" :actions="false">
       <div class="flex flex-row w-5/5 text-center gap-2">
-
+  
+        <div class="flex flex-col">
           <FormKit type="number" label="S" name="S" placeholder="0" step="1" min="0" 
           :max="sweatshirt?.S"
              v-model.number="formData.S"
@@ -134,7 +135,10 @@ const disabledXL = generateDisabledHelperSweatShirt(formData, 'XL');
                backgroundColor: disabledS  ? '#f4f4f4' : 'inherit',
                color: disabledS ? '#ccc' : 'inherit' }"
               validation="required" />
+ <p class="text-gray-400 text-center text-xs">{{sweatshirt?.S }} units</p>
+ </div>
 
+          <div class="flex flex-col">
           <FormKit type="number" label="M" name="M" placeholder="0" step="0" min="0" 
           :max="sweatshirt?.M"
               v-model.number="formData.M"
@@ -143,6 +147,10 @@ const disabledXL = generateDisabledHelperSweatShirt(formData, 'XL');
                 backgroundColor: disabledM ? '#f4f4f4' : 'inherit',
                 color: disabledM ? '#ccc' : 'inherit'
               }" />
+               <p class="text-gray-400 text-center text-xs">{{ sweatshirt?.M }} units</p>
+   </div>
+
+           <div class="flex flex-col">
           <FormKit type="number" label="L" name="L" placeholder="0" step="0" min="0" 
           :max="sweatshirt?.L"
               v-model.number="formData.L"
@@ -152,6 +160,11 @@ const disabledXL = generateDisabledHelperSweatShirt(formData, 'XL');
                 color: disabledL ? '#ccc' : 'inherit'
               }" 
                validation="required" />
+                <p class="text-gray-400 text-center text-xs">{{ sweatshirt?.L }} units</p>
+                 </div>
+
+
+                       <div class="flex flex-col">
           <FormKit type="number" label="XL" name="XL" placeholder="0" step="0" min="0" 
           :max="sweatshirt?.XL"
               v-model.number="formData.XL"
@@ -160,8 +173,11 @@ const disabledXL = generateDisabledHelperSweatShirt(formData, 'XL');
   backgroundColor: disabledXL ? '#f4f4f4' : 'inherit',
   color: disabledXL ? '#ccc' : 'inherit'}" 
    validation="required" />
-      </div>
-      <button type="submit" class="mt-8 h-12 w-3/6"><span class="uppercase">buy</span></button>
+    <p class="text-gray-400 text-center text-xs">{{ sweatshirt?.XL }} units</p>
+     </div>
+
+  </div>
+      <button type="submit" class="mt-8 h-12 w-4/6"><span class="uppercase">buy</span></button>
       <div v-if="Store.errorSendMessage" class="mt-3 text-xs text-red-500">{{ Store.errorSendMessage }}</div>
   </FormKit>
 
@@ -176,7 +192,7 @@ const disabledXL = generateDisabledHelperSweatShirt(formData, 'XL');
         incomplete-message="Could not send, check messages" :actions="false">
       <div class="flex flex-row justify-center text-center gap-5">
 
-        
+          <div class="flex flex-col">
           <FormKit type="number" label="S" name="S" placeholder="0" step="1" min="0"
            :max="sweatshirt?.S"
                v-model.number="formData.S"
@@ -185,7 +201,11 @@ const disabledXL = generateDisabledHelperSweatShirt(formData, 'XL');
                  backgroundColor: disabledS ? '#f4f4f4' : 'inherit',
                  color: disabledS > 0 ? '#ccc' : 'inherit'}"
                     validation="required"/>
+                    <p class="text-gray-400 text-center text-xs" >{{ sweatshirt?.S }} units</p>
+  </div>
 
+
+         <div class="flex flex-col">
             <FormKit type="number" label="M" name="M" placeholder="0" step="0" min="0"
              :max="sweatshirt?.M"
                 v-model.number="formData.M"
@@ -195,6 +215,10 @@ const disabledXL = generateDisabledHelperSweatShirt(formData, 'XL');
                   backgroundColor: disabledM ? '#f4f4f4' : 'inherit',
                   color: disabledM ? '#ccc' : 'inherit'
                 }" />
+                  <p class="text-gray-400 text-center text-xs">{{ sweatshirt?.M }} units</p>
+                </div>
+
+           <div class="flex flex-col">
             <FormKit type="number" label="L" name="L" placeholder="0" step="0" min="0" 
             :max="sweatshirt?.L"
                 v-model.number="formData.L"
@@ -204,6 +228,9 @@ const disabledXL = generateDisabledHelperSweatShirt(formData, 'XL');
                   backgroundColor: disabledL ? '#f4f4f4' : 'inherit',
                   color: disabledL ? '#ccc' : 'inherit'
                 }" />
+                   <p class="text-gray-400 text-center text-xs">{{ sweatshirt?.L }} units</p>
+    </div>
+             <div class="flex flex-col">
             <FormKit type="number" label="XL" name="XL" placeholder="0" step="0" min="0" 
             :max="sweatshirt?.XL"
                 v-model.number="formData.XL"
@@ -212,7 +239,8 @@ const disabledXL = generateDisabledHelperSweatShirt(formData, 'XL');
                 :style="{
                   backgroundColor: disabledXL ? '#f4f4f4' : 'inherit',
                   color: disabledXL ? '#ccc' : 'inherit'}" />
-
+                    <p class="text-gray-400 text-center text-xs">{{ sweatshirt?.XL }} units</p>
+      </div>
       </div>
 
 
