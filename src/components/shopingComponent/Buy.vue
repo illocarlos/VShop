@@ -39,7 +39,7 @@ const toggleDropdown = () => {
         <div v-else class=" dropdownIsProduct">
 
 
-          <div class="h-96 overflow-y-auto">
+          <div class=" h-80 overflow-y-auto">
             <div v-for="product in store.itemsFilterCart" :key="product.id">
               <div class="flex flex-row py-5">
                 <div class="w-4/12 ">
@@ -143,7 +143,7 @@ a:not([href]):not([class]):hover {
   right: -3.2rem;
   background-color: white;
   padding: 10px;
-  min-width: 23rem;
+  min-width: 24rem;
   width: fit-content;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   transition: transform 0.7s ease;
