@@ -23,7 +23,7 @@ const submitHandler = data => {
                 <summary @click="toggleAccordion(index)"
                     class="flex flex-row justify-between items-center cursor-pointer list-none py-1 text-center md:text-left">
                     <span>Prices Max</span>
-                    <span class="sm:hiden md:hidden  transition group-open:rotate-180">
+                    <span class="sm:hidden md:hidden  transition group-open:rotate-180">
                         <svg fill="none" height="14" shape-rendering="geometricPrecision" stroke="currentColor"
                             stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewBox="0 0 24 24"
                             width="14">
