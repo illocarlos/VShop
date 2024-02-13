@@ -13,7 +13,7 @@ const { filterSweatshirt, noResult } = storeToRefs(useSweatshirt)
       <main class="lg:flex lg:h-screen lg:overflow-y-hidden">
       <div class="lg:w-full lg:h-screen lg:overflow-y-scroll px-20 relative pb-28 ">
               <div class=" mt-20 top-0 pb-7  ">
-           <ModalFilterSeatshirt class="z-50" />
+           <ModalFilterSeatshirt class="z-5" />
           </div>
       <p v-if="noResult" class="text-center text-4xl font-bold text-green-500"> We don't have results with those filters</p>
               <div v-else class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-3 gap-5 mt-20">
