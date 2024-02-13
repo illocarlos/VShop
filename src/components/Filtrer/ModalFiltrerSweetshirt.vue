@@ -23,13 +23,13 @@ const submitHandler = data => {
                 <summary @click="toggleAccordion(index)"
                     class="flex flex-row justify-between items-center cursor-pointer list-none py-1 text-center md:text-left">
                     <span>Prices Max</span>
-                    <!-- <span class="sm:hiden  transition group-open:rotate-180">
+                    <span class="sm:hiden md:hidden  transition group-open:rotate-180">
                         <svg fill="none" height="14" shape-rendering="geometricPrecision" stroke="currentColor"
                             stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewBox="0 0 24 24"
                             width="14">
                             <path d="M6 9l6 6 6-6"></path>
                         </svg>
-                    </span> -->
+                    </span>
                 </summary>
                 <FormKit type="form" submit-label="Save" @submit="submitHandler">
                     <FormKit type="range" name="prices" min="0" max="500" v-model.trim="pricesMax" class="w-full mt-4" />
