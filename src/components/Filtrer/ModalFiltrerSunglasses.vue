@@ -18,11 +18,11 @@ const submitHandler = data => {
 
 <template>
     <div class="relative">
-           <div class="absolute top-0 left-0 text-xs w-32 lg:text-md md:w-68 lg:w-32  bg-white rounded-lg  border-black  font-extrabold px-5">
+           <div class="absolute top-0 px-1 left-0 text-xs w-32  lg:text-md md:w-68 lg:w-32  bg-white rounded-lg  border-black  ">
                 <details class="group flex flex-row justify-between">
                 <summary @click="toggleAccordion(index)"
-                    class="flex flex-row justify-between items-center cursor-pointer list-none py-2 text-center md:text-left">
-                    <span>Prices Max</span>
+                    class="flex flex-row justify-between items-center cursor-pointer list-none py-1 text-center md:text-left">
+                    <span >Prices Max</span>
                     <span class="transition group-open:rotate-180">
                         <svg fill="none" height="14" shape-rendering="geometricPrecision" stroke="currentColor"
                             stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewBox="0 0 24 24"
@@ -44,7 +44,7 @@ const submitHandler = data => {
 
 <style scoped>
 .relative {
-    height: 30px;
+    height: 20px;
     position: relative;
 }
 
@@ -53,7 +53,5 @@ const submitHandler = data => {
     border: solid  1px;
     position: absolute;
 }
-summary{
-    height: 6px;
-}
+
 </style>

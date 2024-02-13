@@ -14,7 +14,7 @@ const { filterSneakers, noResult } = storeToRefs(useSneaker)
 
         
         <div class="lg:w-full  lg:overflow-y-scroll px-20 relative pb-28 ">
-            <div class=" mt-20 top-0 pb-7  ">
+            <div class=" mt-20 top-0 pb-12  ">
                 <!-- ModalFilterPrices -->
                 <ModalFilterPrices class="z-5" />
             </div>
