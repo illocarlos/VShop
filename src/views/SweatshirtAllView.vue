@@ -10,7 +10,7 @@ const { filterSweatshirt, noResult } = storeToRefs(useSweatshirt)
 </script>
 
 <template>
-      <main class="lg:flex lg:h-screen lg:overflow-y-hidden">
+      <main class="gap-5">
       <div class="lg:w-full lg:h-screen lg:overflow-y-scroll px-20 relative pb-28 ">
               <div class=" mt-20 top-0 pb-7  ">
            <ModalFilterSeatshirt class="z-5" />

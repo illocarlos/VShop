@@ -9,8 +9,8 @@ const{ filterSunglasses,noResult }= storeToRefs(useSunglasses)
 </script>
 
 <template>
-     <main class="lg:flex lg:h-screen lg:overflow-y-hidden">
-        <div class="lg:w-full lg:h-screen lg:overflow-y-scroll px-20 relative pb-28 ">
+     <main class="gap-5">
+        <div class="lg:w-full  lg:overflow-y-scroll px-20 relative pb-28 ">
                 <div class=" mt-20 top-0 pb-7  ">
 
           <ModalFiltrerSunglasses class="z-5" />
