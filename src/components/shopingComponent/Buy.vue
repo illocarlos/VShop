@@ -25,7 +25,7 @@ const toggleDropdown = () => {
     <transition name="slide-down">
       <div class="carrito-dropdown lg:min-w-80" :class="{ 'open': isOpen }">
         <!-- Contenido del dropdown -->
-        <div class="flex flex-row justify-center " v-if="store.isEmpty">
+        <div class="flex flex-row justify-center h-20 " v-if="store.isEmpty">
           <p class="text-green-500 text-center mr-3"> The cart is empty</p>
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="green"
             class="w-6 h-6">
@@ -33,7 +33,7 @@ const toggleDropdown = () => {
               d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
           </svg>
         </div>
-        <div v-else>
+        <div v-else class=" dropdownIsProduct">
 
 
           <div class="h-96 overflow-y-auto">
@@ -53,8 +53,6 @@ const toggleDropdown = () => {
    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
     <path stroke-linecap="round" stroke-linejoin="round" d="M15 12H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
   </svg>
-
-
                   </button>
                  
                     <p class="text-xl"> {{ product.total }}</p>
@@ -64,8 +62,6 @@ const toggleDropdown = () => {
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
     <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
   </svg>
-
-
                 </button>
                 <button type="button" @click="store.deleted(product.id, product.size)">
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="red"
@@ -114,6 +110,9 @@ const toggleDropdown = () => {
 </template>
 
 <style scoped>
+.dropdownIsProduct{
+  min-height: 46rem;
+}
 
 a {
   color: var(--bs-link-color);
@@ -142,7 +141,6 @@ a:not([href]):not([class]):hover {
   background-color: white;
   padding: 10px;
   min-width: 23rem;
-   min-height: 47.5rem;
   width: fit-content;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   transition: transform 0.7s ease;

@@ -10,10 +10,7 @@ import Buy from '@/components/shopingComponent/Buy.vue'
   <nav class="flex flex-row justify-center items-center">
   <Buy class="mr-4"/>
   <!-- igual que en admi le pasamos una propr como to NO dinamico por que el dinamico esta en ese mismo componente  -->
-<!-- <Link
-to="admin">
-    admin
-</Link> -->
+
 </nav>
   </header>
 </template>

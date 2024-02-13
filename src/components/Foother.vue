@@ -1,15 +1,35 @@
 <script setup>
 import InstagramButtom from './ButtomComponents/InstagramButtom.vue';
+import { storeToRefs } from 'pinia';
 import FacebookButtom from './ButtomComponents/FacebookButtom.vue';
 import TwitterButtom from'./ButtomComponents/TwitterButtom.vue'
 import Logo from './LogoComponents/Logo.vue';
+import { useAuthStore } from '@/stores/auth'
+
+const useAuth = useAuthStore()
+const { isAuth } = storeToRefs(useAuth)
 
 </script>
 
 <template>
     <div class="flex flex-row justify-around items-center w-screen h-24 lg:h-14  bg-black ">
-        <div>
-<article class="flex flex-row text-white text-center">
+        
+        <div   class="flex justify-between w-44 lg:w-56">
+              <RouterLink v-if="!isAuth"
+              class="flex flex-col items-center"
+        :to="{ name: 'login' }"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="white" class="w-6 h-6">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+        </svg>
+         <p class="text-white text-xs">work space</p>
+      </RouterLink>
+<div v-else>
+<button  @click="useAuth.logOut" class="text-white">Log out</button>
+</div>
+
+
+<article class="flex flex-row text-white text-center items-center justify-center">
  <span class=" text-xl md:text-xl font-black" >2024-</span><Logo />
 </article>
 

@@ -1,4 +1,7 @@
+
 import { createRouter, createWebHistory } from 'vue-router'
+import { onAuthStateChanged } from 'firebase/auth'
+import { useFirebaseAuth } from 'vuefire'
 import IndexShopView from '@/views/IndexShopView.vue'
 import AdminLayout from '@/views/admin/AdminLayout.vue'
 
@@ -41,12 +44,16 @@ const router = createRouter({
       name: 'info-sunglasses',
       component: () => import('@/views/InfoProductSunglassesView.vue')
     },
-    // este componente se abrira cuando vayamos a esa ruta pero lo nombramos igual que el home por que es igual de importante 
+    {
+      path: '/login',
+      name: 'login',
+      component: () => import('../views/LoginView.vue')
+    },
     {
       path: '/admin',
       name: 'admin',
       component: AdminLayout,
-      // y estos son los hijos de admin que debemos estar en admi para ir a ellos 
+      meta: { requiresAuth: true },
       children: [
         {
           path: 'products',
@@ -117,4 +124,37 @@ const router = createRouter({
   ]
 })
 
+
+router.beforeEach(async (to, from, next) => {
+  const requiresAuth = to.matched.some(url => url.meta.requiresAuth)
+  if (requiresAuth) {
+    try {
+      await autenticateUser()
+      next()
+    } catch (error) {
+      console.log(error)
+      next({ name: 'login' })
+    }
+  } else {
+    next()
+  }
+
+
+});
+function autenticateUser() {
+
+  const auth = useFirebaseAuth()
+  return new Promise((resolve, reject) => {
+    const unSuscribe = onAuthStateChanged(auth, (user) => {
+      unSuscribe()
+      if (user) {
+        resolve(user)
+      } else {
+        reject()
+      }
+    })
+  })
+}
 export default router
+
+

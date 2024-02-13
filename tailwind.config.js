@@ -1,9 +1,12 @@
 /** @type {import('tailwindcss').Config} */
+const colors = require('tailwindcss/colors')
+
 export default {
   content: [
     "./index.html",
     "./src/**/*.{vue,ts,tsx,js,jsx}",
-    "./formkit.config.js"
+    "./formkit.config.js",
+    './node_modules/vue-tailwind-datepicker/**/*.js'
   ],
   theme: {
     extend: {
@@ -13,6 +16,9 @@ export default {
       textStrokeColor: {
         'black': '#000',  // Define el color del contorno del texto
       },
+      colors: {
+        "vtd-primary": colors.indigo
+      }
     },
   },
   plugins: [
