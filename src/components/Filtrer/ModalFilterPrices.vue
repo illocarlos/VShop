@@ -16,7 +16,6 @@ const submitHandler = (data) => {
     useProduct.filterPricesSneakers(data);
 };
 </script>
-
 <template>
     <div class="relative">
         <div class="absolute top-0 left-0 text-xs w-32 lg:text-md md:w-68 lg:w-32  bg-white rounded-lg  border-black  px-1">
@@ -24,6 +23,7 @@ const submitHandler = (data) => {
                 <summary @click="toggleAccordion(index)"
                     class="flex flex-row justify-between items-center cursor-pointer list-none py-1 text-center md:text-left">
                     <span>Prices Max</span>
+ <!-- TODO ver el error de las flechas en algunos moviles salen dos  -->
                     <span class="hidden lg:block  transition group-open:rotate-180">
                         <svg fill="none" height="14" shape-rendering="geometricPrecision" stroke="currentColor"
                             stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewBox="0 0 24 24"

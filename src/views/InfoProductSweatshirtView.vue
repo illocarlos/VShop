@@ -142,7 +142,7 @@ const isProductAviableXL = computed(() => sweatshirt.value?.XL <= 0)
       incomplete-message="You must enter at least an amount greater than 0" :actions="false">
       <div class="flex flex-row w-5/5 text-center gap-2">
   
-        <div class="flex flex-col">
+        <div class="flex flex-col w-2/12 ">
           <FormKit type="number" label="S" name="S" placeholder="0" step="1" min="0" 
           :max="sweatshirt?.S"
              v-model.number="formData.S"
@@ -154,7 +154,7 @@ const isProductAviableXL = computed(() => sweatshirt.value?.XL <= 0)
  <p class="text-gray-400 text-center text-xs">{{sweatshirt?.S }} units</p>
  </div>
 
-          <div class="flex flex-col">
+          <div class="flex flex-col w-2/12 ">
           <FormKit type="number" label="M" name="M" placeholder="0" step="0" min="0" 
           :max="sweatshirt?.M"
               v-model.number="formData.M"
@@ -166,7 +166,7 @@ const isProductAviableXL = computed(() => sweatshirt.value?.XL <= 0)
                <p class="text-gray-400 text-center text-xs">{{ sweatshirt?.M }} units</p>
    </div>
 
-           <div class="flex flex-col">
+           <div class="flex flex-col w-2/12 ">
           <FormKit type="number" label="L" name="L" placeholder="0" step="0" min="0" 
           :max="sweatshirt?.L"
               v-model.number="formData.L"
@@ -180,7 +180,7 @@ const isProductAviableXL = computed(() => sweatshirt.value?.XL <= 0)
                  </div>
 
 
-                       <div class="flex flex-col">
+                       <div class="flex flex-col w-2/12 ">
           <FormKit type="number" label="XL" name="XL" placeholder="0" step="0" min="0" 
           :max="sweatshirt?.XL"
               v-model.number="formData.XL"
@@ -189,11 +189,11 @@ const isProductAviableXL = computed(() => sweatshirt.value?.XL <= 0)
   backgroundColor: disabledXL|| isProductAviableXL ? '#f4f4f4' : 'inherit',
   color: disabledXL|| isProductAviableXL ? '#ccc' : 'inherit'}" 
    validation="required" />
-    <p class="text-gray-400 text-center text-xs">{{ sweatshirt?.XL }} units</p>
-     </div>
+   <p class="text-gray-400  text-center text-xs">{{ sweatshirt?.XL }} units</p>
+  </div>
 
   </div>
-      <button v-if="!isProductAviable" type="submit" class="mt-8 h-12 w-3/6"><span class="uppercase">buy</span></button>
+      <button v-if="!isProductAviable" type="submit" class="mt-8 h-12 w-4/6"><span class="uppercase">buy</span></button>
       <div v-if="Store.errorSendMessage" class="mt-3 text-xs text-red-500">{{ Store.errorSendMessage }}</div>
   </FormKit>
 
@@ -202,13 +202,13 @@ const isProductAviableXL = computed(() => sweatshirt.value?.XL <= 0)
     </article>
     <div>
     </div>
-    <div v-if="!isProductAviable"  class=" lg:hidden ">
+    <div v-if="!isProductAviable"  class=" lg:hidden  ">
       
         <FormKit type="form" @submit="handleBuy" :value="formData" submit-label="save"
         incomplete-message="Could not send, check messages" :actions="false">
       <div class="flex flex-row justify-center text-center gap-5">
 
-          <div class="flex flex-col">
+          <div class="flex flex-col w-2/12 ">
           <FormKit type="number" label="S" name="S" placeholder="0" step="1" min="0"
            :max="sweatshirt?.S"
                v-model.number="formData.S"
@@ -222,7 +222,7 @@ const isProductAviableXL = computed(() => sweatshirt.value?.XL <= 0)
   </div>
 
 
-         <div class="flex flex-col">
+         <div class="flex flex-col w-2/12 ">
             <FormKit type="number" label="M" name="M" placeholder="0" step="0" min="0"
              :max="sweatshirt?.M"
                 v-model.number="formData.M"
@@ -235,7 +235,7 @@ const isProductAviableXL = computed(() => sweatshirt.value?.XL <= 0)
                   <p class="text-gray-400 text-center text-xs">{{ sweatshirt?.M }} units</p>
                 </div>
 
-           <div class="flex flex-col">
+           <div class="flex flex-col w-2/12 ">
             <FormKit type="number" label="L" name="L" placeholder="0" step="0" min="0" 
             :max="sweatshirt?.L"
                 v-model.number="formData.L"
@@ -247,7 +247,7 @@ const isProductAviableXL = computed(() => sweatshirt.value?.XL <= 0)
                 }" />
                    <p class="text-gray-400 text-center text-xs">{{ sweatshirt?.L }} units</p>
     </div>
-             <div class="flex flex-col">
+             <div class="flex flex-col w-2/12 ">
             <FormKit type="number" label="XL" name="XL" placeholder="0" step="0" min="0" 
             :max="sweatshirt?.XL"
                 v-model.number="formData.XL"

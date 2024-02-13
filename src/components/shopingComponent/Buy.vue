@@ -15,7 +15,7 @@ const toggleDropdown = () => {
   isOpen.value = !isOpen.value;
   setTimeout(() => {
     isOpen.value=false
-  },9000)
+  },30000)
 };
 </script>
 <template>

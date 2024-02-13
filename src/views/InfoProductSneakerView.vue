@@ -240,7 +240,7 @@ const isProductAviable50 = computed(() => sneaker.value?.size50 <= 0)
 <div  class="flex flex-row justify-center gap-2">
 
 
-      <div class="flex flex-col">
+      <div class="flex flex-col w-2/12">
   <FormKit type="number" label="36" name="size36" placeholder="0" step="0" min="0"
   :max="sneaker?.size36"
   v-model.number="formData.size36" 
@@ -251,7 +251,7 @@ const isProductAviable50 = computed(() => sneaker.value?.size50 <= 0)
     <p class="text-gray-400 text-center text-xs">{{ sneaker?.size36 }} units</p>
                   </div>
 
-     <div class="flex flex-col">
+     <div class="flex flex-col w-2/12">
   <FormKit type="number" label="37" name="size37" placeholder="0" step="0" min="0"
     :max="sneaker?.size37"
   v-model.number="formData.size37" 
@@ -264,7 +264,7 @@ const isProductAviable50 = computed(() => sneaker.value?.size50 <= 0)
       <p class="text-gray-400 text-center text-xs">{{ sneaker?.size37 }} units</p>
                     </div>
 
-     <div class="flex flex-col">
+     <div class="flex flex-col w-2/12">
   <FormKit type="number" label="38" name="size38" placeholder="0" step="0" min="0"
     :max="sneaker?.size38"
   v-model.number="formData.size38"
@@ -276,7 +276,7 @@ const isProductAviable50 = computed(() => sneaker.value?.size50 <= 0)
       <p class="text-gray-400 text-center text-xs">{{ sneaker?.size38 }} units</p>
                     </div>
 
-       <div class="flex flex-col">
+       <div class="flex flex-col w-2/12">
   <FormKit type="number" label="39" name="size39" placeholder="0" step="0" min="0"
     :max="sneaker?.size39"
   v-model.number="formData.size39"
@@ -288,7 +288,7 @@ const isProductAviable50 = computed(() => sneaker.value?.size50 <= 0)
         <p class="text-gray-400 text-center text-xs">{{ sneaker?.size39 }} units</p>
                       </div>
 
-      <div class="flex flex-col">
+      <div class="flex flex-col w-2/12">
   <FormKit type="number" label="40" name="size40" placeholder="0" step="0" min="0"
     :max="sneaker?.size40"
   v-model.number="formData.size40"
@@ -302,7 +302,8 @@ const isProductAviable50 = computed(() => sneaker.value?.size50 <= 0)
        </div>
 
  <div class="flex flex-row justify-center gap-2">
-        <div class="flex flex-col">
+  
+        <div class="flex flex-col w-2/12">
    <FormKit type="number" label="41" name="size41" placeholder="0" step="0" min="0"
      :max="sneaker?.size41"
    v-model.number="formData.size41" 
@@ -314,7 +315,7 @@ const isProductAviable50 = computed(() => sneaker.value?.size50 <= 0)
    <p class="text-gray-400 text-center text-xs">{{ sneaker?.size41 }} units</p>
                         </div>
 
-        <div class="flex flex-col">
+        <div class="flex flex-col w-2/12">
    <FormKit type="number" label="42" name="size42" placeholder="0" step="0" min="0"
      :max="sneaker?.size42"
    v-model.number="formData.size42" 
@@ -326,7 +327,7 @@ const isProductAviable50 = computed(() => sneaker.value?.size50 <= 0)
    <p class="text-gray-400 text-center text-xs">{{ sneaker?.size42 }} units</p>
                         </div>
 
-                         <div class="flex flex-col">
+                         <div class="flex flex-col w-2/12">
    <FormKit type="number" label="43" name="size43" placeholder="0" step="0" min="0"
      :max="sneaker?.size43"
    v-model.number="formData.size43" 
@@ -338,7 +339,7 @@ const isProductAviable50 = computed(() => sneaker.value?.size50 <= 0)
       <p class="text-gray-400 text-center text-xs">{{ sneaker?.size43 }} units</p>
                           </div>
 
-                           <div class="flex flex-col">
+                           <div class="flex flex-col w-2/12">
    <FormKit type="number" label="44" name="size44" placeholder="0" step="0" min="0"
      :max="sneaker?.size44"
    v-model.number="formData.size44"
@@ -350,7 +351,7 @@ const isProductAviable50 = computed(() => sneaker.value?.size50 <= 0)
      <p class="text-gray-400 text-center text-xs">{{ sneaker?.size44 }} units</p>
                           </div>
 
-                           <div class="flex flex-col">
+                           <div class="flex flex-col w-2/12">
    <FormKit type="number" label="45" name="size45" placeholder="0" step="0" min="0"
      :max="sneaker?.size45"
    v-model.number="formData.size45" 
@@ -365,7 +366,7 @@ const isProductAviable50 = computed(() => sneaker.value?.size50 <= 0)
 
     <div class="flex flex-row justify-center gap-2">
 
-                  <div class="flex flex-col">
+                  <div class="flex flex-col w-2/12">
        <FormKit type="number" label="46" name="size46" placeholder="0" step="0" min="0"
          :max="sneaker?.size46"
       v-model.number="formData.size46"
@@ -377,7 +378,7 @@ const isProductAviable50 = computed(() => sneaker.value?.size50 <= 0)
        <p class="text-gray-400 text-center text-xs">{{ sneaker?.size46 }} units</p>
                               </div>
 
-       <div class="flex flex-col">
+       <div class="flex flex-col w-2/12">
       <FormKit type="number" label="47" name="size47" placeholder="0" step="0" min="0"
         :max="sneaker?.size47"
       v-model.number="formData.size47" 
@@ -389,7 +390,7 @@ const isProductAviable50 = computed(() => sneaker.value?.size50 <= 0)
                      <p class="text-gray-400 text-center text-xs">{{ sneaker?.size47 }} units</p>
                                 </div>
 
-       <div class="flex flex-col">
+       <div class="flex flex-col w-2/12">
       <FormKit type="number" label="48" name="size48" placeholder="0" step="0" min="0"
         :max="sneaker?.size48"
       v-model.number="formData.size48"
@@ -401,7 +402,7 @@ const isProductAviable50 = computed(() => sneaker.value?.size50 <= 0)
              <p class="text-gray-400 text-center text-xs">{{ sneaker?.size48 }} units</p>
                                 </div>
 
-         <div class="flex flex-col">
+         <div class="flex flex-col w-2/12">
       <FormKit type="number" label="49" name="size49" placeholder="0" step="0" min="0"
         :max="sneaker?.size49"
       v-model.number="formData.size49"
@@ -413,7 +414,7 @@ const isProductAviable50 = computed(() => sneaker.value?.size50 <= 0)
              <p class="text-gray-400 text-center text-xs">{{ sneaker?.size49 }} units</p>
                                 </div>
 
-         <div class="flex flex-col">
+         <div class="flex flex-col w-2/12">
       <FormKit type="number" label="50" name="size50" placeholder="0" step="0" min="0"
         :max="sneaker?.size50"
       v-model.number="formData.size50"
