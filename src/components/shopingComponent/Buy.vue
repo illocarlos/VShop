@@ -13,6 +13,9 @@ const store = useStore();
 
 const toggleDropdown = () => {
   isOpen.value = !isOpen.value;
+  setTimeout(() => {
+    isOpen.value=false
+  },9000)
 };
 </script>
 <template>

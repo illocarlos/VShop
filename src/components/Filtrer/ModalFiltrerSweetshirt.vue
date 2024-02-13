@@ -11,32 +11,47 @@ const toggleAccordion = (index) => {
         faqs.value[index].open = !faqs.value[index].open;
     }
 };
-const submitHanler = data => {
+const submitHandler = data => {
   useProduct.filterPricesSweatshirt(data)
 }
 </script>
-
 <template>
-    <div class=" w-32 md:w-68 lg:w-48 border-2 border-black font-extrabold px-5">
-
-        <details class="w-full group flex flex-row justify-between">
-            <summary @click="toggleAccordion(index)"
-                class=" w-full flex flex-row justify-between items-center font-medium cursor-pointer list-none py-2   text-center md:text-left">
-                <span>Prices Max</span>
-                <span class="md:transition md:group-open:rotate-180">
-                    <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor"
-                        stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24">
-                        <path d="M6 9l6 6 6-6"></path>
-                    </svg>
-                </span>
-            </summary>
-            <FormKit type="form" submit-label="Save" @submit="submitHanler">
-
-                <FormKit type="range" name="prices" min="0" max="500" v-model.trim="pricesMax" class="w-full mt-4" />
-                <p class="text-center">{{ pricesMax }}</p>
-            </FormKit>
-        </details>
+    <div class="relative">
+        <div
+            class="absolute top-0 left-0 text-xs w-32 lg:text-md md:w-68 lg:w-32  bg-white rounded-lg  border-black  font-extrabold px-5">
+            <details class="group flex flex-row justify-between">
+                <summary @click="toggleAccordion(index)"
+                    class="flex flex-row justify-between items-center cursor-pointer list-none py-2 text-center md:text-left">
+                    <span>Prices Max</span>
+                    <span class="transition group-open:rotate-180">
+                        <svg fill="none" height="14" shape-rendering="geometricPrecision" stroke="currentColor"
+                            stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewBox="0 0 24 24"
+                            width="14">
+                            <path d="M6 9l6 6 6-6"></path>
+                        </svg>
+                    </span>
+                </summary>
+                <FormKit type="form" submit-label="Save" @submit="submitHandler">
+                    <FormKit type="range" name="prices" min="0" max="500" v-model.trim="pricesMax" class="w-full mt-4" />
+                    <p class="text-center">{{ pricesMax }}</p>
+                </FormKit>
+            </details>
+        </div>
     </div>
 </template>
+<style scoped>
+.relative {
+    height: 30px;
+    position: relative;
+}
 
+.absolute {
 
+    border: solid 1px;
+    position: absolute;
+}
+
+summary {
+    height: 6px;
+}
+</style>
