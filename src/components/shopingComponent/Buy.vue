@@ -114,7 +114,7 @@ const toggleDropdown = () => {
 
 <style scoped>
 .dropdownIsProduct{
-  min-height: 46rem;
+  min-height: 30rem;
 }
 
 a {
