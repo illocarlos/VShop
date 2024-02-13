@@ -15,9 +15,9 @@ const router = createRouter({
       component: IndexShopView
     },
     {
-      path: '/Skiners',
-      name: 'Skiners',
-      component: () => import('@/views/SnikersAllView.vue')
+      path: '/Sneakers',
+      name: 'Sneakers',
+      component: () => import('@/views/SneakerAllView.vue')
     },
     {
       path: '/Sunglasses',
@@ -35,9 +35,9 @@ const router = createRouter({
       component: () => import('@/views/InfoProductSweatshirtView.vue')
     },
     {
-      path: '/info/snikers/:id',
-      name: 'info-snikers',
-      component: () => import('@/views/InfoProductSnikersView.vue')
+      path: '/info/sneaker/:id',
+      name: 'info-sneaker',
+      component: () => import('@/views/InfoProductSneakerView.vue')
     },
     {
       path: '/info/sunglasses/:id',
@@ -73,7 +73,7 @@ const router = createRouter({
         {
           path: 'new-product/snikers',
           name: 'new-product-snikers',
-          component: () => import('@/views/admin/Skiners/NewSnikersView.vue'),
+          component: () => import('@/views/admin/Sneaker/NewSneakersView.vue'),
         },
         {
           path: 'new-product/sunglases',
@@ -86,9 +86,9 @@ const router = createRouter({
           component: () => import('@/views/admin/Sweatshirts/NewSweatshirtsView.vue'),
         },
         {
-          path: 'all/snikers',
-          name: 'all-snikers',
-          component: () => import('@/views/admin/Skiners/AllSnikersView.vue'),
+          path: 'all/sneakers',
+          name: 'all-sneakers',
+          component: () => import('@/views/admin/Sneaker/AllSneakersView.vue'),
         },
         {
           path: 'all/sunglasses',
@@ -100,9 +100,9 @@ const router = createRouter({
           component: () => import('@/views/admin/Sweatshirts/AllSweatshirtsView.vue'),
         },
         {
-          path: 'edit/snikers/:id',
-          name: 'edit-snikers',
-          component: () => import('@/views/admin/Skiners/EditSnikersView.vue'),
+          path: 'edit/sneaker/:id',
+          name: 'edit-sneaker',
+          component: () => import('@/views/admin/Sneaker/EditSneakersView.vue'),
         },
         {
           path: 'edit/sunglasses/:id',
@@ -114,11 +114,6 @@ const router = createRouter({
           name: 'edit-sweatshirt',
           component: () => import('@/views/admin/Sweatshirts/EditSweatshirtView.vue'),
         },
-
-
-
-
-
       ]
     }
   ]

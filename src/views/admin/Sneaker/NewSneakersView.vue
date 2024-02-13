@@ -3,10 +3,10 @@ import { reactive, computed,ref } from 'vue';
 import Link from '@/components/LogoComponents/Link.vue';
 import { useRouter } from 'vue-router';
 import useImages from '@/composable/useImageSnikers';
-import { useSnikerStore } from '@/stores/snikers';
+import { useSneakerStore } from '@/stores/sneaker';
 
 const { onFileChange, url, isImageUploader } = useImages();
-const useProduct = useSnikerStore();
+const useProduct = useSneakerStore();
 const router = useRouter();
 const formData = reactive({
   name: '',
@@ -70,7 +70,7 @@ formData.aviable = aviable;
             placeholder="name of product"
             validation="required"
             :validation-messages="{ required: 'the photo is required' }"
-            accept=".pdf, .jpg"
+            accept=".pdf, .jpg,"
             multiple="true"
             @change="onFileChange"
             v-model.trim="formData.images"
@@ -114,3 +114,4 @@ formData.aviable = aviable;
   </div>
 </template>
 
+@/stores/sneaker

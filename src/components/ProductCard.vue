@@ -1,12 +1,12 @@
 <script setup>
 import { formatCurrency } from '@/helpers/formartPrice'
 import ButtomShop from './ButtomComponents/ButtomShop.vue'
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 import {useStore} from '@/stores/store'
 
 const store = useStore()
 
-defineProps({
+const prop=defineProps({
     product: {
         type:Object
     }
@@ -14,22 +14,23 @@ defineProps({
 const isDropdownCrad = ref(false);
 
 const toggleisDropdownCrad = () => {
-  console.log('entrooooo')
   if (window.innerWidth <= 767) { // Verifica si el ancho de la ventana es menor o igual a 767px (dispositivo móvil)
     isDropdownCrad.value = !isDropdownCrad.value; // Cambia el estado del desplegable solo en dispositivos móviles
   }
 }
+
+const isNotStock=computed(()=> prop.product.aviable<=0)
 
 </script>
 
 <template>
 
     <div class="relative group duration-500 cursor-pointer group overflow-hidden  text-gray-50 h-4/4 w-6/6 rounded-xl hover:duration-700 md:w-11/12 ">
-      <div class=" w-5/5  h-4/4 bg-green-500 text-gray-800 md:w-11/12">
+      <div class=" w-5/5  h-4/4 bg-black text-gray-800 md:w-11/12">
         <div class="flex flex-row-reverse justify-between">
 <button @click="toggleisDropdownCrad" >
 
-  <svg  xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class=" stroke-current  w-9 h-7 ">
+  <svg  xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class=" stroke-current  w-9 h-7 ">
     <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
   </svg>
 </button>
@@ -52,7 +53,8 @@ const toggleisDropdownCrad = () => {
   <div class="absolute bg-gray-50 -bottom-8 w-full flex flex-col gap-2 group-hover:-bottom-0 group-hover:duration-600 duration-500   md:w-11/12 ">
              <h3 class="mb-0 text-sm font-black text-gray-500 text-center lg:text-xl">{{ product.name }}</h3>
       <div class="flex flex-row justify-around">
-                   <p  class=" font-extrabold text-gray-900 md:text-xl lg:text-xl ">Aviable: {{ product.aviable }}</p>
+                   <p v-if="!isNotStock"  class=" font-extrabold text-gray-900 md:text-xl lg:text-xl ">Aviable: {{ product.aviable }}</p>
+                   <p  v-else class="text-black font-extrabold">out of stock</p>
                    <p class=" font-extrabold text-gray-900 md:text-xl lg:text-xl  ">{{ formatCurrency(product.price) }}</p>
                   </div>
        

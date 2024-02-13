@@ -8,7 +8,7 @@ to="new-product">
 new product
 </Link>
       <Link
-      to="all-snikers"
+      to="all-sneakers"
       >
        snikers</Link>
           <Link 

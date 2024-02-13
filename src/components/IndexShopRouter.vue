@@ -39,11 +39,11 @@ onMounted(() => {
 
 <template>
     <div class="flex flex-col justify-center items-center mt-40 lg:items-start   containerIndexShop">
-        <RouterLink :to="{ name: 'Skiners' }" :class="{ 'card-scrolled': isNavbarTransparent1 }">
+        <RouterLink :to="{ name: 'Sneakers' }" :class="{ 'card-scrolled': isNavbarTransparent1 }">
             <div class="card">
                 <div class="bgOpacity">
                 <div class="cardAll card1">
-      <h1 class="cardName text-2xl font-extrabold text-stroke-1">Snikers</h1>
+      <h1 class="cardName text-2xl font-extrabold text-stroke-1">Sneaker</h1>
     </div>
                 </div>
             </div>

@@ -68,9 +68,9 @@ watch(sweatshirt, (sweatshirt) => {
 <template>
   <div class="mt-10">
     <Link to="products">
-    Volver
+    Back
     </Link>
-    <h1 class="text-4xl my-10 font-extrabold">Editar Producto</h1>
+    <h1 class="text-4xl my-10 font-extrabold">Edit Product</h1>
 
     <div class="flex justify-center bg-white shadow">
       <div class="mx-auto mt-10 p-10 w-full  2xl:w-2/4">
@@ -83,19 +83,19 @@ watch(sweatshirt, (sweatshirt) => {
           <FormKit type="number" label="Precio" name="price" placeholder="Precio de Producto" step="1" min="1"
             v-model.number="formData.price" />
           <div v-if="isImageUploaded">
-            <p class="font-black">Imagen Nueva:</p>
+            <p class="font-black">new images:</p>
             <img :src="url" alt="Nueva imagen Producto" class="w-52" />
           </div>
 
           <div v-else>
-            <p class="font-black">Imagen Actual:</p>
-            <img :src="formData.image" :alt="'Imagen de' + formData.image" class="w-52" />
+            <p class="font-black">old images:</p>
+            <img :src="formData.images" :alt="'Imagen de' + formData.images" class="w-52" />
           </div>
-               <FormKit type="file" label="Cambiar Imagen" name="image" multiple="false" accept=".jpg"
+               <FormKit type="file" label="change images" name="images" multiple="true" accept=".jpg, .png "
               @change="onFileChange" />
 
 
-                       <FormKit type="number" label="S" name="S" placeholder="S" step="1" min="1"
+                       <FormKit type="number" label="S" name="S" placeholder="S" step="1" min="0"
                   v-model.number="formData.S"
                   validation="required"
                   :validation-messages="{ required: 'If you do not have quantity, enter 0|' }"  />

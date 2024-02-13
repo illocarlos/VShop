@@ -29,7 +29,7 @@ export const useStore = defineStore('store', () => {
 
     function addItem(product) {
 
-        if (product.category === 'snikers') {
+        if (product.category === 'sneaker') {
             filterSneaker(product)
         } else if (product.category === 'sweatshirt') {
             filterSweatshirt(product)
@@ -214,9 +214,9 @@ export const useStore = defineStore('store', () => {
                             // Podrías lanzar una alerta, registrar un error, etc.
                         }
                     });
-                } else if (item.category === "snikers") {
+                } else if (item.category === "sneaker") {
 
-                    const productRef = doc(db, "snikers", item.id)
+                    const productRef = doc(db, "sneaker", item.id)
                     await runTransaction(db, async (transaction) => {
                         const currentProduct = await transaction.get(productRef)
 

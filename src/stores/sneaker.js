@@ -4,25 +4,25 @@ import { useFirestore, useCollection, useFirebaseStorage } from 'vuefire'
 import { collection, addDoc, where, query, limit, orderBy, updateDoc, doc, getDoc, deleteDoc } from 'firebase/firestore'
 import { ref as storageRef, deleteObject } from 'firebase/storage'
 
-export const useSnikerStore = defineStore('snikers', () => {
-    const filterArraySneaker = ref([])
+export const useSneakerStore = defineStore('sneaker', () => {
+    const filterArraySneakers = ref([])
     const db = useFirestore()
     const categories = [
-        { id: 1, name: 'snikers' },
+        { id: 1, name: 'sneaker' },
         { id: 2, name: 'sunglasse' },
         { id: 3, name: 'sweatshirt' }
     ]
     // llamamos a firebase para recoger la collection de productos
     const allProducts = query(
-        collection(db, 'snikers')
+        collection(db, 'sneaker')
     )
 
-    const getAllProductSnikers = useCollection(allProducts)
-    filterArraySneaker.value = getAllProductSnikers
+    const getAllProductSneakers = useCollection(allProducts)
+    filterArraySneakers.value = getAllProductSneakers
 
     // creacion de productos
     async function createProduct(product) {
-        await addDoc(collection(db, 'snikers'), product)
+        await addDoc(collection(db, 'sneaker'), product)
     }
 
 
@@ -52,25 +52,25 @@ export const useSnikerStore = defineStore('snikers', () => {
     const filterPricesSneakers = (data) => {
 
         const { prices } = data
-        const filterSneakers = getAllProductSnikers.value.filter((skeaner) => skeaner.price <= prices);
+        const filterSneakers = getAllProductSneakers.value.filter((sneakers) => sneakers.price <= prices);
 
-        filterArraySneaker.value = filterSneakers
+        filterArraySneakers.value = filterSneakers
 
     }
 
 
-    const noResult = computed(() => filterArraySneaker.value.length === 0)
+    const noResult = computed(() => filterArraySneakers.value.length === 0)
 
     const filterSneakers = computed(() => {
 
-        return filterArraySneaker.value.length > 0 ?
-            filterArraySneaker.value :
-            getAllProductSnikers.value
+        return filterArraySneakers.value.length > 0 ?
+            filterArraySneakers.value :
+            getAllProductSneakers.value
     })
     return {
         createProduct,
         categoryOption,
-        getAllProductSnikers,
+        getAllProductSneakers,
         updateProduct,
         filterSneakers,
         filterPricesSneakers,

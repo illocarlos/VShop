@@ -37,18 +37,18 @@ const isProductAviable=computed(()=> sunglasses.value?.aviable<=0)
 <template>
   <div class="h-5/5 mt-40 lg:mb-40 lg:my-46   lg:flex lg:gap-20 ">
 
-    <div class="flex flex-col-reverse h-6/6 lg:flex-row lg:ml-28 lg:w-5/6 ">
+    <div class="flex flex-col-reverse h-6/6 lg:flex-row lg:ml-28 lg:w-4/6 ">
    
       
       <div  class="w-full flex overflow-x-scroll lg:flex-col lg:w-1/5 ">
         <div  v-for="(image, index) in sunglasses?.images" :key="index">
-          <img class="h-14 cursor-pointer lg:h-20" @click="selectImage(index)" :src="image" :alt="`photo num ${index}`">
+          <img class="h-16 cursor-pointer mx-1  my-2 w-18 lg:mx-0 lg:h-28" @click="selectImage(index)" :src="image" :alt="`photo num ${index}`">
         </div>
       </div>
 
       <div class="lg:flex ">
-        <img class="h-96 w-full bg-cover lg:h-30 lg:w-4/5  containerImg " v-if="numPhoto" :src="selectedImage" />
-        <img class="h-96 w-full bg-cover lg:h-30 lg:w-4/5  containerImg" v-else :src="sunglasses?.images[0]" />
+        <img class="h-96 w-full bg-cover lg:h-5/5 lg:w-5/5  containerImg " v-if="numPhoto" :src="selectedImage" />
+        <img class="h-96 w-full bg-cover lg:h-5/5 lg:w-5/5  containerImg" v-else :src="sunglasses?.images[0]" />
       </div>
     </div>
     <article class="mt-10 flex flex-col justify-center items-center w-3/4 md:w-4/4 lg:w-3/6  ">

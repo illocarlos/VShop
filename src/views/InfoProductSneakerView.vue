@@ -17,11 +17,11 @@ const router = useRouter()
 const route = useRoute()
 
 const db = useFirestore()
-const docRef = doc(db, 'snikers', route.params.id)
-const sniker = useDocument(docRef)
+const docRef = doc(db, 'sneaker', route.params.id)
+const sneaker = useDocument(docRef)
 
 const selectImage = (index) => {
-  selectedImage.value = sniker.value.images[index];
+  selectedImage.value = sneaker.value.images[index];
   numPhoto.value = true;
 };
 const formData = reactive({
@@ -103,27 +103,27 @@ function $reset() {
 }
 
 
-const snikerBuy = computed(() => {
-    formData.id = sniker.value?.id;
-  formData.name = sniker.value?.name;
-  formData.price = sniker.value?.price;
-  formData.category = sniker.value?.category;
-  formData.images = sniker.value?.images;
-    formData.totalsize36 = sniker.value?.size36;
-  formData.totalsize37 = sniker.value?.size37;
-  formData.totalsize38 = sniker.value?.size38;
-  formData.totalsize39 = sniker.value?.size39;
-  formData.totalsize40 = sniker.value?.size40;
-  formData.totalsize41 = sniker.value?.size41;
-  formData.totalsize42 = sniker.value?.size42;
-  formData.totalsize43 = sniker.value?.size43;
-  formData.totalsize44 = sniker.value?.size44;
-  formData.totalsize45 = sniker.value?.size45;
-  formData.totalsize46 = sniker.value?.size46;
-  formData.totalsize47 = sniker.value?.size47;
-  formData.totalsize48 = sniker.value?.size48;
-  formData.totalsize49 = sniker.value?.size49;
-  formData.totalsize50 = sniker.value?.size50;
+const sneakerBuy = computed(() => {
+    formData.id = sneaker.value?.id;
+  formData.name = sneaker.value?.name;
+  formData.price = sneaker.value?.price;
+  formData.category = sneaker.value?.category;
+  formData.images = sneaker.value?.images;
+    formData.totalsize36 = sneaker.value?.size36;
+  formData.totalsize37 = sneaker.value?.size37;
+  formData.totalsize38 = sneaker.value?.size38;
+  formData.totalsize39 = sneaker.value?.size39;
+  formData.totalsize40 = sneaker.value?.size40;
+  formData.totalsize41 = sneaker.value?.size41;
+  formData.totalsize42 = sneaker.value?.size42;
+  formData.totalsize43 = sneaker.value?.size43;
+  formData.totalsize44 = sneaker.value?.size44;
+  formData.totalsize45 = sneaker.value?.size45;
+  formData.totalsize46 = sneaker.value?.size46;
+  formData.totalsize47 = sneaker.value?.size47;
+  formData.totalsize48 = sneaker.value?.size48;
+  formData.totalsize49 = sneaker.value?.size49;
+  formData.totalsize50 = sneaker.value?.size50;
   formData.total =  formData.size36 +
     formData.size37 +
     formData.size38 +
@@ -145,16 +145,16 @@ const snikerBuy = computed(() => {
 const handleBuy = () => {
   
   // Validar que al menos uno de los valores sea superior a 0
-  if (snikerBuy.value.total === 0) {
+  if (sneakerBuy.value.total === 0) {
     
     return Store.errorSendMessage = 'You must enter at least an amount greater than 0';
 
   } else {
     Store.errorSendMessage = "";
-    const product = { ...snikerBuy.value };
+    const product = { ...sneakerBuy.value };
     Store.addItem(product);
     $reset()
-      router.push({ name: 'Skiners' })
+      router.push({ name: 'Sneakers' })
   }
 
 }
@@ -175,22 +175,22 @@ const disabled48 = generateDisabledHelper(formData, '48');
 const disabled49 = generateDisabledHelper(formData, '49');
 const disabled50 = generateDisabledHelper(formData, '50');
 
-const isProductAviable = computed(() => sniker.value?.aviable <= 0)
-const isProductAviable36 = computed(() => sniker.value?.size36 <= 0)
-const isProductAviable37 = computed(() => sniker.value?.size37 <= 0)
-const isProductAviable38 = computed(() => sniker.value?.size38 <= 0)
-const isProductAviable39 = computed(() => sniker.value?.size39 <= 0)
-const isProductAviable40 = computed(() => sniker.value?.size40 <= 0)
-const isProductAviable41 = computed(() => sniker.value?.size41 <= 0)
-const isProductAviable42 = computed(() => sniker.value?.size42 <= 0)
-const isProductAviable43 = computed(() => sniker.value?.size43 <= 0)
-const isProductAviable44 = computed(() => sniker.value?.size44 <= 0)
-const isProductAviable45 = computed(() => sniker.value?.size45 <= 0)
-const isProductAviable46 = computed(() => sniker.value?.size46 <= 0)
-const isProductAviable47 = computed(() => sniker.value?.size47 <= 0)
-const isProductAviable48 = computed(() => sniker.value?.size48 <= 0)
-const isProductAviable49 = computed(() => sniker.value?.size49 <= 0)
-const isProductAviable50 = computed(() => sniker.value?.size50 <= 0)
+const isProductAviable = computed(() => sneaker.value?.aviable <= 0)
+const isProductAviable36 = computed(() => sneaker.value?.size36 <= 0)
+const isProductAviable37 = computed(() => sneaker.value?.size37 <= 0)
+const isProductAviable38 = computed(() => sneaker.value?.size38 <= 0)
+const isProductAviable39 = computed(() => sneaker.value?.size39 <= 0)
+const isProductAviable40 = computed(() => sneaker.value?.size40 <= 0)
+const isProductAviable41 = computed(() => sneaker.value?.size41 <= 0)
+const isProductAviable42 = computed(() => sneaker.value?.size42 <= 0)
+const isProductAviable43 = computed(() => sneaker.value?.size43 <= 0)
+const isProductAviable44 = computed(() => sneaker.value?.size44 <= 0)
+const isProductAviable45 = computed(() => sneaker.value?.size45 <= 0)
+const isProductAviable46 = computed(() => sneaker.value?.size46 <= 0)
+const isProductAviable47 = computed(() => sneaker.value?.size47 <= 0)
+const isProductAviable48 = computed(() => sneaker.value?.size48 <= 0)
+const isProductAviable49 = computed(() => sneaker.value?.size49 <= 0)
+const isProductAviable50 = computed(() => sneaker.value?.size50 <= 0)
 
 </script>
 
@@ -200,26 +200,26 @@ const isProductAviable50 = computed(() => sniker.value?.size50 <= 0)
     <div class="flex flex-col-reverse h-6/6 lg:flex-row lg:ml-28 lg:w-4/6   ">
 
       <div class="w-full flex overflow-x-scroll lg:flex-col lg:w-1/5  ">
-        <div  v-for="(image, index) in sniker?.images" :key="index">
-          <img class="h-14 cursor-pointer lg:h-20" @click="selectImage(index)" :src="image" :alt="`photo num ${index}`">
+        <div  v-for="(image, index) in sneaker?.images" :key="index">
+          <img class="h-16 cursor-pointer my-2 mx-2 lg:mx-0 lg:h-28" @click="selectImage(index)" :src="image" :alt="`photo num ${index}`">
         </div>
       </div>
       <div class="lg:flex  ">
         <img class="h-96 w-full bg-cover lg:h-30 lg:w-5/5 lg:h-5/5 containerImg " v-if="numPhoto" :src="selectedImage" />
-        <img class="h-96 w-full bg-cover lg:h-30 lg:w-5/5 lg:h-5/5 containerImg" v-else :src="sniker?.images[0]" />
+        <img class="h-96 w-full bg-cover lg:h-30 lg:w-5/5 lg:h-5/5 containerImg" v-else :src="sneaker?.images[0]" />
       </div>
     </div>
     <div class="lg:w-5/12 lg:ml-4">
     <article class="mt-10 flex flex-col justify-center items-center w-3/4 md:w-4/4 lg:w-6/6 lg:mt-0  ">
       <div class="md:flex md:flex-row md:justify-around md:w-full lg:flex lg:flex-col">
         <div>
-          <p class="lg:text-2xl">{{ sniker?.category }}</p>
-          <h1 class="text-xl uppercase md:text-4x lg:text-4xl">{{ sniker?.name }}</h1>
+          <p class="lg:text-2xl">{{ sneaker?.category }}</p>
+          <h1 class="text-xl uppercase md:text-4x lg:text-4xl">{{ sneaker?.name }}</h1>
         </div>
         <div class="md:flex md:flex-col-reverse">
-          <p class="my-2 text-xl text-green-500 font-extrabold md:text-4xl md:my-0 lg:text-7xl">{{ formatCurrency(sniker?.price) }}</p>
+          <p class="my-2 text-xl text-green-500 font-extrabold md:text-4xl md:my-0 lg:text-7xl">{{ formatCurrency(sneaker?.price) }}</p>
 
-          <p v-if="!isProductAviable" class="mt-6 text-sm md:mt-0 lg:text-2xl">available {{ sniker?. aviable }} units</p>
+          <p v-if="!isProductAviable" class="mt-6 text-sm md:mt-0 lg:text-2xl">available {{ sneaker?. aviable }} units</p>
            <div v-else class="flex gap-5 my-4   ">
                 <p class="font-extrabold uppercase text-green-500">out of stock</p>
                  <RouterLink
@@ -242,18 +242,18 @@ const isProductAviable50 = computed(() => sniker.value?.size50 <= 0)
 
       <div class="flex flex-col">
   <FormKit type="number" label="36" name="size36" placeholder="0" step="0" min="0"
-  :max="sniker?.size36"
+  :max="sneaker?.size36"
   v-model.number="formData.size36" 
   :disabled="disabled36 || isProductAviable36"
   :style="{backgroundColor: disabled36|| isProductAviable36 ? '#f4f4f4' : 'inherit',
   color: disabled36|| isProductAviable36 ? '#ccc' : 'black'}"
   validation="required" />
-    <p class="text-gray-400 text-center text-xs">{{ sniker?.size36 }} units</p>
+    <p class="text-gray-400 text-center text-xs">{{ sneaker?.size36 }} units</p>
                   </div>
 
      <div class="flex flex-col">
   <FormKit type="number" label="37" name="size37" placeholder="0" step="0" min="0"
-    :max="sniker?.size37"
+    :max="sneaker?.size37"
   v-model.number="formData.size37" 
   :disabled="disabled37 || isProductAviable37"
     :style="{
@@ -261,105 +261,105 @@ const isProductAviable50 = computed(() => sniker.value?.size50 <= 0)
       color: disabled37 || isProductAviable37 ? '#ccc' : 'black'
 }"
     validation="required" />  
-      <p class="text-gray-400 text-center text-xs">{{ sniker?.size37 }} units</p>
+      <p class="text-gray-400 text-center text-xs">{{ sneaker?.size37 }} units</p>
                     </div>
 
      <div class="flex flex-col">
   <FormKit type="number" label="38" name="size38" placeholder="0" step="0" min="0"
-    :max="sniker?.size38"
+    :max="sneaker?.size38"
   v-model.number="formData.size38"
      :disabled="disabled38 || isProductAviable38"
             :style="{
               backgroundColor: disabled38 || isProductAviable38 ? '#f4f4f4' : 'inherit',
               color: disabled38 || isProductAviable38 ? '#ccc' : 'black'}"
   validation="required" />
-      <p class="text-gray-400 text-center text-xs">{{ sniker?.size38 }} units</p>
+      <p class="text-gray-400 text-center text-xs">{{ sneaker?.size38 }} units</p>
                     </div>
 
        <div class="flex flex-col">
   <FormKit type="number" label="39" name="size39" placeholder="0" step="0" min="0"
-    :max="sniker?.size39"
+    :max="sneaker?.size39"
   v-model.number="formData.size39"
       :disabled="disabled39 || isProductAviable39"
             :style="{
               backgroundColor: disabled39 || isProductAviable39 ? '#f4f4f4' : 'inherit',
               color: disabled39 || isProductAviable39 ? '#ccc' : 'black'}"
   validation="required" />
-        <p class="text-gray-400 text-center text-xs">{{ sniker?.size39 }} units</p>
+        <p class="text-gray-400 text-center text-xs">{{ sneaker?.size39 }} units</p>
                       </div>
 
       <div class="flex flex-col">
   <FormKit type="number" label="40" name="size40" placeholder="0" step="0" min="0"
-    :max="sniker?.size40"
+    :max="sneaker?.size40"
   v-model.number="formData.size40"
       :disabled="disabled40 || isProductAviable40"
             :style="{
               backgroundColor: disabled40 || isProductAviable40 ? '#f4f4f4' : 'inherit',
               color: disabled40 || isProductAviable40 ? '#ccc' : 'black'  }"
   validation="required"/>
-     <p class="text-gray-400 text-center text-xs">{{ sniker?.size40 }} units</p>
+     <p class="text-gray-400 text-center text-xs">{{ sneaker?.size40 }} units</p>
                       </div>
        </div>
 
  <div class="flex flex-row justify-center gap-2">
         <div class="flex flex-col">
    <FormKit type="number" label="41" name="size41" placeholder="0" step="0" min="0"
-     :max="sniker?.size41"
+     :max="sneaker?.size41"
    v-model.number="formData.size41" 
        :disabled="disabled41 || isProductAviable41"
             :style="{
               backgroundColor: disabled41 || isProductAviable41 ? '#f4f4f4' : 'inherit',
               color: disabled41 || isProductAviable41 ? '#ccc' : 'black'  }"
    validation="required"/>
-   <p class="text-gray-400 text-center text-xs">{{ sniker?.size41 }} units</p>
+   <p class="text-gray-400 text-center text-xs">{{ sneaker?.size41 }} units</p>
                         </div>
 
         <div class="flex flex-col">
    <FormKit type="number" label="42" name="size42" placeholder="0" step="0" min="0"
-     :max="sniker?.size42"
+     :max="sneaker?.size42"
    v-model.number="formData.size42" 
         :disabled="disabled42 || isProductAviable42"
             :style="{
               backgroundColor: disabled42 || isProductAviable42 ? '#f4f4f4' : 'inherit',
               color: disabled42  || isProductAviable42 ? '#ccc' : 'black' }"
    validation="required" />
-   <p class="text-gray-400 text-center text-xs">{{ sniker?.size42 }} units</p>
+   <p class="text-gray-400 text-center text-xs">{{ sneaker?.size42 }} units</p>
                         </div>
 
                          <div class="flex flex-col">
    <FormKit type="number" label="43" name="size43" placeholder="0" step="0" min="0"
-     :max="sniker?.size43"
+     :max="sneaker?.size43"
    v-model.number="formData.size43" 
        :disabled="disabled43 || isProductAviable43"
             :style="{
               backgroundColor: disabled43 || isProductAviable43 ? '#f4f4f4' : 'inherit',
               color: disabled43 || isProductAviable43 ? '#ccc' : 'black'}"
    validation="required" />
-      <p class="text-gray-400 text-center text-xs">{{ sniker?.size43 }} units</p>
+      <p class="text-gray-400 text-center text-xs">{{ sneaker?.size43 }} units</p>
                           </div>
 
                            <div class="flex flex-col">
    <FormKit type="number" label="44" name="size44" placeholder="0" step="0" min="0"
-     :max="sniker?.size44"
+     :max="sneaker?.size44"
    v-model.number="formData.size44"
       :disabled="disabled44 || isProductAviable44"
             :style="{
               backgroundColor: disabled44 || isProductAviable44 ? '#f4f4f4' : 'inherit',
               color: disabled44 || isProductAviable44 ? '#ccc' : 'black' }"
    validation="required" />
-     <p class="text-gray-400 text-center text-xs">{{ sniker?.size44 }} units</p>
+     <p class="text-gray-400 text-center text-xs">{{ sneaker?.size44 }} units</p>
                           </div>
 
                            <div class="flex flex-col">
    <FormKit type="number" label="45" name="size45" placeholder="0" step="0" min="0"
-     :max="sniker?.size45"
+     :max="sneaker?.size45"
    v-model.number="formData.size45" 
        :disabled="disabled45 || isProductAviable45"
             :style="{
               backgroundColor: disabled45 || isProductAviable45 ? '#f4f4f4' : 'inherit',
               color: disabled45 || isProductAviable45 ? '#ccc' : 'black'}"
    validation="required" />
-     <p class="text-gray-400 text-center text-xs">{{ sniker?.size45 }} units</p>
+     <p class="text-gray-400 text-center text-xs">{{ sneaker?.size45 }} units</p>
                             </div>
   </div>
 
@@ -367,62 +367,62 @@ const isProductAviable50 = computed(() => sniker.value?.size50 <= 0)
 
                   <div class="flex flex-col">
        <FormKit type="number" label="46" name="size46" placeholder="0" step="0" min="0"
-         :max="sniker?.size46"
+         :max="sneaker?.size46"
       v-model.number="formData.size46"
         :disabled="disabled46 || isProductAviable46"
             :style="{
               backgroundColor: disabled46 || isProductAviable46 ? '#f4f4f4' : 'inherit',
               color: disabled46 || isProductAviable46 ? '#ccc' : 'black' }"
       validation="required"/>
-       <p class="text-gray-400 text-center text-xs">{{ sniker?.size46 }} units</p>
+       <p class="text-gray-400 text-center text-xs">{{ sneaker?.size46 }} units</p>
                               </div>
 
        <div class="flex flex-col">
       <FormKit type="number" label="47" name="size47" placeholder="0" step="0" min="0"
-        :max="sniker?.size47"
+        :max="sneaker?.size47"
       v-model.number="formData.size47" 
          :disabled="disabled47 || isProductAviable47"
             :style="{
               backgroundColor: disabled47 || isProductAviable47 ? '#f4f4f4' : 'inherit',
               color: disabled47 || isProductAviable47 ? '#ccc' : 'black'}"
               validation="required"/> 
-                     <p class="text-gray-400 text-center text-xs">{{ sniker?.size47 }} units</p>
+                     <p class="text-gray-400 text-center text-xs">{{ sneaker?.size47 }} units</p>
                                 </div>
 
        <div class="flex flex-col">
       <FormKit type="number" label="48" name="size48" placeholder="0" step="0" min="0"
-        :max="sniker?.size48"
+        :max="sneaker?.size48"
       v-model.number="formData.size48"
      :disabled="disabled48 || isProductAviable48"
             :style="{
               backgroundColor: disabled48 || isProductAviable48 ? '#f4f4f4' : 'inherit',
               color: disabled48 || isProductAviable48 ? '#ccc' : 'black'}"
       validation="required" /> 
-             <p class="text-gray-400 text-center text-xs">{{ sniker?.size48 }} units</p>
+             <p class="text-gray-400 text-center text-xs">{{ sneaker?.size48 }} units</p>
                                 </div>
 
          <div class="flex flex-col">
       <FormKit type="number" label="49" name="size49" placeholder="0" step="0" min="0"
-        :max="sniker?.size49"
+        :max="sneaker?.size49"
       v-model.number="formData.size49"
      :disabled="disabled49 || isProductAviable49"
             :style="{
               backgroundColor: disabled49 || isProductAviable49 ? '#f4f4f4' : 'inherit',
               color: disabled49 || isProductAviable49 ? '#ccc' : 'black'}"
       validation="required"  />
-             <p class="text-gray-400 text-center text-xs">{{ sniker?.size49 }} units</p>
+             <p class="text-gray-400 text-center text-xs">{{ sneaker?.size49 }} units</p>
                                 </div>
 
          <div class="flex flex-col">
       <FormKit type="number" label="50" name="size50" placeholder="0" step="0" min="0"
-        :max="sniker?.size50"
+        :max="sneaker?.size50"
       v-model.number="formData.size50"
           :disabled="disabled50 || isProductAviable50"
             :style="{
               backgroundColor: disabled50 || isProductAviable50 ? '#f4f4f4' : 'inherit',
               color: disabled50 || isProductAviable50 ? '#ccc' : 'black'}"
       validation="required"/>
-      <p class="text-gray-400 text-center text-xs">{{ sniker?.size50 }} units</p>
+      <p class="text-gray-400 text-center text-xs">{{ sneaker?.size50 }} units</p>
                                   </div>
     </div>
   </div>
@@ -439,7 +439,7 @@ const isProductAviable50 = computed(() => sniker.value?.size50 <= 0)
 </template>
 <style scoped>
 .containerImg{
-  height: 20rem;
+  height: 24rem;
 }
 .overflow-x-scroll {
   overflow-x: auto !important;

@@ -63,7 +63,7 @@ formData.aviable = aviable;
               :disabled="true" 
             />
           <FormKit type="file" label="Documents" name="images" placeholder="name of product" validation="required"
-            :validation-messages="{ required: 'the photo is required' }" accept=".pdf, .jpg" multiple="true"
+            :validation-messages="{ required: 'the photo is required' }" accept=".pdf, .jpg, .png" multiple="true"
             @change="onFileChange" v-model.trim="formData.images" />
           <div class="flex flex-wrap" v-if="isImageUploader">
             <div v-for="(image, index) in url" :key="index" class="w-1/4 p-2">

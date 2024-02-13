@@ -100,13 +100,13 @@ const isProductAviableXL = computed(() => sweatshirt.value?.XL <= 0)
 
 </script>
 <template>
-  <div class="h-5/5 mt-40  lg:my-46 lg:mb-40 lg:flex containerAipad ">
+  <div class="h-5/5 mt-40  lg:my-46 lg:mb-40 lg:flex  ">
 
     <div class="flex flex-col-reverse h-6/6 lg:flex-row lg:ml-28 lg:w-4/6">
 
       <div class="w-full flex overflow-x-scroll lg:flex-col lg:w-1/5 ">
         <div v-for="(image, index) in sweatshirt?.images" :key="index">
-          <img class="h-14 cursor-pointer lg:h-20" @click="selectImage(index)" :src="image" :alt="`photo num ${index}`">
+          <img class="h-16 cursor-pointer mx-1 w-18 lg:mx-0 my-2 lg:h-28" @click="selectImage(index)" :src="image" :alt="`photo num ${index}`">
         </div>
       </div>
 
@@ -115,7 +115,7 @@ const isProductAviableXL = computed(() => sweatshirt.value?.XL <= 0)
         <img class="h-96  bg-cover w-full lg:h-30 lg:w-5/5 lg:h-5/5 containerImg" v-else :src="sweatshirt?.images[0]" />
       </div>
     </div>
-    <article class="mt-10 flex flex-col justify-center items-center w-3/4 md:w-4/4 lg:w-2/6  ">
+    <article class="mt-10 flex flex-col justify-center items-center w-3/4 md:w-4/4 lg:w-6/6  ">
       <div class="md:flex md:flex-row md:justify-around md:w-full lg:flex lg:flex-col">
         <div>
           <p class="lg:text-2xl">{{ sweatshirt?.category }}</p>
@@ -193,7 +193,7 @@ const isProductAviableXL = computed(() => sweatshirt.value?.XL <= 0)
      </div>
 
   </div>
-      <button v-if="!isProductAviable" type="submit" class="mt-8 h-12 w-4/6"><span class="uppercase">buy</span></button>
+      <button v-if="!isProductAviable" type="submit" class="mt-8 h-12 w-3/6"><span class="uppercase">buy</span></button>
       <div v-if="Store.errorSendMessage" class="mt-3 text-xs text-red-500">{{ Store.errorSendMessage }}</div>
   </FormKit>
 
@@ -218,7 +218,7 @@ const isProductAviableXL = computed(() => sweatshirt.value?.XL <= 0)
                  color: disabledS || isProductAviableS ? '#ccc' : 'inherit'
                }"
                       validation="required"/>
-                    <p class="text-gray-400 text-center text-xs" >{{ sweatshirt?.S }}</p>
+                    <p class="text-gray-400 text-center text-xs" >{{ sweatshirt?.S }} units</p>
   </div>
 
 
@@ -232,7 +232,7 @@ const isProductAviableXL = computed(() => sweatshirt.value?.XL <= 0)
                   backgroundColor: disabledM || isProductAviableM ? '#f4f4f4' : 'inherit',
                   color: disabledM || isProductAviableM ? '#ccc' : 'inherit'
                 }" />
-                  <p class="text-gray-400 text-center text-xs">{{ sweatshirt?.M }}</p>
+                  <p class="text-gray-400 text-center text-xs">{{ sweatshirt?.M }} units</p>
                 </div>
 
            <div class="flex flex-col">
@@ -245,7 +245,7 @@ const isProductAviableXL = computed(() => sweatshirt.value?.XL <= 0)
                   backgroundColor: disabledL || isProductAviableL ? '#f4f4f4' : 'inherit',
                   color: disabledL || isProductAviableL ? '#ccc' : 'inherit'
                 }" />
-                   <p class="text-gray-400 text-center text-xs">{{ sweatshirt?.L }}</p>
+                   <p class="text-gray-400 text-center text-xs">{{ sweatshirt?.L }} units</p>
     </div>
              <div class="flex flex-col">
             <FormKit type="number" label="XL" name="XL" placeholder="0" step="0" min="0" 
@@ -257,7 +257,7 @@ const isProductAviableXL = computed(() => sweatshirt.value?.XL <= 0)
                   color: disabledXL || isProductAviableXL ? '#ccc' : 'inherit'
                 }" 
      validation="required" />
-                    <p class="text-gray-400 text-center text-xs">{{ sweatshirt?.XL }}</p>
+                    <p class="text-gray-400 text-center text-xs">{{ sweatshirt?.XL }} units</p>
       </div>
       </div>
 
@@ -270,7 +270,7 @@ const isProductAviableXL = computed(() => sweatshirt.value?.XL <= 0)
 </template>
 <style scoped>
 .containerImg{
-  height: 20rem;
+  height: 26rem;
 }
 .overflow-x-scroll {
   overflow-x: auto;

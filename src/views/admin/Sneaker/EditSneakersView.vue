@@ -4,18 +4,18 @@ import { useRoute, useRouter } from 'vue-router'
 import { doc } from 'firebase/firestore'
 import { useFirestore, useDocument } from 'vuefire'
 import Link from '@/components/LogoComponents/Link.vue';
-import { useSnikerStore } from '@/stores/snikers';
+import { useSneakerStore } from '@/stores/sneaker';
 import useImage from '@/composable/useImageSnikers'
 
 const { onFileChange, url, isImageUploaded } = useImage()
-const products = useSnikerStore()
+const products = useSneakerStore()
 
 const router = useRouter()
 const route = useRoute()
 
 const db = useFirestore()
-const docRef = doc(db, 'snikers', route.params.id)
-const sniker = useDocument(docRef)
+const docRef = doc(db, 'sneaker', route.params.id)
+const sneaker = useDocument(docRef)
 
 const formData = reactive({
   name: '',
@@ -41,6 +41,7 @@ const formData = reactive({
   
 });
 const submitHandler = async data => {
+   console.log('--------> dataaa', data)
   try {
   
     await products.updateProduct(docRef, {
@@ -49,7 +50,7 @@ const submitHandler = async data => {
       aviable:  aviable.value
     })
 
-    router.push({ name: 'all-snikers' })
+    router.push({ name: 'all-sneakers' })
   } catch (error) {
     console.log(error)
   }
@@ -73,18 +74,18 @@ const aviable = computed(() => {
     formData.size50
   );
 });
-watch(sniker, (sniker) => {
-  if (!sniker) {
-    router.push({ name: 'all-snikers' });
+watch(sneaker, (sneaker) => {
+  if (!sneaker) {
+    router.push({ name: 'all-sneakers' });
   }
   // Actualiza los campos size y establece 0 si están vacíos
   for (let i = 36; i <= 50; i++) {
     const fieldName = `size${i}`;
-    formData[fieldName] = sniker[fieldName] || 0;
+    formData[fieldName] = sneaker[fieldName] || 0;
   }
 
   // Actualiza la suma total cada vez que cambian los tamaños
-    Object.assign((formData), sniker)
+    Object.assign((formData), sneaker)
 });
 </script>
 
@@ -123,17 +124,17 @@ watch(sniker, (sniker) => {
 
   <h1>Size</h1>
   <div class="flex flex-wrap">
-   <FormKit type="number" label="size 36" name="size36" placeholder="size 36" step="1" min="1"
+   <FormKit type="number" label="size 36" name="size36" placeholder="size 36" step="1" min="0"
               v-model.number="formData.size36" 
                          validation="required"
      :validation-messages="{ required: 'If you do not have quantity, enter 0|' }"
               />
-              <FormKit type="number" label="size 37" name="size37" placeholder="size 37" step="1" min="1"
+              <FormKit type="number" label="size 37" name="size37" placeholder="size 37" step="1" min="0"
                 v-model.number="formData.size37" 
                 validation="required"
    :validation-messages="{ required: 'If you do not have quantity, enter 0|' }"  />
                   
-                <FormKit type="number" label="size 38" name="size38" placeholder="size 38" step="1" min="1"
+                <FormKit type="number" label="size 38" name="size38" placeholder="size 38" step="1" min="0"
                 v-model.number="formData.size38"
                 validation="required"
                 :validation-messages="{ required: 'If you do not have quantity, enter 0|' }"  />
@@ -193,4 +194,4 @@ watch(sniker, (sniker) => {
       </div>
     </div>
   </div>
-</template>
+</template>@/stores/sneaker

@@ -1,9 +1,9 @@
 <script setup>
 import { storeToRefs } from 'pinia'
-import { useSnikerStore } from '@/stores/snikers'
+import { useSneakerStore } from '@/stores/sneaker'
 import ProductCardVue from '@/components/ProductCard.vue'
 import ModalFilterPrices from '@/components/Filtrer/ModalFilterPrices.vue'
-const useSneaker = useSnikerStore()
+const useSneaker = useSneakerStore()
 const { filterSneakers, noResult } = storeToRefs(useSneaker)
 
 </script>
@@ -24,4 +24,4 @@ const { filterSneakers, noResult } = storeToRefs(useSneaker)
        
 
   </main>
-</template>
+</template>@/stores/sneaker

@@ -1,8 +1,8 @@
 <script setup>
-import { useSnikerStore } from '@/stores/snikers';
+import { useSneakerStore } from '@/stores/sneaker';
 import { ref } from 'vue';
 
-const useProduct = useSnikerStore();
+const useProduct = useSneakerStore();
 const faqs = ref([]); // Initialize faqs as a ref array
 const pricesMax = ref(0)
  
@@ -45,3 +45,4 @@ const submitHanler = data => {
 </template>
 
 
+@/stores/sneaker
