@@ -8,6 +8,8 @@ import { firebaseApp } from './config/firebase'
 // formkit
 import { plugin, defaultConfig } from '@formkit/vue'
 import config from '../formkit.config'
+//analitycs
+import { inject } from '@vercel/analytics';
 
 import App from './App.vue'
 import router from './router'
@@ -29,3 +31,5 @@ app.use(plugin, defaultConfig(config))
 app.use(router)
 
 app.mount('#app')
+
+inject();

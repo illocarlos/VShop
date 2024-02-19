@@ -17,8 +17,6 @@ export const useStore = defineStore('store', () => {
     const totalTaxes = ref(0)
     const totalPay = ref(0)
 
-
-
     const TAX_RATE = .10
 
     watchEffect(() => {
@@ -147,11 +145,8 @@ export const useStore = defineStore('store', () => {
                     itemsFilterCart.value[i].total += newObjet.total;
                     found = true;
                     break;
-
-
                 }
             }
-
             // Si no se encontró un objeto que cumple con las condiciones, simplemente agregamos newObjet al array
             if (!found) {
                 itemsFilterCart.value.push(newObjet);
@@ -234,23 +229,18 @@ export const useStore = defineStore('store', () => {
                             console.error(`key "${availableSizeKey}" don,t found in bbdd.`);
                             // Podrías lanzar una alerta, registrar un error, etc.
                         }
-
-
                     })
-
                 }
-
-
             })
             $reset()
             coupon.$reset()
         } catch (error) {
             console.log(error)
         }
-
     }
 
     function $reset() {
+
         itemsFilterCart.value = []
         totalCart.value = 0
         totalTaxes.value = 0
@@ -259,8 +249,6 @@ export const useStore = defineStore('store', () => {
 
     function deleted(id, size) {
         itemsFilterCart.value = itemsFilterCart.value.filter(elem => !(elem.id === id && elem.size === size));
-
-
 
         if (itemsFilterCart.value.length === 0) {
             itemsFilterCart.value.total = 0;
@@ -273,7 +261,6 @@ export const useStore = defineStore('store', () => {
         // incrementBuy()
     }
 
-
     const decrement = (id, size) => {
         const index = itemsFilterCart.value.findIndex(product => product.id === id && product.size === size)
         itemsFilterCart.value[index].total <= 1 ? itemsFilterCart.value[index].total : itemsFilterCart.value[index].total--
@@ -281,7 +268,6 @@ export const useStore = defineStore('store', () => {
         // decrementBuy()
     }
     function deletedAll() { itemsFilterCart.value = [] }
-
 
     const isEmpty = computed(() => itemsFilterCart.value.length === 0)
 
@@ -297,8 +283,5 @@ export const useStore = defineStore('store', () => {
         totalTaxes,
         totalPay,
         checkout,
-
-
     }
-
 })
